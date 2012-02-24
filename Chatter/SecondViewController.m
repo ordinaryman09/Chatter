@@ -17,13 +17,18 @@
 - (void)viewDidLoad
 {
     // Dummy data that will be retrieved from the webserver
-    NSString *jsonString = @"[{\"postId\": 1, \"timestampe\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"timestampe\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
+    NSString *jsonString = @"[{\"postId\": 1, \"title\": \"think i found something cool\", \"timestamp\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"title\":\"check this out UCLA!\", \"timestamp\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
     
     // Parse the JSON String into an NSDictionary object
     NSDictionary *deserializedData = [jsonString objectFromJSONString];
     
     // Log the results
     NSLog(@"%@", [deserializedData description]);
+    
+    // Iterate through each post in the array
+    // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
+    // Refresh the view? (don't know if this is necessary)
+    
     
     [super viewDidLoad];
 }
