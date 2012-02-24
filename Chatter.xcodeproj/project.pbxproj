@@ -22,6 +22,7 @@
 		79328E7714F76779006730D9 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E6A14F76779006730D9 /* ASIInputStream.m */; };
 		79328E7814F76779006730D9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E6C14F76779006730D9 /* ASINetworkQueue.m */; };
 		79328E7914F76779006730D9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E7014F76779006730D9 /* Reachability.m */; };
+		79328E7D14F76E20006730D9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E7C14F76E20006730D9 /* JSONKit.m */; };
 		7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964814A14F1CA5E00605489 /* ThirdViewController.m */; };
 		7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7964814B14F1CA5E00605489 /* ThirdView.xib */; };
 		7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964815814F1CC2C00605489 /* UIImage+Scale.m */; };
@@ -68,6 +69,8 @@
 		79328E6D14F76779006730D9 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = HTTP/ASIProgressDelegate.h; sourceTree = "<group>"; };
 		79328E6F14F76779006730D9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		79328E7014F76779006730D9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		79328E7B14F76E20006730D9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		79328E7C14F76E20006730D9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		7964814914F1CA5E00605489 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		7964814A14F1CA5E00605489 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		7964814B14F1CA5E00605489 /* ThirdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
@@ -148,6 +151,15 @@
 			path = HTTP/Reachability;
 			sourceTree = "<group>";
 		};
+		79328E7A14F76DF7006730D9 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				79328E7B14F76E20006730D9 /* JSONKit.h */,
+				79328E7C14F76E20006730D9 /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
 		79F30BC314F0F88400C726F8 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +194,7 @@
 		79F30BD814F0F88400C726F8 /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				79328E7A14F76DF7006730D9 /* JSONKit */,
 				79328DA714F749E5006730D9 /* HTTP */,
 				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
 				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
@@ -298,6 +311,7 @@
 				79328E7714F76779006730D9 /* ASIInputStream.m in Sources */,
 				79328E7814F76779006730D9 /* ASINetworkQueue.m in Sources */,
 				79328E7914F76779006730D9 /* Reachability.m in Sources */,
+				79328E7D14F76E20006730D9 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

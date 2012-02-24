@@ -12,13 +12,14 @@
 
 @implementation SecondViewController
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    NSString * test = @"{'result':0, 'test':'hey'}";
     [super viewDidLoad];
 }
-*/
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
