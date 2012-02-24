@@ -241,6 +241,9 @@
 /* Begin PBXProject section */
 		79F30BC514F0F88400C726F8 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
 			buildConfigurationList = 79F30BC814F0F88400C726F8 /* Build configuration list for PBXProject "Chatter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
