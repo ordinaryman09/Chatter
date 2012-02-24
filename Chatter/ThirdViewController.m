@@ -16,6 +16,25 @@
 @synthesize theImage;
 @synthesize theButton;
 
+-(IBAction) sendRequest {
+    NSURL *url = [NSURL URLWithString:@"http://brandstandapp.com/createPoll.php"];
+    request = [ASIFormDataRequest requestWithURL:url];
+    [request addPostValue:@"Ben" forKey:@"names"];
+    [request addPostValue:@"George" forKey:@"names"];
+    
+    [request setCompletionBlock:^{
+        NSLog(@"%@", request.responseString);
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];    
+
+}
+
 
 -(IBAction) buttonClicked
 {
@@ -82,7 +101,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
 }
 
