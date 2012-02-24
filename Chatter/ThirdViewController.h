@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
+
 
 
 @interface ThirdViewController : UIViewController 
@@ -16,7 +18,7 @@
     UIImagePickerController *ipc;
     IBOutlet UIImageView *theImage;
     IBOutlet UIButton *theButton;
-    
+    ASIFormDataRequest *request;
     
 }
 
@@ -24,8 +26,12 @@
 
 @property (nonatomic, retain) UIButton *theButton;
 
+@property (nonatomic, retain) ASIFormDataRequest *request;
 
 -(IBAction) buttonClicked;
+
+-(IBAction) sendRequest;
+
 
 
 @end
