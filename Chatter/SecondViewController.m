@@ -16,7 +16,15 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    NSString * test = @"{'result':0, 'test':'hey'}";
+    // Dummy data that will be retrieved from the webserver
+    NSString *jsonString = @"[{\"postId\": 1, \"timestampe\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"timestampe\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
+    
+    // Parse the JSON String into an NSDictionary object
+    NSDictionary *deserializedData = [jsonString objectFromJSONString];
+    
+    // Log the results
+    NSLog(@"%@", [deserializedData description]);
+    
     [super viewDidLoad];
 }
 
