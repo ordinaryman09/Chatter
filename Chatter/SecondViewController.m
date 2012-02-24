@@ -26,6 +26,13 @@
     NSLog(@"%@", [deserializedData description]);
     
     // Iterate through each post in the array
+    for (NSDictionary * dataDict in deserializedData) {
+        // Extract the Post ID # from this post
+        NSString * postTitle = [dataDict objectForKey:@"title"];
+        NSLog(@"%@", postTitle);
+        
+        // Extract ..... everything else
+    }
     // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
     // Refresh the view? (don't know if this is necessary)
     
