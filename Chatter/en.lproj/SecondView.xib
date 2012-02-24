@@ -100,7 +100,6 @@
 						<string key="NSFrame">{{0, 44}, {320, 367}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="29553666">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
