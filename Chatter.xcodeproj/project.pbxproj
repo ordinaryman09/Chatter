@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		79328CF314F27131006730D9 /* ForFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328CF114F27131006730D9 /* ForFun.m */; };
+		79328CF414F27131006730D9 /* ForFun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79328CF214F27131006730D9 /* ForFun.xib */; };
+		7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964814A14F1CA5E00605489 /* ThirdViewController.m */; };
+		7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7964814B14F1CA5E00605489 /* ThirdView.xib */; };
+		7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964815814F1CC2C00605489 /* UIImage+Scale.m */; };
+		79F30BD314F0F88400C726F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD214F0F88400C726F8 /* UIKit.framework */; };
+		79F30BD514F0F88400C726F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD414F0F88400C726F8 /* Foundation.framework */; };
+		79F30BD714F0F88400C726F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD614F0F88400C726F8 /* CoreGraphics.framework */; };
+		79F30BDD14F0F88400C726F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BDB14F0F88400C726F8 /* InfoPlist.strings */; };
+		79F30BE014F0F88400C726F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BDF14F0F88400C726F8 /* main.m */; };
+		79F30BE314F0F88400C726F8 /* ChatterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */; };
+		79F30BE614F0F88400C726F8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BE414F0F88400C726F8 /* MainWindow.xib */; };
+		79F30BE914F0F88400C726F8 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BE814F0F88400C726F8 /* FirstViewController.m */; };
+		79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BEB14F0F88400C726F8 /* SecondViewController.m */; };
+		79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BED14F0F88400C726F8 /* FirstView.xib */; };
+		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		79328CF014F27131006730D9 /* ForFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForFun.h; sourceTree = "<group>"; };
+		79328CF114F27131006730D9 /* ForFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForFun.m; sourceTree = "<group>"; };
+		79328CF214F27131006730D9 /* ForFun.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForFun.xib; sourceTree = "<group>"; };
+		7964814914F1CA5E00605489 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		7964814A14F1CA5E00605489 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		7964814B14F1CA5E00605489 /* ThirdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
+		7964815714F1CC2C00605489 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		7964815814F1CC2C00605489 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		79F30BCE14F0F88400C726F8 /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79F30BD214F0F88400C726F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		79F30BD414F0F88400C726F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		79F30BD614F0F88400C726F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		79F30BDA14F0F88400C726F8 /* Chatter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chatter-Info.plist"; sourceTree = "<group>"; };
+		79F30BDC14F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		79F30BDE14F0F88400C726F8 /* Chatter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chatter-Prefix.pch"; sourceTree = "<group>"; };
+		79F30BDF14F0F88400C726F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatterAppDelegate.h; sourceTree = "<group>"; };
+		79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatterAppDelegate.m; sourceTree = "<group>"; };
+		79F30BE514F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		79F30BE714F0F88400C726F8 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		79F30BE814F0F88400C726F8 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		79F30BEA14F0F88400C726F8 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		79F30BEB14F0F88400C726F8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		79F30BEE14F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
+		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79F30BCB14F0F88400C726F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79F30BD314F0F88400C726F8 /* UIKit.framework in Frameworks */,
+				79F30BD514F0F88400C726F8 /* Foundation.framework in Frameworks */,
+				79F30BD714F0F88400C726F8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		79F30BC314F0F88400C726F8 = {
+			isa = PBXGroup;
+			children = (
+				79F30BD814F0F88400C726F8 /* Chatter */,
+				79F30BD114F0F88400C726F8 /* Frameworks */,
+				79F30BCF14F0F88400C726F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		79F30BCF14F0F88400C726F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79F30BCE14F0F88400C726F8 /* Chatter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79F30BD114F0F88400C726F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79F30BD214F0F88400C726F8 /* UIKit.framework */,
+				79F30BD414F0F88400C726F8 /* Foundation.framework */,
+				79F30BD614F0F88400C726F8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79F30BD814F0F88400C726F8 /* Chatter */ = {
+			isa = PBXGroup;
+			children = (
+				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
+				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
+				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
+				79F30BE714F0F88400C726F8 /* FirstViewController.h */,
+				79F30BE814F0F88400C726F8 /* FirstViewController.m */,
+				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
+				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
+				79328CF014F27131006730D9 /* ForFun.h */,
+				79328CF114F27131006730D9 /* ForFun.m */,
+				79328CF214F27131006730D9 /* ForFun.xib */,
+				79F30BED14F0F88400C726F8 /* FirstView.xib */,
+				79F30BF014F0F88400C726F8 /* SecondView.xib */,
+				7964814914F1CA5E00605489 /* ThirdViewController.h */,
+				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
+				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
+				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
+				7964814B14F1CA5E00605489 /* ThirdView.xib */,
+				79F30BD914F0F88400C726F8 /* Supporting Files */,
+			);
+			path = Chatter;
+			sourceTree = "<group>";
+		};
+		79F30BD914F0F88400C726F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				79F30BDA14F0F88400C726F8 /* Chatter-Info.plist */,
+				79F30BDB14F0F88400C726F8 /* InfoPlist.strings */,
+				79F30BDE14F0F88400C726F8 /* Chatter-Prefix.pch */,
+				79F30BDF14F0F88400C726F8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79F30BCD14F0F88400C726F8 /* Chatter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79F30BF514F0F88400C726F8 /* Build configuration list for PBXNativeTarget "Chatter" */;
+			buildPhases = (
+				79F30BCA14F0F88400C726F8 /* Sources */,
+				79F30BCB14F0F88400C726F8 /* Frameworks */,
+				79F30BCC14F0F88400C726F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chatter;
+			productName = Chatter;
+			productReference = 79F30BCE14F0F88400C726F8 /* Chatter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79F30BC514F0F88400C726F8 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 79F30BC814F0F88400C726F8 /* Build configuration list for PBXProject "Chatter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 79F30BC314F0F88400C726F8;
+			productRefGroup = 79F30BCF14F0F88400C726F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79F30BCD14F0F88400C726F8 /* Chatter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79F30BCC14F0F88400C726F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79F30BDD14F0F88400C726F8 /* InfoPlist.strings in Resources */,
+				79F30BE614F0F88400C726F8 /* MainWindow.xib in Resources */,
+				79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */,
+				79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */,
+				7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */,
+				79328CF414F27131006730D9 /* ForFun.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79F30BCA14F0F88400C726F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79F30BE014F0F88400C726F8 /* main.m in Sources */,
+				79F30BE314F0F88400C726F8 /* ChatterAppDelegate.m in Sources */,
+				79F30BE914F0F88400C726F8 /* FirstViewController.m in Sources */,
+				79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */,
+				7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */,
+				7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */,
+				79328CF314F27131006730D9 /* ForFun.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		79F30BDB14F0F88400C726F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79F30BDC14F0F88400C726F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		79F30BE414F0F88400C726F8 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79F30BE514F0F88400C726F8 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		79F30BED14F0F88400C726F8 /* FirstView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79F30BEE14F0F88400C726F8 /* en */,
+			);
+			name = FirstView.xib;
+			sourceTree = "<group>";
+		};
+		79F30BF014F0F88400C726F8 /* SecondView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79F30BF114F0F88400C726F8 /* en */,
+			);
+			name = SecondView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79F30BF314F0F88400C726F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		79F30BF414F0F88400C726F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		79F30BF614F0F88400C726F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chatter/Chatter-Prefix.pch";
+				INFOPLIST_FILE = "Chatter/Chatter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		79F30BF714F0F88400C726F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chatter/Chatter-Prefix.pch";
+				INFOPLIST_FILE = "Chatter/Chatter-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79F30BC814F0F88400C726F8 /* Build configuration list for PBXProject "Chatter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79F30BF314F0F88400C726F8 /* Debug */,
+				79F30BF414F0F88400C726F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79F30BF514F0F88400C726F8 /* Build configuration list for PBXNativeTarget "Chatter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79F30BF614F0F88400C726F8 /* Debug */,
+				79F30BF714F0F88400C726F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79F30BC514F0F88400C726F8 /* Project object */;
+}
