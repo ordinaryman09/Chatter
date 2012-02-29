@@ -8,19 +8,59 @@
 
 #import "SecondViewController.h"
 #import "ForFun.h"
+#import "ASIFormDataRequest.h"
 
 
 @implementation SecondViewController
+
+@synthesize myTableView;
+
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    titleArray = [[NSMutableArray alloc] init ];
+    
+    ASIFormDataRequest *request;
+    
+    NSString * theStringURL = @"http://www.williamliwu.com/chatter/getNearbyThreads.php?lat=-118.238&lng=18.0";
+    request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:theStringURL]];
+    
+    
+    [request setCompletionBlock:^{
+        
+         NSDictionary *deserializedData = [request.responseString objectFromJSONString];
+        //NSLog(@"%@", request.responseString);
+        for (NSDictionary * dataDict in deserializedData) {
+            // Extract the Post ID # from this post
+          //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
+            //NSLog(@"%@", postTitle);
+            NSString *testMe = [dataDict objectForKey:@"TITLE"];
+         //   NSLog(@"%@", testMe);
+            
+            [titleArray addObject:testMe];
+             [self.myTableView reloadData];
+            
+        }
+        // NSLog([titleArray objectAtIndex:0]);
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];
+    
     // Dummy data that will be retrieved from the webserver
     NSString *jsonString = @"[{\"postId\": 1, \"title\": \"think i found something cool\", \"timestamp\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"title\":\"check this out UCLA!\", \"timestamp\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
     
     // Parse the JSON String into an NSDictionary object
-    NSDictionary *deserializedData = [jsonString objectFromJSONString];
+   /* NSDictionary *deserializedData = [jsonString objectFromJSONString];
     
     // Log the results
     NSLog(@"%@", [deserializedData description]);
@@ -35,7 +75,7 @@
     }
     // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
     // Refresh the view? (don't know if this is necessary)
-    
+    */
     
     [super viewDidLoad];
 }
@@ -52,8 +92,9 @@
     
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.textLabel.text = @"chillin in Sawtelle Curry House..";
+	cell.textLabel.text = [NSString stringWithFormat:@"%@",[titleArray objectAtIndex:indexPath.row]];
     cell.detailTextLabel.text = @"alexw";
+    NSLog([titleArray objectAtIndex:indexPath.row]);
     //cell.value
     return cell;
 }
@@ -69,7 +110,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    //NSLog([[titleArray count]])
+    return [titleArray count];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -95,6 +137,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
 
 
 - (void)dealloc

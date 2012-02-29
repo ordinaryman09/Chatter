@@ -24,6 +24,21 @@
     
     [request setCompletionBlock:^{
         NSLog(@"%@", request.responseString);
+        
+        NSString *test = request.responseString;
+        
+        NSDictionary *deserializedData = [test objectFromJSONString];
+        NSLog(@"%@", [deserializedData description]);
+        
+        // Iterate through each post in the array
+        for (NSDictionary * dataDict in deserializedData) {
+            // Extract the Post ID # from this post
+            NSString * postTitle = [dataDict objectForKey:@"result"];
+            NSLog(@"%@", postTitle);
+            
+            // Extract ..... everything else
+        }        
+        
     }];
     
     [request setFailedBlock:^{

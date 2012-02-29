@@ -12,7 +12,10 @@
 @interface SecondViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate>
 {
-    
+    NSMutableArray * titleArray;
+    IBOutlet UITableView *myTableView;
 }
+
+@property (nonatomic, retain) UITableView *myTableView;
 
 @end
