@@ -20,6 +20,15 @@
 @synthesize theContent;
 
 
+-(void) setUserName :(NSString*) theUser {
+    userName = theUser;
+}
+
+-(IBAction) logOut {
+    [self.view removeFromSuperview];
+
+}
+
 -(IBAction) sendRequest {
  
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/createThread.php"];
@@ -29,7 +38,7 @@
     [request addPostValue:theContent.text forKey:@"content"];
     [request addPostValue:lat forKey:@"lat"];
     [request addPostValue:lon forKey:@"lng"];
-    [request addPostValue:@"richardTest" forKey:@"username"];
+    [request addPostValue:userName forKey:@"username"];
     
     
     [request setCompletionBlock:^{

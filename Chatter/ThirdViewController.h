@@ -26,6 +26,7 @@ CLLocationManagerDelegate>
     ASIFormDataRequest *request;
     NSString * lat;
     NSString * lon;
+    NSString * userName;
 }
 
 @property (nonatomic, retain) UITextField *theTitle;
@@ -42,6 +43,8 @@ CLLocationManagerDelegate>
 
 -(IBAction) sendRequest;
 
+-(IBAction) logOut;
+-(void) setUserName :(NSString*) theUser;
 
 
 @end

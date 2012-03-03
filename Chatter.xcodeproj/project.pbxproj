@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		791E2D0F1502154A00617466 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D0D1502154900617466 /* RegisterViewController.m */; };
+		791E2D101502154A00617466 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D0E1502154900617466 /* RegisterView.xib */; };
+		791E2D211502241800617466 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D1E1502241800617466 /* LoginView.xib */; };
+		791E2D221502241800617466 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D201502241800617466 /* LoginViewController.m */; };
 		792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792C7B9E14FE50AB00476270 /* CoreLocation.framework */; };
 		79328CF314F27131006730D9 /* ForFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328CF114F27131006730D9 /* ForFun.m */; };
 		79328CF414F27131006730D9 /* ForFun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79328CF214F27131006730D9 /* ForFun.xib */; };
@@ -41,6 +45,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		791E2D0C1502154900617466 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = Chatter.xcodeproj/RegisterViewController.h; sourceTree = SOURCE_ROOT; };
+		791E2D0D1502154900617466 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = Chatter.xcodeproj/RegisterViewController.m; sourceTree = SOURCE_ROOT; };
+		791E2D0E1502154900617466 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterView.xib; path = Chatter.xcodeproj/RegisterView.xib; sourceTree = SOURCE_ROOT; };
+		791E2D1E1502241800617466 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		791E2D1F1502241800617466 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		791E2D201502241800617466 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		792C7B9E14FE50AB00476270 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		79328CF014F27131006730D9 /* ForFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForFun.h; sourceTree = "<group>"; };
 		79328CF114F27131006730D9 /* ForFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForFun.m; sourceTree = "<group>"; };
@@ -116,6 +126,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		791E2D0515020CF300617466 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				791E2D1F1502241800617466 /* LoginViewController.h */,
+				791E2D201502241800617466 /* LoginViewController.m */,
+				791E2D0C1502154900617466 /* RegisterViewController.h */,
+				791E2D0D1502154900617466 /* RegisterViewController.m */,
+				7964814914F1CA5E00605489 /* ThirdViewController.h */,
+				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
+				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
+				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
+				79F30BE714F0F88400C726F8 /* FirstViewController.h */,
+				79F30BE814F0F88400C726F8 /* FirstViewController.m */,
+				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
+				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
+				79328CF014F27131006730D9 /* ForFun.h */,
+				79328CF114F27131006730D9 /* ForFun.m */,
+				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
+				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		791E2D0615020CFC00617466 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				791E2D1E1502241800617466 /* LoginView.xib */,
+				791E2D0E1502154900617466 /* RegisterView.xib */,
+				79F30BF014F0F88400C726F8 /* SecondView.xib */,
+				79328CF214F27131006730D9 /* ForFun.xib */,
+				7964814B14F1CA5E00605489 /* ThirdView.xib */,
+				79F30BED14F0F88400C726F8 /* FirstView.xib */,
+				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
 		79328DA714F749E5006730D9 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,25 +245,10 @@
 		79F30BD814F0F88400C726F8 /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				791E2D0615020CFC00617466 /* Others */,
+				791E2D0515020CF300617466 /* Classes */,
 				79328E7A14F76DF7006730D9 /* JSONKit */,
 				79328DA714F749E5006730D9 /* HTTP */,
-				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
-				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
-				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
-				79F30BE714F0F88400C726F8 /* FirstViewController.h */,
-				79F30BE814F0F88400C726F8 /* FirstViewController.m */,
-				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
-				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
-				79328CF014F27131006730D9 /* ForFun.h */,
-				79328CF114F27131006730D9 /* ForFun.m */,
-				79328CF214F27131006730D9 /* ForFun.xib */,
-				79F30BED14F0F88400C726F8 /* FirstView.xib */,
-				79F30BF014F0F88400C726F8 /* SecondView.xib */,
-				7964814914F1CA5E00605489 /* ThirdViewController.h */,
-				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
-				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
-				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
-				7964814B14F1CA5E00605489 /* ThirdView.xib */,
 				79F30BD914F0F88400C726F8 /* Supporting Files */,
 			);
 			path = Chatter;
@@ -289,6 +321,8 @@
 				79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */,
 				7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */,
 				79328CF414F27131006730D9 /* ForFun.xib in Resources */,
+				791E2D101502154A00617466 /* RegisterView.xib in Resources */,
+				791E2D211502241800617466 /* LoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +350,8 @@
 				79328E7814F76779006730D9 /* ASINetworkQueue.m in Sources */,
 				79328E7914F76779006730D9 /* Reachability.m in Sources */,
 				79328E7D14F76E20006730D9 /* JSONKit.m in Sources */,
+				791E2D0F1502154A00617466 /* RegisterViewController.m in Sources */,
+				791E2D221502241800617466 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
