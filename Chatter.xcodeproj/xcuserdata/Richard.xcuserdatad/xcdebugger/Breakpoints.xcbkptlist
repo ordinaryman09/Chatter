@@ -9,11 +9,25 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/ThirdViewController.m"
-         timestampString = "351765414.054658"
+         timestampString = "352434956.316009"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "40"
-         endingLineNumber = "40"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-sendRequest"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Chatter/ThirdViewController.m"
+         timestampString = "352434956.316009"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-sendRequest"
          landmarkType = "5">
       </FileBreakpoint>

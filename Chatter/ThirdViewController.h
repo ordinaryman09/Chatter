@@ -7,29 +7,38 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
 
 
 
 @interface ThirdViewController : UIViewController 
-<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate,
+CLLocationManagerDelegate>
 {
 
     UIImagePickerController *ipc;
-    IBOutlet UIImageView *theImage;
+   // IBOutlet UIImageView *theImage;
     IBOutlet UIButton *theButton;
+    IBOutlet UITextField *theTitle;
+    IBOutlet UITextView *theContent;
     ASIFormDataRequest *request;
-    
+    NSString * lat;
+    NSString * lon;
 }
 
-@property (nonatomic, retain) UIImageView *theImage;
+@property (nonatomic, retain) UITextField *theTitle;
+
+//@property (nonatomic, retain) UIImageView *theImage;
 
 @property (nonatomic, retain) UIButton *theButton;
 
-@property (nonatomic, retain) ASIFormDataRequest *request;
+@property (nonatomic, retain) UITextView *theContent;
 
--(IBAction) buttonClicked;
+
+
+//-(IBAction) buttonClicked;
 
 -(IBAction) sendRequest;
 

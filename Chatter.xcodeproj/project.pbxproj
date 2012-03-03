@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792C7B9E14FE50AB00476270 /* CoreLocation.framework */; };
 		79328CF314F27131006730D9 /* ForFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328CF114F27131006730D9 /* ForFun.m */; };
 		79328CF414F27131006730D9 /* ForFun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79328CF214F27131006730D9 /* ForFun.xib */; };
 		79328DC914F74B64006730D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79328DC814F74B64006730D9 /* CFNetwork.framework */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		792C7B9E14FE50AB00476270 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		79328CF014F27131006730D9 /* ForFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForFun.h; sourceTree = "<group>"; };
 		79328CF114F27131006730D9 /* ForFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForFun.m; sourceTree = "<group>"; };
 		79328CF214F27131006730D9 /* ForFun.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForFun.xib; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */,
 				79328DCF14F74B98006730D9 /* libz.dylib in Frameworks */,
 				79328DCD14F74B83006730D9 /* MobileCoreServices.framework in Frameworks */,
 				79328DCB14F74B75006730D9 /* SystemConfiguration.framework in Frameworks */,
@@ -180,6 +183,7 @@
 		79F30BD114F0F88400C726F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				792C7B9E14FE50AB00476270 /* CoreLocation.framework */,
 				79328DCE14F74B98006730D9 /* libz.dylib */,
 				79328DCC14F74B83006730D9 /* MobileCoreServices.framework */,
 				79328DCA14F74B75006730D9 /* SystemConfiguration.framework */,

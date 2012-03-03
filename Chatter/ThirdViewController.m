@@ -10,17 +10,27 @@
 #import "UIImage+Scale.h"
 
 
+
 @implementation ThirdViewController
 
 
-@synthesize theImage;
+//@synthesize theImage;
 @synthesize theButton;
+@synthesize theTitle;
+@synthesize theContent;
+
 
 -(IBAction) sendRequest {
-    NSURL *url = [NSURL URLWithString:@"http://brandstandapp.com/createPoll.php"];
+ 
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/createThread.php"];
     request = [ASIFormDataRequest requestWithURL:url];
-    [request addPostValue:@"Ben" forKey:@"names"];
-    [request addPostValue:@"George" forKey:@"names"];
+    
+    [request addPostValue:theTitle.text forKey:@"title"];
+    [request addPostValue:theContent.text forKey:@"content"];
+    [request addPostValue:lat forKey:@"lat"];
+    [request addPostValue:lon forKey:@"lng"];
+    [request addPostValue:@"richardTest" forKey:@"username"];
+    
     
     [request setCompletionBlock:^{
         NSLog(@"%@", request.responseString);
@@ -31,13 +41,13 @@
         NSLog(@"%@", [deserializedData description]);
         
         // Iterate through each post in the array
-        for (NSDictionary * dataDict in deserializedData) {
+     //   for (NSDictionary * dataDict in deserializedData) {
             // Extract the Post ID # from this post
-            NSString * postTitle = [dataDict objectForKey:@"result"];
-            NSLog(@"%@", postTitle);
+       //     NSString * postTitle = [dataDict objectForKey:@"result"];
+         //   NSLog(@"%@", postTitle);
             
             // Extract ..... everything else
-        }        
+        //}        
         
     }];
     
@@ -51,18 +61,22 @@
 }
 
 
--(IBAction) buttonClicked
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-        
-    
-    ipc = [[UIImagePickerController alloc]init];
-    ipc.delegate = self;
-    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentModalViewController:ipc animated:YES];
-    
+	lat = @"";
+    lon = @"";
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocationCoordinate2D loc = [newLocation coordinate];
+    
+    lat = [[NSString stringWithFormat: @"%f", loc.latitude] retain];
+    lon = [[NSString stringWithFormat: @"%f", loc.longitude] retain];
+}
+
+
+/*
 
 -(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [[picker parentViewController] dismissModalViewControllerAnimated:YES];
@@ -89,6 +103,7 @@
     return newImage;
 }
 
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -117,6 +132,13 @@
 - (void)viewDidLoad
 {
 
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
+    
+    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
