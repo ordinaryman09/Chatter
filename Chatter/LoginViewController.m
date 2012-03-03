@@ -18,6 +18,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    thePassword.secureTextEntry = YES;
        [super viewDidLoad];
 }
 
@@ -35,6 +36,7 @@
 - (IBAction) authorizeUser {
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/userAuth.php"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
     
     NSLog(@"%@", theUsername.text);
 
