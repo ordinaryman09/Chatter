@@ -29,6 +29,12 @@
 
 }
 
+
+- (NSString *) saveFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"testSave1.plist"];
+}
+
 -(IBAction) sendRequest {
  
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/createThread.php"];
@@ -47,7 +53,10 @@
         NSString *test = request.responseString;
         
         NSDictionary *deserializedData = [test objectFromJSONString];
-        NSLog(@"%@", [deserializedData description]);
+        
+        NSString *theID = [deserializedData objectForKey:@"ID"];
+        
+       // NSLog(@"%@", theID);
         
         // Iterate through each post in the array
      //   for (NSDictionary * dataDict in deserializedData) {
@@ -56,7 +65,39 @@
          //   NSLog(@"%@", postTitle);
             
             // Extract ..... everything else
-        //}        
+        //}     
+        
+        
+        NSString *myPath = [self saveFilePath];
+        
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+        
+        if(fileExists) {
+            
+            NSLog(@"FILE EXIST");
+            NSMutableArray *myArray = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+            NSArray * postID = [[NSArray alloc] initWithObjects:theID, theTitle.text, theContent.text, nil];
+            [myArray addObject:postID];
+            [myArray writeToFile:[self saveFilePath] atomically:YES];
+            
+            
+        }
+        
+        else {
+            
+            NSMutableArray * myArray = [[NSMutableArray alloc] init];
+            
+            NSArray * postID = [[NSArray alloc] initWithObjects:theID, theTitle.text, theContent.text, nil];
+            [myArray addObject:postID];
+            
+            
+            [myArray writeToFile:[self saveFilePath] atomically:YES];
+            
+            
+            
+        }
+
+        
         
     }];
     

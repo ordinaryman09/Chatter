@@ -1,8 +1,8 @@
 //
-//  SecondViewController.h
+//  RecentPostController.h
 //  Chatter
 //
-//  Created by Richard Lung on 2/19/12.
+//  Created by Richard Lung on 3/4/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "JSONKit.h"
 
-@interface SecondViewController : UIViewController
+@interface RecentPostController : UIViewController 
 <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
 {
     NSMutableArray * contentArray;
@@ -20,8 +20,7 @@
     CLLocationManager *locationManager;
 }
 
-@property (nonatomic, retain) UITableView *myTableView;
-
 - (IBAction)switchViews;
 
+@property (nonatomic, retain) UITableView *myTableView;
 @end

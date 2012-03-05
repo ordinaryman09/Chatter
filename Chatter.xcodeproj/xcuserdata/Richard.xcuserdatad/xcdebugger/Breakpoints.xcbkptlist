@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/ThirdViewController.m"
-         timestampString = "352468428.853821"
+         timestampString = "352612844.453394"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
          landmarkName = "-sendRequest"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/ThirdViewController.m"
-         timestampString = "352468428.853821"
+         timestampString = "352612081.7897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-sendRequest"
          landmarkType = "5">
       </FileBreakpoint>
@@ -58,6 +58,20 @@
          endingLineNumber = "36"
          landmarkName = "-switchViews:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Chatter/DisplayViewController.h"
+         timestampString = "352614419.098831"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
+         landmarkName = "@interface DisplayViewController"
+         landmarkType = "2">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
