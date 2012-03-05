@@ -64,6 +64,10 @@
 
 - (IBAction)upVote {
     
+
+}
+- (IBAction) upVote {
+    NSLog(@"Upvote");
     
     NSLog(@"UPVOTE");
     
