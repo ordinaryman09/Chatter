@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 
 
-@interface RegisterViewController : UIViewController {
-    
+@interface RegisterViewController : UIViewController
+<UITextFieldDelegate> {
+    IBOutlet UITextField *theUsername;
+    IBOutlet UITextField *thePassword;
+    IBOutlet UITextField *theConfirmation;
 }
 
 
 - (IBAction)switchViews:(id)sender;
+@property (nonatomic, retain) UITextField *theUsername;
+@property (nonatomic, retain) UITextField *thePassword;
+@property (nonatomic, retain) UITextField *theConfirmation;
+- (IBAction) registerUser;
+
 
 @end

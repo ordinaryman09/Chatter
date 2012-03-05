@@ -18,8 +18,15 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
+    thePassword.delegate = self;
+    theUsername.delegate = self;
     thePassword.secureTextEntry = YES;
        [super viewDidLoad];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)switchViews:(id)sender {

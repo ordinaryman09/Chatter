@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/LoginViewController.m"
-         timestampString = "352469652.053257"
+         timestampString = "352600740.462821"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
+         startingLineNumber = "35"
+         endingLineNumber = "35"
          landmarkName = "-switchViews:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/LoginViewController.m"
-         timestampString = "352469652.053257"
+         timestampString = "352600740.462821"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "29"
-         endingLineNumber = "29"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
          landmarkName = "-switchViews:"
          landmarkType = "5">
       </FileBreakpoint>

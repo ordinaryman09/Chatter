@@ -11,6 +11,7 @@
 #import "JSONKit.h"
 
 @interface LoginViewController : UIViewController
+<UITextFieldDelegate>
 
 {
     IBOutlet UITextField *theUsername;

@@ -12,12 +12,54 @@
 
 @implementation RegisterViewController
 
+@synthesize theUsername;
+@synthesize thePassword;
+@synthesize theConfirmation;
 
+
+- (IBAction) registerUser {
+   
+    
+    if([thePassword.text isEqualToString:theConfirmation.text]) 
+    {
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/newUser.php"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+           
+    [request addPostValue:theUsername.text forKey:@"username"];
+    [request addPostValue:thePassword.text forKey:@"password"];
+    
+    
+    [request setCompletionBlock:^{
+        
+            //doSomething;
+        NSLog(@"%@", request.responseString);
+            theUsername.text =@"";
+            thePassword.text =@"";
+            theConfirmation.text =@"";
+        
+            
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];   
+    }
+}
 
 - (IBAction)switchViews:(id)sender {
     
     [self.view removeFromSuperview];
+    
+}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)dealloc
@@ -37,6 +79,9 @@
 
 - (void)viewDidLoad
 {
+    thePassword.delegate = self;
+    theUsername.delegate = self;
+    theConfirmation.delegate = self;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

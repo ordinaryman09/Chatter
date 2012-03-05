@@ -33,6 +33,7 @@
     
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 	cell.textLabel.text = @"Hey check this out!";    
     return cell;
 }
