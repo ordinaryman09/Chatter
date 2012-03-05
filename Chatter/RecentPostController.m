@@ -85,7 +85,7 @@
     
     NSLog(@"%@", lat);
     
-    NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?lat=", lat, @"&lng=", lon, @"&new=1"];
+    NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?new=1&lat=", lat, @"&lng=", lon, @"&new=1"];
     
     NSLog(@"HAHA%@", theStringURL);
     
@@ -178,6 +178,11 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self.myTableView deselectRowAtIndexPath:[self.myTableView indexPathForSelectedRow] animated:animated];
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidUnload
 {
