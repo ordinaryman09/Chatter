@@ -62,6 +62,27 @@
     
 }
 
+- (IBAction)upVote {
+    
+    
+    NSLog(@"UPVOTE");
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/voteThread.php?id=55&vote=UPVOTE"];
+    
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    
+    NSURLConnection *connection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+    
+    
+}
+
+- (IBAction)downVote {
+    
+    
+    
+}
+
 - (void)dealloc
 {
     [super dealloc];
