@@ -11,6 +11,12 @@
 		791E2D101502154A00617466 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D0E1502154900617466 /* RegisterView.xib */; };
 		791E2D211502241800617466 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D1E1502241800617466 /* LoginView.xib */; };
 		791E2D221502241800617466 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D201502241800617466 /* LoginViewController.m */; };
+		791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D391504551A00617466 /* DisplayViewController.m */; };
+		791E2D3C1504551C00617466 /* DisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D3A1504551B00617466 /* DisplayView.xib */; };
+		791E2D591504712100617466 /* MyPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D571504711E00617466 /* MyPostController.m */; };
+		791E2D5A1504712100617466 /* MyPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D581504712000617466 /* MyPost.xib */; };
+		791E2D5E1504773600617466 /* RecentPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D5C1504773300617466 /* RecentPostController.m */; };
+		791E2D5F1504773600617466 /* RecentPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D5D1504773500617466 /* RecentPost.xib */; };
 		792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792C7B9E14FE50AB00476270 /* CoreLocation.framework */; };
 		79328CF314F27131006730D9 /* ForFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328CF114F27131006730D9 /* ForFun.m */; };
 		79328CF414F27131006730D9 /* ForFun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79328CF214F27131006730D9 /* ForFun.xib */; };
@@ -51,6 +57,15 @@
 		791E2D1E1502241800617466 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		791E2D1F1502241800617466 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		791E2D201502241800617466 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		791E2D381504551900617466 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
+		791E2D391504551A00617466 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
+		791E2D3A1504551B00617466 /* DisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayView.xib; sourceTree = "<group>"; };
+		791E2D561504711D00617466 /* MyPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPostController.h; sourceTree = "<group>"; };
+		791E2D571504711E00617466 /* MyPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPostController.m; sourceTree = "<group>"; };
+		791E2D581504712000617466 /* MyPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPost.xib; sourceTree = "<group>"; };
+		791E2D5B1504773200617466 /* RecentPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostController.h; sourceTree = "<group>"; };
+		791E2D5C1504773300617466 /* RecentPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostController.m; sourceTree = "<group>"; };
+		791E2D5D1504773500617466 /* RecentPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentPost.xib; sourceTree = "<group>"; };
 		792C7B9E14FE50AB00476270 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		79328CF014F27131006730D9 /* ForFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForFun.h; sourceTree = "<group>"; };
 		79328CF114F27131006730D9 /* ForFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForFun.m; sourceTree = "<group>"; };
@@ -135,12 +150,18 @@
 				791E2D0D1502154900617466 /* RegisterViewController.m */,
 				7964814914F1CA5E00605489 /* ThirdViewController.h */,
 				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
+				791E2D561504711D00617466 /* MyPostController.h */,
+				791E2D571504711E00617466 /* MyPostController.m */,
+				791E2D5B1504773200617466 /* RecentPostController.h */,
+				791E2D5C1504773300617466 /* RecentPostController.m */,
+				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
+				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
+				791E2D381504551900617466 /* DisplayViewController.h */,
+				791E2D391504551A00617466 /* DisplayViewController.m */,
 				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
 				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
 				79F30BE714F0F88400C726F8 /* FirstViewController.h */,
 				79F30BE814F0F88400C726F8 /* FirstViewController.m */,
-				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
-				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
 				79328CF014F27131006730D9 /* ForFun.h */,
 				79328CF114F27131006730D9 /* ForFun.m */,
 				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
@@ -155,10 +176,13 @@
 				791E2D1E1502241800617466 /* LoginView.xib */,
 				791E2D0E1502154900617466 /* RegisterView.xib */,
 				79F30BF014F0F88400C726F8 /* SecondView.xib */,
+				791E2D581504712000617466 /* MyPost.xib */,
+				791E2D5D1504773500617466 /* RecentPost.xib */,
 				79328CF214F27131006730D9 /* ForFun.xib */,
 				7964814B14F1CA5E00605489 /* ThirdView.xib */,
 				79F30BED14F0F88400C726F8 /* FirstView.xib */,
 				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
+				791E2D3A1504551B00617466 /* DisplayView.xib */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -323,6 +347,9 @@
 				79328CF414F27131006730D9 /* ForFun.xib in Resources */,
 				791E2D101502154A00617466 /* RegisterView.xib in Resources */,
 				791E2D211502241800617466 /* LoginView.xib in Resources */,
+				791E2D3C1504551C00617466 /* DisplayView.xib in Resources */,
+				791E2D5A1504712100617466 /* MyPost.xib in Resources */,
+				791E2D5F1504773600617466 /* RecentPost.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +379,9 @@
 				79328E7D14F76E20006730D9 /* JSONKit.m in Sources */,
 				791E2D0F1502154A00617466 /* RegisterViewController.m in Sources */,
 				791E2D221502241800617466 /* LoginViewController.m in Sources */,
+				791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */,
+				791E2D591504712100617466 /* MyPostController.m in Sources */,
+				791E2D5E1504773600617466 /* RecentPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

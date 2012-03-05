@@ -1,18 +1,18 @@
 //
-//  SecondViewController.m
+//  RecentPostController.m
 //  Chatter
 //
-//  Created by Richard Lung on 2/19/12.
+//  Created by Richard Lung on 3/4/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "RecentPostController.h"
 #import "DisplayViewController.h"
 #import "ASIFormDataRequest.h"
-#import "RecentPostController.h"
 
 
-@implementation SecondViewController
+
+@implementation RecentPostController
 
 @synthesize myTableView;
 
@@ -32,29 +32,29 @@
 	locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [locationManager startUpdatingLocation];
     
-   
+    
     
     // Dummy data that will be retrieved from the webserver
     NSString *jsonString = @"[{\"postId\": 1, \"title\": \"think i found something cool\", \"timestamp\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"title\":\"check this out UCLA!\", \"timestamp\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
     
     // Parse the JSON String into an NSDictionary object
-   /* NSDictionary *deserializedData = [jsonString objectFromJSONString];
+    /* NSDictionary *deserializedData = [jsonString objectFromJSONString];
+     
+     // Log the results
+     NSLog(@"%@", [deserializedData description]);
+     
+     // Iterate through each post in the array
+     for (NSDictionary * dataDict in deserializedData) {
+     // Extract the Post ID # from this post
+     NSString * postTitle = [dataDict objectForKey:@"title"];
+     NSLog(@"%@", postTitle);
+     
+     // Extract ..... everything else
+     }
+     // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
+     // Refresh the view? (don't know if this is necessary)
+     */
     
-    // Log the results
-    NSLog(@"%@", [deserializedData description]);
-    
-    // Iterate through each post in the array
-    for (NSDictionary * dataDict in deserializedData) {
-        // Extract the Post ID # from this post
-        NSString * postTitle = [dataDict objectForKey:@"title"];
-        NSLog(@"%@", postTitle);
-        
-        // Extract ..... everything else
-    }
-    // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
-    // Refresh the view? (don't know if this is necessary)
-    */
- 
     
     [super viewDidLoad];
 }
@@ -66,21 +66,26 @@
     lon = @"";
 }
 
+- (IBAction)switchViews {
+    [self.view removeFromSuperview];
+
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     [locationManager stopUpdatingLocation];
-
+    
     CLLocationCoordinate2D loc = [newLocation coordinate];
     
     lat = [[NSString stringWithFormat: @"%f", loc.latitude] retain];
     lon = [[NSString stringWithFormat: @"%f", loc.longitude] retain];
     
-       
+    
     ASIFormDataRequest *request;
     
     NSLog(@"%@", lat);
     
-    NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?lat=", lat, @"&lng=", lon];
+    NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?lat=", lat, @"&lng=", lon, @"&new=1"];
     
     NSLog(@"HAHA%@", theStringURL);
     
@@ -90,7 +95,7 @@
     [request setCompletionBlock:^{
         
         NSDictionary *deserializedData = [request.responseString objectFromJSONString];
-       
+        
         for (NSDictionary * dataDict in deserializedData) {
             // Extract the Post ID # from this post
             //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
@@ -99,13 +104,13 @@
             NSString *user = [dataDict objectForKey:@"USER"];
             NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
             NSString *downVotes = [dataDict objectForKey:@"DOWNVOTES"];
-                      NSString *title = [dataDict objectForKey:@"TITLE"];
+            NSString *title = [dataDict objectForKey:@"TITLE"];
             NSString *content = [dataDict objectForKey:@"CONTENT"];
             NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
             //   NSLog(@"%@", testMe);
             
             NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
-                                content, time, nil];
+                                 content, time, nil];
             
             [contentArray addObject:contents];
             
@@ -139,7 +144,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.textLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
-   // NSLog([titleArray objectAtIndex:indexPath.row]);
+    // NSLog([titleArray objectAtIndex:indexPath.row]);
     //cell.value
     return cell;
 }
@@ -174,21 +179,10 @@
 }
 
 
-- (IBAction)switchViews {
-    
-    RecentPostController *recentPostController = [[RecentPostController alloc] initWithNibName:@"RecentPost" bundle:nil];
-    
-    [self.view addSubview:recentPostController.view];
-    
-    // [registerViewController release];
-    
-    
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
