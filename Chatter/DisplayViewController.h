@@ -26,5 +26,7 @@
 @property (nonatomic, retain) UITableView *myTableView;
 
 - (IBAction)switchViews;
+- (IBAction) downVote;
+- (IBAction) upVote;
 
 @end
