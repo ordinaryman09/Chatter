@@ -64,23 +64,28 @@
 
 
 - (IBAction) upVote {
-    NSLog(@"Upvote");
+    NSLog(@"%@", tID);
     
-    NSLog(@"UPVOTE");
+    //[self theContent]
     
-    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/voteThread.php?id=55&vote=UPVOTE"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE", tID]];
     
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     
-    NSURLConnection *connection=[[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 
 - (IBAction)downVote {
+    NSLog(@"%@", tID);
     
+    //[self theContent]
     
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE", tID]];
+    
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 

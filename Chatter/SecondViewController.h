@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "JSONKit.h"
+#import "PullRefreshTableViewController.h"
 
 @interface SecondViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
