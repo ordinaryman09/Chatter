@@ -49,7 +49,6 @@
 		79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BED14F0F88400C726F8 /* FirstView.xib */; };
 		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
 		99D91CB51504A57900408066 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 99D91CB41504A57900408066 /* arrow.png */; };
-		99D91CBC1504A8E000408066 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D91CBE1504A8E000408066 /* PullRefreshTableViewController.m */; };
 		99D91CC01504A92100408066 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D91CBF1504A92100408066 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,8 +123,6 @@
 		79F30BEE14F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
 		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		99D91CB41504A57900408066 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		99D91CBA1504A8B400408066 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PullRefreshTableViewController.h; sourceTree = "<group>"; };
-		99D91CBD1504A8E000408066 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = en; path = en.lproj/PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		99D91CBF1504A92100408066 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -152,8 +149,6 @@
 		791E2D0515020CF300617466 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				99D91CBB1504A8B400408066 /* PullRefreshTableViewController.h */,
-				99D91CBE1504A8E000408066 /* PullRefreshTableViewController.m */,
 				791E2D1F1502241800617466 /* LoginViewController.h */,
 				791E2D201502241800617466 /* LoginViewController.m */,
 				791E2D0C1502154900617466 /* RegisterViewController.h */,
@@ -395,7 +390,6 @@
 				791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */,
 				791E2D591504712100617466 /* MyPostController.m in Sources */,
 				791E2D5E1504773600617466 /* RecentPostController.m in Sources */,
-				99D91CBC1504A8E000408066 /* PullRefreshTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,22 +426,6 @@
 				79F30BF114F0F88400C726F8 /* en */,
 			);
 			name = SecondView.xib;
-			sourceTree = "<group>";
-		};
-		99D91CBB1504A8B400408066 /* PullRefreshTableViewController.h */ = {
-			isa = PBXVariantGroup;
-			children = (
-				99D91CBA1504A8B400408066 /* en */,
-			);
-			name = PullRefreshTableViewController.h;
-			sourceTree = "<group>";
-		};
-		99D91CBE1504A8E000408066 /* PullRefreshTableViewController.m */ = {
-			isa = PBXVariantGroup;
-			children = (
-				99D91CBD1504A8E000408066 /* en */,
-			);
-			name = PullRefreshTableViewController.m;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

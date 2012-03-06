@@ -16,11 +16,7 @@
 
 @implementation SecondViewController
 
-@synthesize myTableView;
-
-@synthesize textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;
-
-
+@synthesize myTableView, textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -34,6 +30,8 @@
     
     locationManager.delegate = self;
 	locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    shouldLoadNew = NO;
+    
     [locationManager startUpdatingLocation];
     
    
@@ -84,7 +82,16 @@
     
     NSLog(@"%@", lat);
     
-    NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?new=0&lat=", lat, @"&lng=", lon];
+    // Initialize the URL string
+    NSString * theStringURL = @"";
+    
+    if (shouldLoadNew) {
+        // Load the most recent threads
+        theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?new=1&lat=", lat, @"&lng=", lon];
+    } else {
+        // Load the "hottest" threads
+        theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?new=0&lat=", lat, @"&lng=", lon];
+    }
     
     NSLog(@"HAHA%@", theStringURL);
     
@@ -192,6 +199,30 @@
     // [registerViewController release];
     
     
+}
+
+- (IBAction)loadNew {
+    // Mark the BOOL to load New threads
+    shouldLoadNew = YES;
+    
+    // Refresh the UITableView accordingly
+    locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
+}
+
+- (IBAction)loadHot {
+    // Mark the BOOL to load Hot threads
+    shouldLoadNew = NO;
+    
+    // Refresh the UITableView accordingly
+    locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
 }
 
 - (void)viewDidUnload

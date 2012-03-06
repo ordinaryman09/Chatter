@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "JSONKit.h"
-#import "PullRefreshTableViewController.h"
 
 @interface SecondViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
@@ -29,6 +28,8 @@
     NSString *textPull;
     NSString *textRelease;
     NSString *textLoading;
+    
+    BOOL shouldLoadNew;
 }
 
 @property (nonatomic, retain) UITableView *myTableView;
@@ -42,6 +43,8 @@
 @property (nonatomic, copy) NSString *textLoading;
 
 - (IBAction)switchViews;
+- (IBAction)loadNew;
+- (IBAction)loadHot;
 
 - (void)setupStrings;
 - (void)addPullToRefreshHeader;
