@@ -21,12 +21,14 @@
     NSString * tID;
     NSString * content;
     NSString * titleText;
+    NSString * upVotes;
+    NSString * downVotes;
     IBOutlet UILabel *theContent;
     NSMutableArray *arrayContent;
     IBOutlet UITableView *myTableView;
 }
 
--(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title;
+-(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title setUpVotes:(NSString *) up setDownVotes:(NSString *) down;
 
 
 @property (retain, nonatomic) IBOutlet UILabel *theContent;

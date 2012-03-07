@@ -7,15 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ASIFormDataRequest.h"
+#import "JSONKit.h"
 
 @interface MyPostController : UIViewController
 <UITableViewDelegate, UITableViewDataSource> {
+    IBOutlet UITableView *theTableView;
+    NSMutableArray *saveLogin;
+    NSMutableArray *contentArray;
     
-    NSMutableArray *arrayContent;
+    UIView *refreshHeaderView;
+    UILabel *refreshLabel;
+    UIImageView *refreshArrow;
+    UIActivityIndicatorView *refreshSpinner;
+    BOOL isDragging;
+    BOOL isLoading;
+    NSString *textPull;
+    NSString *textRelease;
+    NSString *textLoading;
     
 }
 
 - (IBAction)switchViews;
+@property (nonatomic, retain) UITableView *theTableView;
 
 @end

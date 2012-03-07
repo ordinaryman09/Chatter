@@ -27,15 +27,37 @@
     return self;
 }
 
--(void) setThreadID :(NSString*) threadID setContent:(NSString *)setContent setTitle:(NSString *)title {
+-(void) setThreadID :(NSString*) threadID setContent:(NSString *)setContent setTitle:(NSString *)title setUpVotes:(NSString *)up setDownVotes:(NSString *)down{
     tID = threadID;
     content = setContent;
     titleText = title;
+    upVotes = up;
+    downVotes = down;
+    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return @"Comments";
+   
     
+}
+
+
+- (void) testMe {
+    NSLog(@"TU");
+}
+
+
+- (void) testYou {
+    NSLog(@"TD");
+}
+
+-(void)infoButtonPressed:(id)sender 
+{
+    // here you can access the object which triggered the method
+    // for example you can check the tag value
+    
+    NSLog(@"the tag value is: %d", [sender tag]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,8 +69,43 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    UIImage *tuImage;
+    UIButton * tuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tuImage = [UIImage imageNamed:@"tu.png"];
+    [tuButton setBackgroundImage:tuImage forState:UIControlStateNormal];
+    // buyButton.frame = CGRectMake(220, 35, 96, 34);
+    tuButton.frame = CGRectMake(239, 12, 16, 16);
+    [tuButton setTag:indexPath.row];
+    [tuButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:tuButton];
+    
+   
+    UIImage *tdImage;
+    UIButton * tdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tdImage = [UIImage imageNamed:@"td.png"];
+    [tdButton setBackgroundImage:tdImage forState:UIControlStateNormal];
+    // buyButton.frame = CGRectMake(220, 35, 96, 34);
+    tdButton.frame = CGRectMake(275, 18, 16, 16);
+    [tdButton setTag:indexPath.row];
+    [tdButton addTarget:self action:@selector(downVote) forControlEvents:UIControlEventTouchDown];
+    [cell.contentView addSubview:tdButton];
+    
+    UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, 17, 10.0, 10.0 )] autorelease];
+
+    
+    [upLabel setText:upVotes];
+    [cell.contentView addSubview: upLabel];
+    
+    UILabel *downLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 260, 17, 10.0, 10.0 )] autorelease];
+    
+    [downLabel setText:downVotes];
+    [cell.contentView addSubview: downLabel];
+     
+    
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
+    
+    
 
     return cell;
 }

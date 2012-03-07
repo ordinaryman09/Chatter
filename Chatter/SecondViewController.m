@@ -165,7 +165,7 @@
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
     
     // Initialize the display thread view controller with the thread ID and content
-    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5]];
+    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] ];
 
     // Add the display view controller to the stack
     [self.view addSubview:displayViewController.view];

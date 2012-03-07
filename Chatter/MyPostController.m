@@ -11,6 +11,7 @@
 
 
 @implementation MyPostController
+@synthesize theTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,8 +25,10 @@
 
 - (NSString *) saveFilePath {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"testSave1.plist"];
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"loginSave1.plist"];
 }
+
+
 
 
 
@@ -33,29 +36,19 @@
     
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
     
-    [displayViewController setThreadID:[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:0]setContent:[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
+    // Initialize the display thread view controller with the thread ID and content
+    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] ];
     
+    // Add the display view controller to the stack
     [self.view addSubview:displayViewController.view];
     
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
 
-    
-    return cell;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [arrayContent count];
+    NSLog(@"%d", [contentArray count]);
+    return [contentArray count];
 }
 
 - (IBAction)switchViews {
@@ -79,6 +72,7 @@
 
 - (void)viewDidLoad
 {
+    contentArray = [[NSMutableArray alloc] init ];
     
     NSString *myPath = [self saveFilePath];
     
@@ -86,21 +80,99 @@
     
     if(fileExists) {
         
+        [contentArray removeAllObjects];
         NSLog(@"FILE EXIST");
-        arrayContent = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+        saveLogin= [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+        NSLog(@"%@", [saveLogin objectAtIndex:0]);
         
+        
+        NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@", @"http://www.williamliwu.com/chatter/getMyPosts.php?user='", [saveLogin objectAtIndex:0], @"'"];
+        NSLog(@"%@", theStringURL);
+        
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:theStringURL]];
+        
+        
+        [request setCompletionBlock:^{
+            // Clear the data source in case we are refreshing
+            //[arrayContent removeAllObjects];
+            
+           // NSLog(@"%@", request.responseString);
+            
+            NSDictionary *deserializedData = [request.responseString objectFromJSONString];
+            
+            for (NSDictionary * dataDict in deserializedData) {
+                // Extract the Post ID # from this post
+                //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
+                //NSLog(@"%@", postTitle);
+                NSString *iD = [dataDict objectForKey:@"ID"];
+                
+                NSString *user = [dataDict objectForKey:@"USER"];
+                NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
+                NSString *downVotes = [dataDict objectForKey:@"DOWNVOTES"];
+                NSString *title = [dataDict objectForKey:@"TITLE"];
+                NSString *content = [dataDict objectForKey:@"CONTENT"];
+                NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
+                //   NSLog(@"%@", testMe);
+                
+                NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,content, time, nil];
+                
+                [contentArray addObject:contents];
+                
+                [self.theTableView reloadData];
+                
+                
+                // Stop the loading animation if pull-to-refresh was used
+               // [self stopLoading];
+                
+            }
+            
+            // NSLog([titleArray objectAtIndex:0]);
+            
+            
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+       // [self.myTableView reloadData];
         
     }
     
     else {
         
-        arrayContent = [[NSMutableArray alloc] init ];
+        NSLog(@"u fail");
+       // arrayContent = [[NSMutableArray alloc] init ];
+        
+           
         
     }
 
-    
+    //NSLog(@"yay%@", arrayContent);
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+	// Configure the cell.
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   
+	cell.textLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
+     //NSLog([titleArray objectAtIndex:indexPath.row]);
+    //cell.value
+    return cell;
 }
 
 - (void)viewDidUnload

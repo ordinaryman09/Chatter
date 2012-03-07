@@ -40,6 +40,12 @@
 
 }
 
+- (NSString *) saveFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"loginSave1.plist"];
+}
+
+
 - (IBAction) authorizeUser {
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/userAuth.php"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -55,6 +61,42 @@
     [request setCompletionBlock:^{
             
         if([request.responseString isEqualToString:@"TRUE"]){
+            
+            
+            //save to iphone
+            
+            NSString *myPath = [self saveFilePath];
+            
+            BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+            
+            if(fileExists) {
+                
+                NSLog(@"FILE EXIST");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+                
+                [myUserName removeAllObjects];
+                [myUserName addObject:theUsername.text];
+               // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];    
+            
+            }
+            
+            else {
+                
+                NSLog(@"HERE");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:theUsername.text, nil];                
+                //[myUserName addObject:theUsername.text];
+                // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];   
+                
+                
+            }
+            
+            
             //doSomething;
             ThirdViewController *thirdViewController = [[ThirdViewController alloc]initWithNibName:@"ThirdView" bundle:nil];
             
