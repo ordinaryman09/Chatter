@@ -48,6 +48,7 @@
 		79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BEB14F0F88400C726F8 /* SecondViewController.m */; };
 		79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BED14F0F88400C726F8 /* FirstView.xib */; };
 		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
+		992970D715061357005589F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992970D615061357005589F5 /* MapKit.framework */; };
 		99D91CB51504A57900408066 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 99D91CB41504A57900408066 /* arrow.png */; };
 		99D91CC01504A92100408066 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D91CBF1504A92100408066 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 		79F30BEB14F0F88400C726F8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		79F30BEE14F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
 		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+		992970D615061357005589F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		99D91CB41504A57900408066 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		99D91CBF1504A92100408066 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				992970D715061357005589F5 /* MapKit.framework in Frameworks */,
 				99D91CC01504A92100408066 /* QuartzCore.framework in Frameworks */,
 				792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */,
 				79328DCF14F74B98006730D9 /* libz.dylib in Frameworks */,
@@ -259,6 +262,7 @@
 		79F30BD114F0F88400C726F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				992970D615061357005589F5 /* MapKit.framework */,
 				99D91CBF1504A92100408066 /* QuartzCore.framework */,
 				792C7B9E14FE50AB00476270 /* CoreLocation.framework */,
 				79328DCE14F74B98006730D9 /* libz.dylib */,

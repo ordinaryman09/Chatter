@@ -164,8 +164,10 @@
     
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
     
-    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0]setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5]];
-    
+    // Initialize the display thread view controller with the thread ID and content
+    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5]];
+
+    // Add the display view controller to the stack
     [self.view addSubview:displayViewController.view];
     
 }
@@ -189,7 +191,7 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
-
+// This function is not needed anymore, can be deleted
 - (IBAction)switchViews {
     
     RecentPostController *recentPostController = [[RecentPostController alloc] initWithNibName:@"RecentPost" bundle:nil];
