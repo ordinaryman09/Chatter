@@ -164,6 +164,7 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
@@ -171,8 +172,17 @@
     // Initialize the display thread view controller with the thread ID and content
     [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] setLat:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:6] setLon:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:7] setUserName:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1] setTimeStamp:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:8] ];
 
+    // This is a stupid hack to pre-load the view so that the dynamic UI can be set up before the CurlUp transition occurs
+    [displayViewController.view isOpaque];
+    
     // Add the display view controller to the stack
-    [self.view addSubview:displayViewController.view];
+    [UIView transitionWithView:self.view duration:0.5
+                       options:UIViewAnimationOptionTransitionCurlUp //change to whatever animation you like
+                    animations:^ { [self.view addSubview:displayViewController.view]; }
+                    completion:nil];
+    
+    // Deselect the row after the new view is already displayed
+    [self.myTableView deselectRowAtIndexPath:[self.myTableView indexPathForSelectedRow] animated:YES];
     
 }
 

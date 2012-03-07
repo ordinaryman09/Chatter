@@ -68,7 +68,48 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell;
+    UILabel *label = nil;
+    float width = 300;
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil)
+    {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
+        
+        label = [[UILabel alloc] initWithFrame:CGRectZero];
+        [label setLineBreakMode:UILineBreakModeWordWrap];
+        [label setMinimumFontSize:FONT_SIZE];
+        [label setNumberOfLines:0];
+        [label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+        [label setTag:1];
+        label.backgroundColor = [UIColor clearColor];
+        //[[label layer] setBorderWidth:2.0f];
+        
+        [[cell contentView] addSubview:label];
+        
+    }
+    
+    NSString *text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
+    
+    CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    if (!label)
+        label = (UILabel*)[cell viewWithTag:1];
+    
+    [label setText:text];
+    [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+    
+    return cell;
+    
+    
+    
+    ////// TEMPORARILY COMMENTED OUT
+    
+    /*static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -105,15 +146,28 @@
     UILabel *downLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 260, 17, 10.0, 10.0 )] autorelease];
     
     [downLabel setText:downVotes];
-    [cell.contentView addSubview: downLabel];
+    [cell.contentView addSubview: downLabel];*/
      
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
+   // cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
+   // cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
     
     
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSString *text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
+    
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGFloat height = MAX(size.height, 44.0f);
+    
+    return height + (CELL_CONTENT_MARGIN * 2);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -123,7 +177,12 @@
 
 
 - (IBAction)switchViews {
-    [self.view removeFromSuperview];
+   // [self.view removeFromSuperview];
+    
+    [UIView transitionWithView:self.view.superview duration:0.5
+                       options:UIViewAnimationOptionTransitionCurlDown //change to whatever animation you like
+                    animations:^ { [self.view removeFromSuperview]; }
+                    completion:nil];
     
     // [registerViewController release];
     
@@ -163,6 +222,7 @@
     [scrollView release];
     [mapView release];
     [threadTitle release];
+    [headerView release];
     [super dealloc];
 }
 
@@ -210,18 +270,66 @@
 - (void)viewDidLoad
 {
 
-    theContent.text = content;
     theUserName.text = user;
+    
+    arrayContent = [[NSMutableArray alloc] init ];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    // Dynamically resize the UILabels to fit the thread title and content
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+
+    [theContent setLineBreakMode:UILineBreakModeWordWrap];
+    [theContent setMinimumFontSize:FONT_SIZE];
+    [theContent setNumberOfLines:0];
+    [theContent setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+    [theContent setTag:1];
+    CGSize sizeContent = [content sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    [theContent setText:content];
+    [theContent setFrame:CGRectMake(theContent.frame.origin.x,theContent.frame.origin.y+10,sizeContent.width,sizeContent.height)];
+    
+    NSString *tempTitle = [@"\"" stringByAppendingString:[titleText stringByAppendingString:@"\""]];
+    [self.threadTitle setLineBreakMode:UILineBreakModeWordWrap];
+    [self.threadTitle setMinimumFontSize:FONT_SIZE+1];
+    [self.threadTitle setNumberOfLines:0];
+    [self.threadTitle setFont:[UIFont boldSystemFontOfSize:FONT_SIZE+1]];
+    [self.threadTitle setTag:1];
+    CGSize sizeTitle = [tempTitle sizeWithFont:[UIFont boldSystemFontOfSize:FONT_SIZE+1] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    [self.threadTitle setText:tempTitle];
+    [self.threadTitle setFrame:CGRectMake(self.threadTitle.frame.origin.x,
+                                          self.threadTitle.frame.origin.y+10,
+                                          sizeTitle.width,
+                                          sizeTitle.height)];
+    
+    // First reposition the Map and user/lifetime info
+    [headerView setFrame:CGRectMake(headerView.frame.origin.x, 
+                                    headerView.frame.origin.y + self.threadTitle.frame.size.height - 10, 
+                                    screenWidth, 
+                                    headerView.frame.size.height)];
+    
+    // Position the comments with respect to the dynamically sized layout
+    [myTableView setFrame:CGRectMake(myTableView.frame.origin.x,
+                                     headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height,
+                                     [myTableView contentSize].width,
+                                     MAX([myTableView contentSize].height+75,
+                                         (screenHeight-(headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height))))];
+    
+    self.scrollView.contentSize = CGSizeMake(screenWidth, myTableView.frame.origin.y + myTableView.frame.size.height);
+    
+    // Add a UI border to the MKMapView
+    mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    mapView.layer.borderWidth = 1.0f;
+    
+    // Show a hardcoded address on the map for now
+    [self showAddress: [lat floatValue]:[lon floatValue]];
+    
+    // Finished UI setup, continue processing
     float currentTime = [[NSDate date] timeIntervalSince1970];
     float postTime = [timeStamp floatValue];
     
     float timeDifference = currentTime - postTime;
     
-   // NSLog(@"%f", timeDifference);
-    //theTimeStamp.text = timeStamp;
-    
-   // NSString *a = 
-
     NSTimeInterval theTimeInterval = timeDifference;
     
     // Get the system calendar
@@ -236,48 +344,13 @@
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     
-    NSLog(@"Conversion: %dmin %dhours %ddays %dmoths",[conversionInfo minute], [conversionInfo hour], [conversionInfo day], [conversionInfo month]);
-    
-    
+   // NSLog(@"Conversion: %dmonths %ddays %dhours",/*[conversionInfo minute],*/ [conversionInfo month], [conversionInfo day], [conversionInfo hour]);
     
     [date1 release];
     [date2 release];
     
-    theTimeStamp.text = [NSString stringWithFormat:@"Posted %dmins %dhours %ddays ago",[conversionInfo minute], [conversionInfo hour], [conversionInfo day]];
+    theTimeStamp.text = [NSString stringWithFormat:@"Posted %d days %d hours ago", [conversionInfo day], [conversionInfo hour]];
     
-    
-    
-    arrayContent = [[NSMutableArray alloc] init ];
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
-    
-    // Dynamically resize the UILabel to fit the thread CONTENT
-    [theContent setLineBreakMode:UILineBreakModeWordWrap];
-    [theContent setMinimumFontSize:FONT_SIZE];
-    [theContent setNumberOfLines:0];
-    [theContent setFont:[UIFont systemFontOfSize:FONT_SIZE]];
-    [theContent setTag:1];
-    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-    CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-    [theContent setText:content];
-    
-    // Set the UILabel frame's width and height
-    [theContent setFrame:CGRectMake(theContent.frame.origin.x,theContent.frame.origin.y+10,size.width,size.height)];
-    
-    [myTableView setFrame:CGRectMake(myTableView.frame.origin.x, theContent.frame.origin.y+theContent.frame.size.height+5,[myTableView contentSize].width, MAX([myTableView contentSize].height+75,(screenHeight-(theContent.frame.origin.y+theContent.frame.size.height+5))))];
-    
-    self.scrollView.contentSize=CGSizeMake(screenWidth,myTableView.frame.origin.y+myTableView.frame.size.height);
-    
-    // Add a UI border to the MKMapView
-    mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    mapView.layer.borderWidth = 1.0f;
-    
-    
-    // Show a hardcoded address on the map for now
-    [self showAddress: [lat floatValue]:[lon floatValue]];
-    
-    // Finished UI setup, continue processing
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/viewCommentsByThread.php"];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -318,11 +391,14 @@
         
         // Set the position of the UITableView
         [myTableView layoutIfNeeded];
-        [myTableView setFrame:CGRectMake(myTableView.frame.origin.x, theContent.frame.origin.y+theContent.frame.size.height+5,[myTableView contentSize].width, MAX([myTableView contentSize].height+75,(screenHeight-(theContent.frame.origin.y+theContent.frame.size.height+5))))];
+        [myTableView setFrame:CGRectMake(myTableView.frame.origin.x,
+                                         headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height,
+                                         [myTableView contentSize].width,
+                                         MAX([myTableView contentSize].height+75,
+                                             (screenHeight-(headerView.frame.origin.y+headerView.frame.size.height + theContent.frame.size.height))))];
         
-        // Finally, set the size of the scrollView so that it contains all UI items
-        self.scrollView.contentSize=CGSizeMake(screenWidth,myTableView.frame.origin.y+myTableView.frame.size.height);
-            
+        self.scrollView.contentSize = CGSizeMake(screenWidth, myTableView.frame.origin.y+myTableView.frame.size.height);
+        
     }];
         
         [request setFailedBlock:^{
@@ -344,6 +420,8 @@
     [self setScrollView:nil];
     [self setMapView:nil];
     [self setThreadTitle:nil];
+    [headerView release];
+    headerView = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

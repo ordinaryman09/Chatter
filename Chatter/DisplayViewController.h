@@ -27,6 +27,7 @@
     NSString * lon;
     NSString * user;
     NSString * timeStamp;
+    IBOutlet UIView *headerView;
     IBOutlet UILabel *theContent;
     NSMutableArray *arrayContent;
     IBOutlet UITableView *myTableView;
@@ -48,7 +49,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *threadTitle;
 @property (retain, nonatomic) IBOutlet UILabel *theUserName;
 @property (retain, nonatomic) IBOutlet UILabel *theTimeStamp;
-@property (retain, nonatomic) IBOutlet UILabel *theTitle;
+//@property (retain, nonatomic) IBOutlet UILabel *theTitle;
 
 - (IBAction)switchViews;
 - (IBAction)upVote;
