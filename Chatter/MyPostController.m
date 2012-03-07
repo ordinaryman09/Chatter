@@ -37,7 +37,7 @@
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
     
     // Initialize the display thread view controller with the thread ID and content
-    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] ];
+     [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] setLat:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:6] setLon:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:7] setUserName:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1] setTimeStamp:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:8] ];
     
     // Add the display view controller to the stack
     [self.view addSubview:displayViewController.view];
@@ -105,16 +105,20 @@
                 //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
                 //NSLog(@"%@", postTitle);
                 NSString *iD = [dataDict objectForKey:@"ID"];
-                
                 NSString *user = [dataDict objectForKey:@"USER"];
                 NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
                 NSString *downVotes = [dataDict objectForKey:@"DOWNVOTES"];
                 NSString *title = [dataDict objectForKey:@"TITLE"];
                 NSString *content = [dataDict objectForKey:@"CONTENT"];
+                NSString *latitude = [dataDict objectForKey:@"LATITUDE"];
+                NSString *longitude = [dataDict objectForKey:@"LONGITUDE"];
                 NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
+                
+                
                 //   NSLog(@"%@", testMe);
                 
-                NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,content, time, nil];
+                NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
+                                     content, latitude, longitude, time, nil];
                 
                 [contentArray addObject:contents];
                 

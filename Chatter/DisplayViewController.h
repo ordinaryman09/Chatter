@@ -23,12 +23,21 @@
     NSString * titleText;
     NSString * upVotes;
     NSString * downVotes;
+    NSString * lat;
+    NSString * lon;
+    NSString * user;
+    NSString * timeStamp;
     IBOutlet UILabel *theContent;
     NSMutableArray *arrayContent;
     IBOutlet UITableView *myTableView;
+    IBOutlet UILabel *theUserName;
+    IBOutlet UILabel *theTimeStamp;
+    IBOutlet UILabel *threadTitle;
 }
 
--(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title setUpVotes:(NSString *) up setDownVotes:(NSString *) down;
+-(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title setUpVotes:(NSString *) up setDownVotes:(NSString *) down setLat:(NSString*) theLat
+             setLon:(NSString *) theLon setUserName:(NSString *)theUser setTimeStamp:(NSString*)
+                theTime;
 
 
 @property (retain, nonatomic) IBOutlet UILabel *theContent;
@@ -37,6 +46,9 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (retain, nonatomic) IBOutlet UILabel *threadTitle;
+@property (retain, nonatomic) IBOutlet UILabel *theUserName;
+@property (retain, nonatomic) IBOutlet UILabel *theTimeStamp;
+@property (retain, nonatomic) IBOutlet UILabel *theTitle;
 
 - (IBAction)switchViews;
 - (IBAction)upVote;

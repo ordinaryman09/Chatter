@@ -17,6 +17,8 @@
 @synthesize scrollView;
 @synthesize mapView;
 @synthesize threadTitle;
+@synthesize theUserName;
+@synthesize theTimeStamp;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,12 +29,16 @@
     return self;
 }
 
--(void) setThreadID :(NSString*) threadID setContent:(NSString *)setContent setTitle:(NSString *)title setUpVotes:(NSString *)up setDownVotes:(NSString *)down{
+-(void) setThreadID :(NSString*) threadID setContent:(NSString *)setContent setTitle:(NSString *)title setUpVotes:(NSString *)up setDownVotes:(NSString *)down setLat:(NSString *)theLat setLon:(NSString *)theLon setUserName:(NSString *)theUser setTimeStamp:(NSString *)theTime{
     tID = threadID;
     content = setContent;
     titleText = title;
     upVotes = up;
     downVotes = down;
+    lat = theLat;
+    lon = theLon;
+    user = theUser;
+    timeStamp = theTime;
     
 }
 
@@ -204,6 +210,43 @@
 - (void)viewDidLoad
 {
 
+    theContent.text = content;
+    theUserName.text = user;
+    float currentTime = [[NSDate date] timeIntervalSince1970];
+    float postTime = [timeStamp floatValue];
+    
+    float timeDifference = currentTime - postTime;
+    
+   // NSLog(@"%f", timeDifference);
+    //theTimeStamp.text = timeStamp;
+    
+   // NSString *a = 
+
+    NSTimeInterval theTimeInterval = timeDifference;
+    
+    // Get the system calendar
+    NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+    
+    // Create the NSDates
+    NSDate *date1 = [[NSDate alloc] init];
+    NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1]; 
+    
+    // Get conversion to months, days, hours, minutes
+    unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit | NSMonthCalendarUnit;
+    
+    NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
+    
+    NSLog(@"Conversion: %dmin %dhours %ddays %dmoths",[conversionInfo minute], [conversionInfo hour], [conversionInfo day], [conversionInfo month]);
+    
+    
+    
+    [date1 release];
+    [date2 release];
+    
+    theTimeStamp.text = [NSString stringWithFormat:@"Posted %dmins %dhours %ddays ago",[conversionInfo minute], [conversionInfo hour], [conversionInfo day]];
+    
+    
+    
     arrayContent = [[NSMutableArray alloc] init ];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -232,8 +275,7 @@
     
     
     // Show a hardcoded address on the map for now
-    [self showAddress: 37.785834:-122.40641];
-
+    [self showAddress: [lat floatValue]:[lon floatValue]];
     
     // Finished UI setup, continue processing
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/viewCommentsByThread.php"];
