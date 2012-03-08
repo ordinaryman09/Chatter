@@ -148,7 +148,7 @@
     tuImage = [UIImage imageNamed:@"tu.png"];
     [tuButton setBackgroundImage:tuImage forState:UIControlStateNormal];
     // buyButton.frame = CGRectMake(220, 35, 96, 34);
-    tuButton.frame = CGRectMake(240, halfHeight-8, 16, 16);
+    tuButton.frame = CGRectMake(245, halfHeight-8, 16, 16);
     [tuButton setTag:indexPath.row];
     [tuButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:tuButton];

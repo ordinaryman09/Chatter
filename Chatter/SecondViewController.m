@@ -12,7 +12,7 @@
 #import "RecentPostController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#define REFRESH_HEADER_HEIGHT 52.0f
+#define REFRESH_HEADER_HEIGHT 80.0f
 
 @implementation SecondViewController
 
@@ -147,23 +147,99 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    UILabel *label = nil;
+    UILabel *userLabel = nil;
+    UILabel *infoLabel = nil;
+    float width = 300;
     
-    static NSString *CellIdentifier = @"Cell";
+    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    if (cell == nil)
+    {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
+        
+        label = [[UILabel alloc] initWithFrame:CGRectZero];
+        [label setLineBreakMode:UILineBreakModeWordWrap];
+        [label setMinimumFontSize:FONT_SIZE];
+        [label setNumberOfLines:0];
+        [label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+        [label setTag:1];
+        label.backgroundColor = [UIColor clearColor];
+        
+        userLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [userLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [userLabel setMinimumFontSize:FONT_SIZE-4];
+        [userLabel setNumberOfLines:0];
+        [userLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [userLabel setTag:2];
+        userLabel.backgroundColor = [UIColor clearColor];
+        userLabel.textColor = [UIColor lightGrayColor];
+        
+        infoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [infoLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [infoLabel setMinimumFontSize:FONT_SIZE-4];
+        [infoLabel setNumberOfLines:0];
+        [infoLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [infoLabel setTag:3];
+        infoLabel.backgroundColor = [UIColor clearColor];
+        infoLabel.textColor = [UIColor lightGrayColor];
+        infoLabel.textAlignment = UITextAlignmentRight;
+        
+        [[cell contentView] addSubview:label];
+        [[cell contentView] addSubview:userLabel];
+        [[cell contentView] addSubview:infoLabel];
+        
     }
     
+    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    
+    CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    if (!label)
+        label = (UILabel*)[cell viewWithTag:1];
+    
+    if (!userLabel)
+        userLabel = (UILabel*)[cell viewWithTag:2];
+    
+    if (!infoLabel)
+        infoLabel = (UILabel*)[cell viewWithTag:3];
+    
+    [label setText:text];
+    [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+    
+    NSString * userLabelText = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
+    
+    [userLabel setText:userLabelText];
+    [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+    
+    NSString * infoLabelText = @"";
+    [infoLabel setText:infoLabelText];
+    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.textLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
+
    // NSLog([titleArray objectAtIndex:indexPath.row]);
     //cell.value
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGFloat height = MAX(size.height, 44.0f);
+    
+    return height + (CELL_CONTENT_MARGIN * 2)
+    + (FONT_SIZE-4); // For the username at the bottom of each cell
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
