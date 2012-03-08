@@ -69,7 +69,7 @@
 				<object class="IBUIViewController" key="IBUISelectedViewController" id="101378592">
 					<string key="IBUITitle"/>
 					<object class="IBUITabBarItem" key="IBUITabBarItem" id="175159000">
-						<string key="IBUITitle">Login</string>
+						<string key="IBUITitle">Settings</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -86,7 +86,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIViewController" id="268481961">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="807309489">
-							<string key="IBUITitle">View Post</string>
+							<string key="IBUITitle">View Posts</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -101,7 +101,7 @@
 					<object class="IBUIViewController" id="1024858337">
 						<string key="IBUITitle"/>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="765670903">
-							<string key="IBUITitle">Inbox</string>
+							<string key="IBUITitle">My Posts</string>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>

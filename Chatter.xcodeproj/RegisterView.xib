@@ -77,6 +77,10 @@
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
 					</object>
 					<object class="IBUILabel" id="763103496">
 						<reference key="NSNextResponder" ref="191373211"/>
