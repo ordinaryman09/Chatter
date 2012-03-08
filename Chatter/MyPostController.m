@@ -11,13 +11,13 @@
 
 
 @implementation MyPostController
-@synthesize theTableView;
+@synthesize theTableView, textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (self != nil) {
+        [self setupStrings];
     }
     return self;
 }
@@ -57,6 +57,13 @@
 
 - (void)dealloc
 {
+    [refreshHeaderView release];
+    [refreshLabel release];
+    [refreshArrow release];
+    [refreshSpinner release];
+    [textPull release];
+    [textRelease release];
+    [textLoading release];
     [super dealloc];
 }
 
@@ -69,10 +76,7 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    contentArray = [[NSMutableArray alloc] init ];
+- (void) loadTableData {
     
     NSString *myPath = [self saveFilePath];
     
@@ -80,7 +84,6 @@
     
     if(fileExists) {
         
-        [contentArray removeAllObjects];
         NSLog(@"FILE EXIST");
         saveLogin= [[NSMutableArray alloc] initWithContentsOfFile:myPath];
         NSLog(@"%@", [saveLogin objectAtIndex:0]);
@@ -94,10 +97,10 @@
         
         [request setCompletionBlock:^{
             // Clear the data source in case we are refreshing
-            //[arrayContent removeAllObjects];
+            [contentArray removeAllObjects];
             
-           // NSLog(@"%@", request.responseString);
-            
+            // NSLog(@"%@", request.responseString);
+            NSLog(@"Entering completion block");
             NSDictionary *deserializedData = [request.responseString objectFromJSONString];
             
             for (NSDictionary * dataDict in deserializedData) {
@@ -115,7 +118,7 @@
                 NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
                 
                 
-                //   NSLog(@"%@", testMe);
+                   NSLog(@"%@", @"KGO");
                 
                 NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
                                      content, latitude, longitude, time, nil];
@@ -124,11 +127,16 @@
                 
                 [self.theTableView reloadData];
                 
-                
                 // Stop the loading animation if pull-to-refresh was used
-               // [self stopLoading];
+                [self stopLoading];
                 
             }
+            
+            NSLog(@"%@", @"DONE LOADING");
+            
+            
+            
+            
             
             // NSLog([titleArray objectAtIndex:0]);
             
@@ -140,19 +148,26 @@
             NSLog(@"%@", request.error);
         }];
         
+        NSLog(@"Starting asynchronous");
         [request startAsynchronous];
-       // [self.myTableView reloadData];
+        // [self.myTableView reloadData];
         
     }
     
     else {
         
         NSLog(@"u fail");
-       // arrayContent = [[NSMutableArray alloc] init ];
+        // arrayContent = [[NSMutableArray alloc] init ];
         
-           
+        
         
     }
+}
+- (void)viewDidLoad
+{
+    contentArray = [[NSMutableArray alloc] init ];
+    [self addPullToRefreshHeader];
+    [self loadTableData];
 
     //NSLog(@"yay%@", arrayContent);
     [super viewDidLoad];
@@ -162,21 +177,98 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell;
+    UILabel *label = nil;
+    UILabel *userLabel = nil;
+    UILabel *infoLabel = nil;
+    float width = 300;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil)
+    {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
+        
+        label = [[UILabel alloc] initWithFrame:CGRectZero];
+        [label setLineBreakMode:UILineBreakModeWordWrap];
+        [label setMinimumFontSize:FONT_SIZE];
+        [label setNumberOfLines:0];
+        [label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+        [label setTag:1];
+        label.backgroundColor = [UIColor clearColor];
+        
+        userLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [userLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [userLabel setMinimumFontSize:FONT_SIZE-4];
+        [userLabel setNumberOfLines:0];
+        [userLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [userLabel setTag:2];
+        userLabel.backgroundColor = [UIColor clearColor];
+        userLabel.textColor = [UIColor lightGrayColor];
+        
+        infoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [infoLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [infoLabel setMinimumFontSize:FONT_SIZE-4];
+        [infoLabel setNumberOfLines:0];
+        [infoLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [infoLabel setTag:3];
+        infoLabel.backgroundColor = [UIColor clearColor];
+        infoLabel.textColor = [UIColor lightGrayColor];
+        infoLabel.textAlignment = UITextAlignmentRight;
+        
+        [[cell contentView] addSubview:label];
+        [[cell contentView] addSubview:userLabel];
+        [[cell contentView] addSubview:infoLabel];
+        
     }
+    
+    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    //NSLog(@"%@", text);
+    CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    if (!label)
+        label = (UILabel*)[cell viewWithTag:1];
+    
+    if (!userLabel)
+        userLabel = (UILabel*)[cell viewWithTag:2];
+    
+    if (!infoLabel)
+        infoLabel = (UILabel*)[cell viewWithTag:3];
+    
+    [label setText:text];
+    [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+    
+    NSString * userLabelText = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
+    
+    [userLabel setText:userLabelText];
+    [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+    
+    NSString * infoLabelText = @"";
+    [infoLabel setText:infoLabelText];
+    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
     
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-   
-	cell.textLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
-     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
-     //NSLog([titleArray objectAtIndex:indexPath.row]);
+    
+    // NSLog([titleArray objectAtIndex:indexPath.row]);
     //cell.value
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGFloat height = MAX(size.height, 44.0f);
+    
+    return height + (CELL_CONTENT_MARGIN * 2)
+    + (FONT_SIZE-4); // For the username at the bottom of each cell
 }
 
 - (void)viewDidUnload
@@ -191,5 +283,140 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self != nil) {
+        [self setupStrings];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self != nil) {
+        [self setupStrings];
+    }
+    return self;
+}
+
+
+
+- (void)setupStrings{
+    textPull = [[NSString alloc] initWithString:@"Pull down to refresh..."];
+    textRelease = [[NSString alloc] initWithString:@"Release to refresh..."];
+    textLoading = [[NSString alloc] initWithString:@"Loading..."];
+}
+
+- (void)addPullToRefreshHeader {
+    refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
+    refreshHeaderView.backgroundColor = [UIColor clearColor];
+    
+    refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, REFRESH_HEADER_HEIGHT)];
+    refreshLabel.backgroundColor = [UIColor clearColor];
+    refreshLabel.font = [UIFont boldSystemFontOfSize:12.0];
+    refreshLabel.textAlignment = UITextAlignmentCenter;
+    
+    refreshArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+    refreshArrow.frame = CGRectMake(floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
+                                    (floorf(REFRESH_HEADER_HEIGHT - 44) / 2),
+                                    27, 44);
+    
+    refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    refreshSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 20) / 2), floorf((REFRESH_HEADER_HEIGHT - 20) / 2), 20, 20);
+    refreshSpinner.hidesWhenStopped = YES;
+    
+    [refreshHeaderView addSubview:refreshLabel];
+    [refreshHeaderView addSubview:refreshArrow];
+    [refreshHeaderView addSubview:refreshSpinner];
+    [self.theTableView addSubview:refreshHeaderView];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (isLoading) return;
+    isDragging = YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (isLoading) {
+        // Update the content inset, good for section headers
+        if (scrollView.contentOffset.y > 0)
+            self.theTableView.contentInset = UIEdgeInsetsZero;
+        else if (scrollView.contentOffset.y >= -REFRESH_HEADER_HEIGHT)
+            self.theTableView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    } else if (isDragging && scrollView.contentOffset.y < 0) {
+        // Update the arrow direction and label
+        [UIView beginAnimations:nil context:NULL];
+        if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
+            // User is scrolling above the header
+            refreshLabel.text = self.textRelease;
+            [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
+        } else { // User is scrolling somewhere within the header
+            refreshLabel.text = self.textPull;
+            [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+        }
+        [UIView commitAnimations];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (isLoading) return;
+    isDragging = NO;
+    if (scrollView.contentOffset.y <= -REFRESH_HEADER_HEIGHT) {
+        // Released above the header
+        [self startLoading];
+    }
+}
+
+- (void)startLoading {
+    isLoading = YES;
+    
+    // Show the header
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.theTableView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+    refreshLabel.text = self.textLoading;
+    refreshArrow.hidden = YES;
+    [refreshSpinner startAnimating];
+    [UIView commitAnimations];
+    
+    // Refresh action!
+    [self refresh];
+}
+
+- (void)stopLoading {
+    isLoading = NO;
+    
+    // Hide the header
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDidStopSelector:@selector(stopLoadingComplete:finished:context:)];
+    self.theTableView.contentInset = UIEdgeInsetsZero;
+    UIEdgeInsets tableContentInset = self.theTableView.contentInset;
+    tableContentInset.top = 0.0;
+    self.theTableView.contentInset = tableContentInset;
+    [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+    [UIView commitAnimations];
+}
+
+- (void)stopLoadingComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    // Reset the header
+    refreshLabel.text = self.textPull;
+    refreshArrow.hidden = NO;
+    [refreshSpinner stopAnimating];
+}
+
+
+- (void)refresh {
+    // This is just a demo. Rewrite this method with your custom reload action.
+    // Don't forget to call stopLoading at the end.
+    NSLog(@"Reloading table data");
+    [self loadTableData];
+    
+    //[self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];
+}
+
 
 @end

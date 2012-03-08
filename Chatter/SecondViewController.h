@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "JSONKit.h"
+#define REFRESH_HEADER_HEIGHT 80.0f
 
 @interface SecondViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>

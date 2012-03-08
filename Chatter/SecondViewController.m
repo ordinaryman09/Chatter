@@ -12,7 +12,7 @@
 #import "RecentPostController.h"
 
 #import <QuartzCore/QuartzCore.h>
-#define REFRESH_HEADER_HEIGHT 80.0f
+
 
 @implementation SecondViewController
 
@@ -191,9 +191,9 @@
         [[cell contentView] addSubview:infoLabel];
         
     }
-    
+     
     NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
-    
+    //NSLog(@"%@", text);
     CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];

@@ -71,7 +71,7 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="5830809"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="626160312">
+							<object class="IBUIBarButtonItem" id="1058863868">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIToolbar" ref="5830809"/>
 								<int key="IBUISystemItemIdentifier">5</int>
@@ -200,7 +200,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1064069941"/>
 							<reference ref="1029303005"/>
-							<reference ref="626160312"/>
+							<reference ref="1058863868"/>
 							<reference ref="258415189"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
@@ -216,20 +216,20 @@
 						<reference key="parent" ref="5830809"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">17</int>
-						<reference key="object" ref="626160312"/>
-						<reference key="parent" ref="5830809"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="258415189"/>
-						<reference key="parent" ref="5830809"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
 						<reference key="object" ref="731017669"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Table View</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">62</int>
+						<reference key="object" ref="1058863868"/>
+						<reference key="parent" ref="5830809"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">63</int>
+						<reference key="object" ref="258415189"/>
+						<reference key="parent" ref="5830809"/>
 					</object>
 				</object>
 			</object>
@@ -245,9 +245,9 @@
 					<string>12.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
-					<string>17.IBPluginDependency</string>
-					<string>19.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
+					<string>62.IBPluginDependency</string>
+					<string>63.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -276,7 +276,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">63</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
