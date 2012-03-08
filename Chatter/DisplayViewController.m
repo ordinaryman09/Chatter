@@ -70,6 +70,8 @@
     
     UITableViewCell *cell;
     UILabel *label = nil;
+    UILabel *userLabel = nil;
+    UILabel *infoLabel = nil;
     float width = 300;
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
@@ -85,23 +87,104 @@
         [label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
         [label setTag:1];
         label.backgroundColor = [UIColor clearColor];
-        //[[label layer] setBorderWidth:2.0f];
+        
+        userLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [userLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [userLabel setMinimumFontSize:FONT_SIZE-4];
+        [userLabel setNumberOfLines:0];
+        [userLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [userLabel setTag:2];
+        userLabel.backgroundColor = [UIColor clearColor];
+        userLabel.textColor = [UIColor lightGrayColor];
+        
+        infoLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        [infoLabel setLineBreakMode:UILineBreakModeWordWrap];
+        [infoLabel setMinimumFontSize:FONT_SIZE-4];
+        [infoLabel setNumberOfLines:0];
+        [infoLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+        [infoLabel setTag:3];
+        infoLabel.backgroundColor = [UIColor clearColor];
+        infoLabel.textColor = [UIColor lightGrayColor];
+        infoLabel.textAlignment = UITextAlignmentRight;
         
         [[cell contentView] addSubview:label];
+        [[cell contentView] addSubview:userLabel];
+        [[cell contentView] addSubview:infoLabel];
         
     }
     
     NSString *text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
     
-    CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2) - 30, 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
     
     if (!label)
         label = (UILabel*)[cell viewWithTag:1];
     
+    if (!userLabel)
+        userLabel = (UILabel*)[cell viewWithTag:2];
+    
+    if (!infoLabel)
+        infoLabel = (UILabel*)[cell viewWithTag:3];
+    
     [label setText:text];
-    [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
+    [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2) - 30, MAX(size.height, 44.0f))];
+    
+    NSString * userLabelText = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
+
+    [userLabel setText:userLabelText];
+    [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+
+    NSString * infoLabelText = [NSString stringWithFormat:@"%@ up  %@ down", upVotes, downVotes];
+    [infoLabel setText:infoLabelText];
+    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+
+    
+    float halfHeight = ((CELL_CONTENT_MARGIN * 2) + MAX(size.height, 44.0f) + (FONT_SIZE - 4))/2;
+    
+    UIImage *tuImage;
+    UIButton * tuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tuImage = [UIImage imageNamed:@"tu.png"];
+    [tuButton setBackgroundImage:tuImage forState:UIControlStateNormal];
+    // buyButton.frame = CGRectMake(220, 35, 96, 34);
+    tuButton.frame = CGRectMake(240, halfHeight-8, 16, 16);
+    [tuButton setTag:indexPath.row];
+    [tuButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:tuButton];
+    
+    
+    UIImage *tdImage;
+    UIButton * tdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tdImage = [UIImage imageNamed:@"td.png"];
+    [tdButton setBackgroundImage:tdImage forState:UIControlStateNormal];
+    // buyButton.frame = CGRectMake(220, 35, 96, 34);
+    tdButton.frame = CGRectMake(275, halfHeight-8, 16, 16);
+    [tdButton setTag:indexPath.row];
+    [tdButton addTarget:self action:@selector(downVote) forControlEvents:UIControlEventTouchDown];
+    [cell.contentView addSubview:tdButton];
+    
+    /*UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, halfHeight-8, 20.0, 10.0 )] autorelease];
+    
+    
+    [upLabel setText:upVotes];
+    [upLabel setMinimumFontSize:FONT_SIZE-4];
+    [upLabel setNumberOfLines:0];
+    [upLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+    upLabel.backgroundColor = [UIColor clearColor];
+    upLabel.textColor = [UIColor lightGrayColor];
+    [cell.contentView addSubview: upLabel];
+    
+    UILabel *downLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 260, halfHeight-8, 20.0, 10.0 )] autorelease];
+    
+    [downLabel setText:downVotes];
+    NSLog(downVotes);
+    [downLabel setMinimumFontSize:FONT_SIZE-4];
+    [downLabel setNumberOfLines:0];
+    [downLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
+    /*downLabel.backgroundColor = [UIColor clearColor];
+    downLabel.textColor = [UIColor lightGrayColor];
+    [cell.contentView addSubview: downLabel];*/
     
     return cell;
     
@@ -150,7 +233,6 @@
      
     
    // cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
-   // cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:1]];
     
     
 
@@ -161,13 +243,14 @@
 {
     NSString *text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
     
-    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2) - 30, 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
     
     CGFloat height = MAX(size.height, 44.0f);
     
-    return height + (CELL_CONTENT_MARGIN * 2);
+    return height + (CELL_CONTENT_MARGIN * 2)
+            + (FONT_SIZE-4); // For the username at the bottom of each cell
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
