@@ -15,13 +15,13 @@
 
 @implementation SecondViewController
 
-@synthesize myTableView, textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;
+@synthesize myTableView, textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner, contentArray;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [self addPullToRefreshHeader];
-    contentArray = [[NSMutableArray alloc] init ];
+    self.contentArray = [[NSMutableArray alloc] init ];
     
     
     
@@ -32,30 +32,6 @@
     shouldLoadNew = NO;
     
     [locationManager startUpdatingLocation];
-    
-   
-    
-    // Dummy data that will be retrieved from the webserver
-    NSString *jsonString = @"[{\"postId\": 1, \"title\": \"think i found something cool\", \"timestamp\": 318791347981, \"numUpvotes\": 23, \"numDownvotes\": 4, \"numComments\": 49}, {\"postId\": 2, \"title\":\"check this out UCLA!\", \"timestamp\": 318791323411, \"numUpvotes\": 19, \"numDownvotes\": 2, \"numComments\": 31}]";
-    
-    // Parse the JSON String into an NSDictionary object
-   /* NSDictionary *deserializedData = [jsonString objectFromJSONString];
-    
-    // Log the results
-    NSLog(@"%@", [deserializedData description]);
-    
-    // Iterate through each post in the array
-    for (NSDictionary * dataDict in deserializedData) {
-        // Extract the Post ID # from this post
-        NSString * postTitle = [dataDict objectForKey:@"title"];
-        NSLog(@"%@", postTitle);
-        
-        // Extract ..... everything else
-    }
-    // For each post in the array, add the post to the UI view (including the title, num upvotes, etc.)
-    // Refresh the view? (don't know if this is necessary)
-    */
- 
     
     [super viewDidLoad];
 }
@@ -98,8 +74,9 @@
     
     
     [request setCompletionBlock:^{
+
         // Clear the data source in case we are refreshing
-        [contentArray removeAllObjects];
+        [self.contentArray removeAllObjects];
 
         NSDictionary *deserializedData = [request.responseString objectFromJSONString];
        
@@ -111,7 +88,7 @@
             NSString *user = [dataDict objectForKey:@"USER"];
             NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
             NSString *downVotes = [dataDict objectForKey:@"DOWNVOTES"];
-                      NSString *title = [dataDict objectForKey:@"TITLE"];
+            NSString *title = [dataDict objectForKey:@"TITLE"];
             NSString *content = [dataDict objectForKey:@"CONTENT"];
             NSString *latitude = [dataDict objectForKey:@"LATITUDE"];
             NSString *longitude = [dataDict objectForKey:@"LONGITUDE"];
@@ -123,7 +100,7 @@
             NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
                                 content, latitude, longitude, time, nil];
             
-            [contentArray addObject:contents];
+            [self.contentArray addObject:contents];
             
             [self.myTableView reloadData];
             
@@ -132,8 +109,7 @@
             
         }
         // NSLog([titleArray objectAtIndex:0]);
-        
-        
+
     }];
     
     [request setFailedBlock:^{
@@ -191,7 +167,7 @@
         
     }
      
-    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    NSString *text = [NSString stringWithFormat:@"%@",[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
     //NSLog(@"%@", text);
     CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
@@ -209,7 +185,7 @@
     [label setText:text];
     [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, width - (CELL_CONTENT_MARGIN * 2), MAX(size.height, 44.0f))];
     
-    NSString * userLabelText = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
+    NSString * userLabelText = [NSString stringWithFormat:@"%@",[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:1]];
     
     [userLabel setText:userLabelText];
     [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
@@ -228,7 +204,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
+    NSString *text = [NSString stringWithFormat:@"%@",[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
     
     CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
@@ -243,9 +219,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DisplayViewController *displayViewController = [[DisplayViewController alloc] initWithNibName:@"DisplayView" bundle:nil];
-    
+
     // Initialize the display thread view controller with the thread ID and content
-    [displayViewController setThreadID:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:0] setContent:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:5] setTitle:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4] setUpVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  setDownVotes:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:3] setLat:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:6] setLon:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:7] setUserName:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:1] setTimeStamp:[[contentArray objectAtIndex:indexPath.row] objectAtIndex:8] ];
+    [displayViewController setThreadID:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:0]
+                            setContent:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:5] 
+                              setTitle:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:4] 
+                            setUpVotes:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:2]  
+                          setDownVotes:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:3] 
+                                setLat:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:6] 
+                                setLon:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:7] 
+                           setUserName:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:1] 
+                          setTimeStamp:[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:8] ];
 
     // This is a stupid hack to pre-load the view so that the dynamic UI can be set up before the CurlUp transition occurs
     [displayViewController.view isOpaque];
@@ -262,7 +246,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [contentArray count];
+    return [self.contentArray count];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

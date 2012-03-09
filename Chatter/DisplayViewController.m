@@ -136,7 +136,7 @@
     [userLabel setText:userLabelText];
     [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
 
-    NSString * infoLabelText = [NSString stringWithFormat:@"%@ up  %@ down", upVotes, downVotes];
+    NSString * infoLabelText = [NSString stringWithFormat:@"%@ up  %@ down", [[arrayContent objectAtIndex:indexPath.row] objectAtIndex:3], [[arrayContent objectAtIndex:indexPath.row] objectAtIndex:4]];
     [infoLabel setText:infoLabelText];
     [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
 

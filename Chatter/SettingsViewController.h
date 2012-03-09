@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSONKit.h"
+#import "ASIFormDataRequest.h"
 
 @interface SettingsViewController : UITableViewController
 {
     UITextField * userField;
     UITextField * passField;
 }
+
+
+- (BOOL) validateUser;
 
 @end

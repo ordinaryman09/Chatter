@@ -14,7 +14,7 @@
 @interface SecondViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
 {
-    NSMutableArray * contentArray;
+    //NSMutableArray * contentArray;
     IBOutlet UITableView *myTableView;
     NSString * lon;
     NSString * lat;
@@ -31,6 +31,7 @@
     NSString *textLoading;
     
     BOOL shouldLoadNew;
+
 }
 
 @property (nonatomic, retain) UITableView *myTableView;
@@ -42,6 +43,7 @@
 @property (nonatomic, copy) NSString *textPull;
 @property (nonatomic, copy) NSString *textRelease;
 @property (nonatomic, copy) NSString *textLoading;
+@property (retain) NSMutableArray *contentArray;
 
 - (IBAction)switchViews;
 - (IBAction)loadNew;

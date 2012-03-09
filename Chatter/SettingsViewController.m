@@ -154,12 +154,12 @@
     return cell;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     // If the user has just entered in a password
     if (textField.tag == 1) {
         // Check to make sure they have also entered in a username
         if ([userField.text length] > 0) {
-            NSLog(@"YEP");
+            [self validateUser:userField.text userPass:textField.text];
         } else {
             // Pop-up notification telling user that invalid entry
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No username provided" 
@@ -173,6 +173,79 @@
     }
     //do stuff
     
+}
+
+- (BOOL) validateUser:(NSString *)theUsername userPass:(NSString *)thePassword {
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/userAuth.php"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    
+    NSLog(@"%@", theUsername);
+    
+    
+    [request addPostValue:theUsername forKey:@"user"];
+    [request addPostValue:thePassword forKey:@"pass"];
+    
+    
+    [request setCompletionBlock:^{
+        
+        if([request.responseString isEqualToString:@"TRUE"]){
+            
+            
+            //save to iphone
+            
+            NSString *myPath = [self saveFilePath];
+            
+            BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+            
+            if(fileExists) {
+                
+                NSLog(@"FILE EXIST");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+                
+                [myUserName removeAllObjects];
+                [myUserName addObject:theUsername];
+                // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];    
+                
+            }
+            
+            else {
+                
+                NSLog(@"HERE");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:theUsername, nil];                
+                //[myUserName addObject:theUsername.text];
+                // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];   
+                
+                
+            }
+            
+            // Update the table to show approved status
+        } else {
+            // Display an error dialog
+            // Pop-up notification telling user that invalid entry
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Account Info" 
+                                                            message:@"Wrong username or password." 
+                                                           delegate:nil 
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+        }
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];   
 }
 
 /*
