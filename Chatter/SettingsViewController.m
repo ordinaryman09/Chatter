@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
@@ -26,7 +27,59 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    int rgbValue = 0x3366CC;
+    
+    UILabel* registerInfo = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-70, screenHeight/2-100, screenWidth, 25)];
+    registerInfo.text = @"Not registered? Touch        .";
+    registerInfo.font = [UIFont systemFontOfSize:10];
+    registerInfo.textColor = [UIColor darkGrayColor];
+    registerInfo.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:registerInfo];
+    
+   // UIButton* registerButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    UIButton * registerButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    //UIButton* registerButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 100)];
+    [registerButton setFrame:CGRectMake(screenWidth/2+28, screenHeight/2-100, 30, 25)];
+    [registerButton setTitle:@"here" forState:UIControlStateNormal];
+    [registerButton setTitle:@"here" forState:UIControlStateHighlighted];
+    [registerButton setTitle:@"here" forState:UIControlStateDisabled];
+    [registerButton setTitle:@"here" forState:UIControlStateSelected];
+ //   registerButton.titleLabel.text = @"here";
+    registerButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    
+    [registerButton addTarget:self 
+                       action:@selector(showNewUserView:)
+              forControlEvents:UIControlEventTouchUpInside];
+    
+    registerButton.titleLabel.textColor = [UIColor \
+                               colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                               green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                               blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    
+    //registerButton.backgroundColor = [UIColor clearColor];
+    
+    /*CALayer *layer = registerButton.layer;
+    layer.backgroundColor = [[UIColor clearColor] CGColor];
+    layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    layer.cornerRadius = 8.0f;
+    layer.borderWidth = 1.0f;*/
+    
+    [self.view addSubview:registerButton];
+    
+    UILabel* registerInfo2 = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 25)];
+    registerInfo2.text = @"here";
+    registerInfo2.font = [UIFont systemFontOfSize:10];
+    registerInfo2.textColor = [UIColor \
+                               colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                               green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                               blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    
+    registerInfo2.backgroundColor = [UIColor clearColor];
+    //[self.view addSubview:registerInfo2];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -34,6 +87,103 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) createUser:(id)sender {
+    [submitSpinner startAnimating];
+    NSLog(@"%@", regUserField.text);
+    if([regPassField.text isEqualToString:regConfirmPassField.text] && (regUserField.text.length > 0)) 
+    {
+        
+        NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/newUser.php"];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        
+        [request addPostValue:regUserField.text forKey:@"username"];
+        [request addPostValue:regPassField.text forKey:@"password"];
+        
+        
+        [request setCompletionBlock:^{
+            
+            //doSomething;
+            NSLog(@"%@", request.responseString);
+                        
+            [submitSpinner stopAnimating];
+            //[regSuccessLabel setHidden:NO];
+            
+            [UIView transitionWithView:self.view duration:0.3
+                               options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                            animations:^ { [userRegView removeFromSuperview]; }
+                            completion:nil];
+            
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+        
+    } else {
+        // Input Validation Error
+        [submitSpinner stopAnimating];
+        [regFailLabel setHidden:NO];
+    }
+}
+
+- (void) showNewUserView:(id)sender {
+    UIButton* temp = sender;
+    temp.selected = NO;
+    temp.highlighted = NO;
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+        
+    //RegisterViewController *registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterView" bundle:nil];
+    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"UserRegistrationView" owner:self options:nil];
+    userRegView = [subviewArray objectAtIndex:0];
+    userRegView.layer.cornerRadius = 15;
+    
+    userRegView.layer.masksToBounds = NO;
+    //self.layer.cornerRadius = 8; // if you like rounded corners
+    userRegView.layer.shadowOffset = CGSizeMake(0, 0);
+    userRegView.layer.shadowRadius = 30;
+    userRegView.layer.shadowOpacity = 0.6;
+    userRegView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    userRegView.layer.borderWidth = 4.0f;
+    NSLog(@"%f %f",userRegView.frame.size.width, userRegView.frame.size.height);
+    [userRegView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/0, userRegView.frame.size.width, userRegView.frame.size.height)];
+    
+    // Add the display view controller to the stack
+    [UIView transitionWithView:self.view duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ { [self.view addSubview:userRegView]; }
+                    completion:nil];
+
+    // Add selector to the UIButton in the UserRegistrationView
+    regUserField = (UITextField*) [userRegView viewWithTag:10];
+    regPassField = (UITextField*) [userRegView viewWithTag:11];
+    regConfirmPassField = (UITextField*) [userRegView viewWithTag:12];
+    UIButton* submitButton = (UIButton*) [userRegView viewWithTag:3];
+    submitSpinner = [userRegView viewWithTag:4];
+    regFailLabel = (UILabel*) [userRegView viewWithTag:5];
+    
+    //NSLog(@"%@", regUserField.text);
+    /*regUserField.delegate = self;
+    regPassField.delegate = self;
+    regConfirmPassField.delegate = self;*/
+    
+    [submitButton addTarget:self 
+                       action:@selector(createUser:)
+             forControlEvents:UIControlEventTouchUpInside];
+    
+    [regUserField becomeFirstResponder];
+    
+                                     //[self.view addSubview:userRegView];
+    
+    //[self.view addSubview:self.UserRegistrationView];
+        
+        
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -48,26 +198,19 @@
 
 #pragma mark - Table view data source
 
-/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}*/
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return @"Account Setup";
-    
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+    //if (textField != regUserField && textField == regPassField && textField != regConfirmPassField) {
+        [textField resignFirstResponder];
+    //}
+     
+    return YES;// return NO;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 2;
 }
@@ -156,7 +299,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     // If the user has just entered in a password
-    if (textField.tag == 1) {
+    if (textField.tag == 1 && textField != regPassField) {
         // Check to make sure they have also entered in a username
         if ([userField.text length] > 0) {
             [self validateUser:userField.text userPass:textField.text];
@@ -189,6 +332,7 @@
     
     [request setCompletionBlock:^{
         
+        // If valid user/pass provided
         if([request.responseString isEqualToString:@"TRUE"]){
             
             

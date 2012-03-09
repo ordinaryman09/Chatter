@@ -47,6 +47,7 @@
 		992970D715061357005589F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992970D615061357005589F5 /* MapKit.framework */; };
 		997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997F2B6A15097038005AE5E5 /* SettingsViewController.m */; };
 		997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6B15097038005AE5E5 /* SettingsView.xib */; };
+		997F2B6F150A0F82005AE5E5 /* UserRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */; };
 		99D91CB51504A57900408066 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 99D91CB41504A57900408066 /* arrow.png */; };
 		99D91CC01504A92100408066 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D91CBF1504A92100408066 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		997F2B6915097038005AE5E5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		997F2B6A15097038005AE5E5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		997F2B6B15097038005AE5E5 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRegistrationView.xib; sourceTree = "<group>"; };
 		99D91CB41504A57900408066 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		99D91CBF1504A92100408066 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
 				791E2D3A1504551B00617466 /* DisplayView.xib */,
 				997F2B6B15097038005AE5E5 /* SettingsView.xib */,
+				997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				7944C512150712B20088FB3E /* tu.png in Resources */,
 				7944C513150712B20088FB3E /* td.png in Resources */,
 				997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */,
+				997F2B6F150A0F82005AE5E5 /* UserRegistrationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
