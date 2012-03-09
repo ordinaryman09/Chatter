@@ -167,6 +167,35 @@
     submitSpinner = [userRegView viewWithTag:4];
     regFailLabel = (UILabel*) [userRegView viewWithTag:5];
     
+    
+    regUserField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    regUserField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    int rgbValue = 0x3366CC;
+    regUserField.textColor = [UIColor \
+                              colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                              green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                              blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    regUserField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    regPassField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    regPassField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    regPassField.textColor = [UIColor \
+                           colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                           blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    regPassField.secureTextEntry = YES;
+    regPassField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    regConfirmPassField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    regConfirmPassField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    regConfirmPassField.textColor = [UIColor \
+                              colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                              green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                              blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    regConfirmPassField.secureTextEntry = YES;
+    regConfirmPassField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    
     //NSLog(@"%@", regUserField.text);
     /*regUserField.delegate = self;
     regPassField.delegate = self;
