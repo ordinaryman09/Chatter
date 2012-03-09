@@ -15,11 +15,7 @@
 		791E2D3C1504551C00617466 /* DisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D3A1504551B00617466 /* DisplayView.xib */; };
 		791E2D591504712100617466 /* MyPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D571504711E00617466 /* MyPostController.m */; };
 		791E2D5A1504712100617466 /* MyPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D581504712000617466 /* MyPost.xib */; };
-		791E2D5E1504773600617466 /* RecentPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D5C1504773300617466 /* RecentPostController.m */; };
-		791E2D5F1504773600617466 /* RecentPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D5D1504773500617466 /* RecentPost.xib */; };
 		792C7B9F14FE50AB00476270 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 792C7B9E14FE50AB00476270 /* CoreLocation.framework */; };
-		79328CF314F27131006730D9 /* ForFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328CF114F27131006730D9 /* ForFun.m */; };
-		79328CF414F27131006730D9 /* ForFun.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79328CF214F27131006730D9 /* ForFun.xib */; };
 		79328DC914F74B64006730D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79328DC814F74B64006730D9 /* CFNetwork.framework */; };
 		79328DCB14F74B75006730D9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79328DCA14F74B75006730D9 /* SystemConfiguration.framework */; };
 		79328DCD14F74B83006730D9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79328DCC14F74B83006730D9 /* MobileCoreServices.framework */; };
@@ -46,11 +42,11 @@
 		79F30BE014F0F88400C726F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BDF14F0F88400C726F8 /* main.m */; };
 		79F30BE314F0F88400C726F8 /* ChatterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */; };
 		79F30BE614F0F88400C726F8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BE414F0F88400C726F8 /* MainWindow.xib */; };
-		79F30BE914F0F88400C726F8 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BE814F0F88400C726F8 /* FirstViewController.m */; };
 		79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BEB14F0F88400C726F8 /* SecondViewController.m */; };
-		79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BED14F0F88400C726F8 /* FirstView.xib */; };
 		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
 		992970D715061357005589F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992970D615061357005589F5 /* MapKit.framework */; };
+		997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997F2B6A15097038005AE5E5 /* SettingsViewController.m */; };
+		997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6B15097038005AE5E5 /* SettingsView.xib */; };
 		99D91CB51504A57900408066 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 99D91CB41504A57900408066 /* arrow.png */; };
 		99D91CC01504A92100408066 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99D91CBF1504A92100408066 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -68,13 +64,7 @@
 		791E2D561504711D00617466 /* MyPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPostController.h; sourceTree = "<group>"; };
 		791E2D571504711E00617466 /* MyPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPostController.m; sourceTree = "<group>"; };
 		791E2D581504712000617466 /* MyPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPost.xib; sourceTree = "<group>"; };
-		791E2D5B1504773200617466 /* RecentPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPostController.h; sourceTree = "<group>"; };
-		791E2D5C1504773300617466 /* RecentPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPostController.m; sourceTree = "<group>"; };
-		791E2D5D1504773500617466 /* RecentPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentPost.xib; sourceTree = "<group>"; };
 		792C7B9E14FE50AB00476270 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		79328CF014F27131006730D9 /* ForFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForFun.h; sourceTree = "<group>"; };
-		79328CF114F27131006730D9 /* ForFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForFun.m; sourceTree = "<group>"; };
-		79328CF214F27131006730D9 /* ForFun.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForFun.xib; sourceTree = "<group>"; };
 		79328DC814F74B64006730D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		79328DCA14F74B75006730D9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		79328DCC14F74B83006730D9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -121,13 +111,13 @@
 		79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatterAppDelegate.h; sourceTree = "<group>"; };
 		79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatterAppDelegate.m; sourceTree = "<group>"; };
 		79F30BE514F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		79F30BE714F0F88400C726F8 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		79F30BE814F0F88400C726F8 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		79F30BEA14F0F88400C726F8 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		79F30BEB14F0F88400C726F8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		79F30BEE14F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
 		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		992970D615061357005589F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		997F2B6915097038005AE5E5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		997F2B6A15097038005AE5E5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		997F2B6B15097038005AE5E5 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
 		99D91CB41504A57900408066 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		99D91CBF1504A92100408066 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -164,20 +154,16 @@
 				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
 				791E2D561504711D00617466 /* MyPostController.h */,
 				791E2D571504711E00617466 /* MyPostController.m */,
-				791E2D5B1504773200617466 /* RecentPostController.h */,
-				791E2D5C1504773300617466 /* RecentPostController.m */,
 				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
 				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
 				791E2D381504551900617466 /* DisplayViewController.h */,
 				791E2D391504551A00617466 /* DisplayViewController.m */,
 				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
 				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
-				79F30BE714F0F88400C726F8 /* FirstViewController.h */,
-				79F30BE814F0F88400C726F8 /* FirstViewController.m */,
-				79328CF014F27131006730D9 /* ForFun.h */,
-				79328CF114F27131006730D9 /* ForFun.m */,
 				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
 				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
+				997F2B6915097038005AE5E5 /* SettingsViewController.h */,
+				997F2B6A15097038005AE5E5 /* SettingsViewController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,12 +175,10 @@
 				791E2D0E1502154900617466 /* RegisterView.xib */,
 				79F30BF014F0F88400C726F8 /* SecondView.xib */,
 				791E2D581504712000617466 /* MyPost.xib */,
-				791E2D5D1504773500617466 /* RecentPost.xib */,
-				79328CF214F27131006730D9 /* ForFun.xib */,
 				7964814B14F1CA5E00605489 /* ThirdView.xib */,
-				79F30BED14F0F88400C726F8 /* FirstView.xib */,
 				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
 				791E2D3A1504551B00617466 /* DisplayView.xib */,
+				997F2B6B15097038005AE5E5 /* SettingsView.xib */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -358,18 +342,16 @@
 			files = (
 				79F30BDD14F0F88400C726F8 /* InfoPlist.strings in Resources */,
 				79F30BE614F0F88400C726F8 /* MainWindow.xib in Resources */,
-				79F30BEF14F0F88400C726F8 /* FirstView.xib in Resources */,
 				79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */,
 				7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */,
-				79328CF414F27131006730D9 /* ForFun.xib in Resources */,
 				791E2D101502154A00617466 /* RegisterView.xib in Resources */,
 				791E2D211502241800617466 /* LoginView.xib in Resources */,
 				791E2D3C1504551C00617466 /* DisplayView.xib in Resources */,
 				791E2D5A1504712100617466 /* MyPost.xib in Resources */,
-				791E2D5F1504773600617466 /* RecentPost.xib in Resources */,
 				99D91CB51504A57900408066 /* arrow.png in Resources */,
 				7944C512150712B20088FB3E /* tu.png in Resources */,
 				7944C513150712B20088FB3E /* td.png in Resources */,
+				997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,11 +364,9 @@
 			files = (
 				79F30BE014F0F88400C726F8 /* main.m in Sources */,
 				79F30BE314F0F88400C726F8 /* ChatterAppDelegate.m in Sources */,
-				79F30BE914F0F88400C726F8 /* FirstViewController.m in Sources */,
 				79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */,
 				7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */,
 				7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */,
-				79328CF314F27131006730D9 /* ForFun.m in Sources */,
 				79328E7114F76779006730D9 /* ASIAuthenticationDialog.m in Sources */,
 				79328E7214F76779006730D9 /* ASIDataCompressor.m in Sources */,
 				79328E7314F76779006730D9 /* ASIDataDecompressor.m in Sources */,
@@ -401,7 +381,7 @@
 				791E2D221502241800617466 /* LoginViewController.m in Sources */,
 				791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */,
 				791E2D591504712100617466 /* MyPostController.m in Sources */,
-				791E2D5E1504773600617466 /* RecentPostController.m in Sources */,
+				997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,14 +402,6 @@
 				79F30BE514F0F88400C726F8 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		79F30BED14F0F88400C726F8 /* FirstView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				79F30BEE14F0F88400C726F8 /* en */,
-			);
-			name = FirstView.xib;
 			sourceTree = "<group>";
 		};
 		79F30BF014F0F88400C726F8 /* SecondView.xib */ = {

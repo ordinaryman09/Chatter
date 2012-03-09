@@ -9,7 +9,6 @@
 #import "SecondViewController.h"
 #import "DisplayViewController.h"
 #import "ASIFormDataRequest.h"
-#import "RecentPostController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -279,18 +278,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc. that aren't in use.
-}
-
-// This function is not needed anymore, can be deleted
-- (IBAction)switchViews {
-    
-    RecentPostController *recentPostController = [[RecentPostController alloc] initWithNibName:@"RecentPost" bundle:nil];
-    
-    [self.view addSubview:recentPostController.view];
-    
-    // [registerViewController release];
-    
-    
 }
 
 - (IBAction)loadNew {
