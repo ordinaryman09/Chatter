@@ -14,9 +14,10 @@
 {
     UITextField * userField;
     UITextField * passField;
+    UIActivityIndicatorView * submitSpinner;
     
     UIView* userRegView;
-    UIActivityIndicatorView * submitSpinner;
+    UIActivityIndicatorView * regSubmitSpinner;
     UITextField * regUserField;
     UITextField * regPassField;
     UITextField * regConfirmPassField;

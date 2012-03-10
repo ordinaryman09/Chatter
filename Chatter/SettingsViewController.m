@@ -60,35 +60,91 @@
                                green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
                                blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
     
-    //registerButton.backgroundColor = [UIColor clearColor];
-    
-    /*CALayer *layer = registerButton.layer;
-    layer.backgroundColor = [[UIColor clearColor] CGColor];
-    layer.borderColor = [[UIColor darkGrayColor] CGColor];
-    layer.cornerRadius = 8.0f;
-    layer.borderWidth = 1.0f;*/
-    
     [self.view addSubview:registerButton];
+
     
-    UILabel* registerInfo2 = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 25)];
-    registerInfo2.text = @"here";
-    registerInfo2.font = [UIFont systemFontOfSize:10];
-    registerInfo2.textColor = [UIColor \
-                               colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-                               green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-                               blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    // Add a hidden success indicator
+    // Add a hidden activity indicator
+    submitSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    submitSpinner.frame = CGRectMake(screenWidth/2, 10, 20, 20);
+    submitSpinner.hidesWhenStopped = YES;
     
-    registerInfo2.backgroundColor = [UIColor clearColor];
-    //[self.view addSubview:registerInfo2];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (NSString *) saveFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"loginSave1.plist"];
+}
+
+- (IBAction) authorizeUser {
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/userAuth.php"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    
+   // NSLog(@"%@", theUsername.text);
+    
+    
+    [request addPostValue:userField.text forKey:@"user"];
+    [request addPostValue:passField.text forKey:@"pass"];
+    
+    
+    [request setCompletionBlock:^{
+        
+        if([request.responseString isEqualToString:@"TRUE"]){
+            
+            
+            //save to iphone
+            
+            NSString *myPath = [self saveFilePath];
+            
+            BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+            
+            if(fileExists) {
+                
+                NSLog(@"FILE EXIST");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+                
+                [myUserName removeAllObjects];
+                [myUserName addObject:userField.text];
+                // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];    
+                
+            }
+            
+            else {
+                
+                NSLog(@"CREATING PASSWORD FILE");
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:userField.text, nil];                
+                //[myUserName addObject:theUsername.text];
+                // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
+                
+                
+                [myUserName writeToFile:[self saveFilePath] atomically:YES];   
+                
+                
+            }
+            
+            // Display a success indicator on the view
+            
+            
+        } else {
+            // The provided user/pass info was incorrect
+        }
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];   
 }
 
 - (void) createUser:(id)sender {
-    [submitSpinner startAnimating];
+    [regSubmitSpinner startAnimating];
     NSLog(@"%@", regUserField.text);
     if([regPassField.text isEqualToString:regConfirmPassField.text] && (regUserField.text.length > 0)) 
     {
@@ -104,14 +160,29 @@
             
             //doSomething;
             NSLog(@"%@", request.responseString);
-                        
-            [submitSpinner stopAnimating];
-            //[regSuccessLabel setHidden:NO];
             
-            [UIView transitionWithView:self.view duration:0.3
-                               options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
-                            animations:^ { [userRegView removeFromSuperview]; }
-                            completion:nil];
+            if ([request.responseString  isEqualToString:@"SUCCESS"]) {
+                [regSubmitSpinner stopAnimating];
+                
+                // Set the values in the main user/pass fields
+                userField.text = regUserField.text;
+                passField.text = regPassField.text;
+                
+                // Store the user/pass in the local filesystem
+                
+                
+                // Close the view
+                [UIView transitionWithView:self.view duration:0.3
+                                   options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                                animations:^ { [userRegView removeFromSuperview]; }
+                                completion:nil];
+                
+            } else if ([request.responseString isEqualToString:@"ALREADY_TAKEN"]) {
+                
+            }
+            
+            
+            
             
         }];
         
@@ -124,7 +195,7 @@
         
     } else {
         // Input Validation Error
-        [submitSpinner stopAnimating];
+        [regSubmitSpinner stopAnimating];
         [regFailLabel setHidden:NO];
     }
 }
@@ -165,7 +236,7 @@
     regPassField = (UITextField*) [userRegView viewWithTag:11];
     regConfirmPassField = (UITextField*) [userRegView viewWithTag:12];
     UIButton* submitButton = (UIButton*) [userRegView viewWithTag:3];
-    submitSpinner = [userRegView viewWithTag:4];
+    regSubmitSpinner = [userRegView viewWithTag:4];
     regFailLabel = (UILabel*) [userRegView viewWithTag:5];
     
     
@@ -349,6 +420,9 @@
 }
 
 - (BOOL) validateUser:(NSString *)theUsername userPass:(NSString *)thePassword {
+    
+    [submitSpinner startAnimating];
+    
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/userAuth.php"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -361,7 +435,7 @@
     
     
     [request setCompletionBlock:^{
-        
+        [submitSpinner stopAnimating];
         // If valid user/pass provided
         if([request.responseString isEqualToString:@"TRUE"]){
             
