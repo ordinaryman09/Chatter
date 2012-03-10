@@ -140,11 +140,11 @@
                 
                 [self.theTableView reloadData];
                 
-                // Stop the loading animation if pull-to-refresh was used
-                [self stopLoading];
+                
                 
             }
-            
+            // Stop the loading animation if pull-to-refresh was used
+            [self stopLoading];
             NSLog(@"%@", @"DONE LOADING");
             
             
@@ -176,11 +176,41 @@
         
     }
 }
+- (void)viewDidAppear:(BOOL)animated {
+    // Check to see if the user is logged in
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString *myPath = [self saveFilePath];
+    
+    BOOL fileExists = [fileManager fileExistsAtPath:myPath];
+    
+    if (!fileExists) {
+        // Pop-up notification telling user that invalid entry
+        
+        // [self.tabBarController setSelectedIndex:3];
+        // [self.tabBarController.selectedViewController viewDidLoad];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not logged in" 
+                                                        message:@"Please login or register a username." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        
+    }
+    
+    [self refresh];
+}
 - (void)viewDidLoad
 {
     contentArray = [[NSMutableArray alloc] init ];
     [self addPullToRefreshHeader];
-    [self loadTableData];
+    
+    
+    
+    
+    //[self loadTableData];
 
     //NSLog(@"yay%@", arrayContent);
     [super viewDidLoad];
