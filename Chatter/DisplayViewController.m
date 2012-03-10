@@ -9,6 +9,7 @@
 #import "DisplayViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
+#import "AddCommentView.h"
 
 @implementation DisplayViewController
 //@synthesize theContent;
@@ -27,6 +28,16 @@
         // Custom initialization
     }
     return self;
+}
+
+-(IBAction)addComment {
+    AddCommentView *AddCommentViewController = [[AddCommentView alloc]initWithNibName:@"AddCommentView" bundle:nil];
+    
+    [AddCommentViewController setThreadID: tID setUserName: user];
+    
+    
+    [self.view addSubview:AddCommentViewController.view];
+    
 }
 
 -(void) setThreadID :(NSString*) threadID setContent:(NSString *)setContent setTitle:(NSString *)title setUpVotes:(NSString *)up setDownVotes:(NSString *)down setLat:(NSString *)theLat setLon:(NSString *)theLon setUserName:(NSString *)theUser setTimeStamp:(NSString *)theTime{

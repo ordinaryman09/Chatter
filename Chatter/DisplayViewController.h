@@ -52,6 +52,7 @@
 //@property (retain, nonatomic) IBOutlet UILabel *theTitle;
 
 - (IBAction)switchViews;
+- (IBAction)addComment;
 - (IBAction)upVote;
 - (IBAction)downVote;
 - (void) showAddress: (float)mapLatitude: (float)mapLongitude;

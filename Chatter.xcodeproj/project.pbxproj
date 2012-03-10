@@ -45,6 +45,8 @@
 		79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BEB14F0F88400C726F8 /* SecondViewController.m */; };
 		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
 		992970D715061357005589F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992970D615061357005589F5 /* MapKit.framework */; };
+		996F9E0D150B1AE400C4BCBE /* AddCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 996F9E0C150B1AE400C4BCBE /* AddCommentView.m */; };
+		996F9E10150B1AEF00C4BCBE /* AddCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996F9E0F150B1AEF00C4BCBE /* AddCommentView.xib */; };
 		997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997F2B6A15097038005AE5E5 /* SettingsViewController.m */; };
 		997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6B15097038005AE5E5 /* SettingsView.xib */; };
 		997F2B6F150A0F82005AE5E5 /* UserRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */; };
@@ -126,6 +128,9 @@
 		79F30BEB14F0F88400C726F8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		992970D615061357005589F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		996F9E0B150B1AE400C4BCBE /* AddCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentView.h; sourceTree = SOURCE_ROOT; };
+		996F9E0C150B1AE400C4BCBE /* AddCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentView.m; sourceTree = SOURCE_ROOT; };
+		996F9E0F150B1AEF00C4BCBE /* AddCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentView.xib; sourceTree = SOURCE_ROOT; };
 		997F2B6915097038005AE5E5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		997F2B6A15097038005AE5E5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		997F2B6B15097038005AE5E5 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
@@ -168,6 +173,8 @@
 		791E2D0515020CF300617466 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				996F9E0B150B1AE400C4BCBE /* AddCommentView.h */,
+				996F9E0C150B1AE400C4BCBE /* AddCommentView.m */,
 				791E2D1F1502241800617466 /* LoginViewController.h */,
 				791E2D201502241800617466 /* LoginViewController.m */,
 				791E2D0C1502154900617466 /* RegisterViewController.h */,
@@ -193,6 +200,7 @@
 		791E2D0615020CFC00617466 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				996F9E0F150B1AEF00C4BCBE /* AddCommentView.xib */,
 				791E2D1E1502241800617466 /* LoginView.xib */,
 				791E2D0E1502154900617466 /* RegisterView.xib */,
 				79F30BF014F0F88400C726F8 /* SecondView.xib */,
@@ -426,6 +434,7 @@
 				791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */,
 				791E2D591504712100617466 /* MyPostController.m in Sources */,
 				997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */,
+				996F9E0D150B1AE400C4BCBE /* AddCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
