@@ -41,7 +41,7 @@
     [self.view addSubview:registerInfo];
     
    // UIButton* registerButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-    UIButton * registerButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    registerButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
     //UIButton* registerButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 100)];
     [registerButton setFrame:CGRectMake(screenWidth/2+28, screenHeight/2-100, 30, 25)];
     [registerButton setTitle:@"here" forState:UIControlStateNormal];
@@ -222,9 +222,34 @@
     temp.selected = NO;
     temp.highlighted = NO;
     
+    int rgbValue = 0x3366CC;
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
+    
+    [registerButton release];
+    registerButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    //UIButton* registerButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 100)];
+    [registerButton setFrame:CGRectMake(screenWidth/2+28, screenHeight/2-100, 30, 25)];
+    [registerButton setTitle:@"here" forState:UIControlStateNormal];
+    [registerButton setTitle:@"here" forState:UIControlStateHighlighted];
+    [registerButton setTitle:@"here" forState:UIControlStateDisabled];
+    [registerButton setTitle:@"here" forState:UIControlStateSelected];
+    //   registerButton.titleLabel.text = @"here";
+    registerButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    
+    [registerButton addTarget:self 
+                       action:@selector(showNewUserView:)
+             forControlEvents:UIControlEventTouchUpInside];
+    
+    registerButton.titleLabel.textColor = [UIColor \
+                                           colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                                           blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    
+    [self.view addSubview:registerButton];
+    
+  
         
     //RegisterViewController *registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterView" bundle:nil];
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"UserRegistrationView" owner:self options:nil];
@@ -234,13 +259,13 @@
     userRegView.layer.masksToBounds = NO;
     //self.layer.cornerRadius = 8; // if you like rounded corners
     userRegView.layer.shadowOffset = CGSizeMake(0, 0);
-    userRegView.layer.shadowRadius = 30;
-    userRegView.layer.shadowOpacity = 0.6;
+    userRegView.layer.shadowRadius = 20;
+    userRegView.layer.shadowOpacity = 0.8;
     userRegView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     userRegView.layer.borderWidth = 4.0f;
     userRegView.layer.shadowPath = [UIBezierPath bezierPathWithRect:userRegView.bounds].CGPath;
     NSLog(@"%f %f",userRegView.frame.size.width, userRegView.frame.size.height);
-    [userRegView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/0, userRegView.frame.size.width, userRegView.frame.size.height)];
+    [userRegView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, userRegView.frame.size.width, userRegView.frame.size.height)];
     
     // Add the display view controller to the stack
     [UIView transitionWithView:self.view duration:0.3
@@ -262,7 +287,7 @@
     regUserField.returnKeyType = UIReturnKeyNext;
     regUserField.delegate = self;
     regUserField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    int rgbValue = 0x3366CC;
+    //int rgbValue = 0x3366CC;
     regUserField.textColor = [UIColor \
                               colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
                               green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
