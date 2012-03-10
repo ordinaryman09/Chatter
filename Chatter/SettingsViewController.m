@@ -66,8 +66,9 @@
     // Add a hidden success indicator
     // Add a hidden activity indicator
     submitSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    submitSpinner.frame = CGRectMake(screenWidth/2, 10, 20, 20);
+    submitSpinner.frame = CGRectMake(screenWidth/2-15, 18, 20, 20);
     submitSpinner.hidesWhenStopped = YES;
+    [self.view addSubview:submitSpinner];
     
 }
 
@@ -435,10 +436,10 @@
     
     
     [request setCompletionBlock:^{
-        [submitSpinner stopAnimating];
+        //[submitSpinner stopAnimating];
         // If valid user/pass provided
         if([request.responseString isEqualToString:@"TRUE"]){
-            
+            NSLog(@"here...");
             
             //save to iphone
             
