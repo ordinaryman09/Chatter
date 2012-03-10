@@ -150,6 +150,7 @@
     userRegView.layer.shadowOpacity = 0.6;
     userRegView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     userRegView.layer.borderWidth = 4.0f;
+    userRegView.layer.shadowPath = [UIBezierPath bezierPathWithRect:userRegView.bounds].CGPath;
     NSLog(@"%f %f",userRegView.frame.size.width, userRegView.frame.size.height);
     [userRegView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/0, userRegView.frame.size.width, userRegView.frame.size.height)];
     
