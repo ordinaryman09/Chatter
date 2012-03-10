@@ -541,7 +541,7 @@
     
     [newContentField setClipsToBounds: YES];
     newContentField.returnKeyType = UIReturnKeyDefault;
-    //newContentField.delegate = self;
+    newContentField.delegate = self;
     /*newContentField.textColor = [UIColor \
                               colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
                               green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
@@ -594,6 +594,7 @@
     [request setCompletionBlock:^{
         NSLog(@"WTF");
         [self dismissNewPostView:nil];
+        [self refresh];
         //[newSubmitSpinner stopAnimating];
         
         // NSLog(@"%@", theID);
@@ -619,6 +620,21 @@
     
     [request startAsynchronous];    
     
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //if (textField != regUserField && textField == regPassField && textField != regConfirmPassField) {
+    
+    //}
+    
+    if (textField == newTitleField) {
+        [textField resignFirstResponder];
+        [newContentField becomeFirstResponder];
+    } else {
+        
+    }
+    
+    return YES;// return NO;
 }
 
 @end
