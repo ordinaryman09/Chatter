@@ -34,6 +34,12 @@
     IBOutlet UILabel *theUserName;
     IBOutlet UILabel *theTimeStamp;
     IBOutlet UILabel *threadTitle;
+    UIView *commentView;
+    UIActivityIndicatorView *commentSpinner;
+    UIImagePickerController *ipc;
+    IBOutlet UITextView *commentField;
+
+
 }
 
 -(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title setUpVotes:(NSString *) up setDownVotes:(NSString *) down setLat:(NSString*) theLat
@@ -55,6 +61,9 @@
 - (IBAction)addComment;
 - (IBAction)upVote;
 - (IBAction)downVote;
+- (IBAction) showNewUserView;
+- (void) sendRequest :(NSString*) threadID setUserName:(NSString *)theUser;
+
 - (void) showAddress: (float)mapLatitude: (float)mapLongitude;
 
 @end
