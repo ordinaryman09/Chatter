@@ -289,7 +289,7 @@
     
     //[self theContent]
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE", tID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, user]];
     
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     
@@ -302,7 +302,7 @@
     
     //[self theContent]
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE", tID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE&user=%@", tID, user]];
     
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     

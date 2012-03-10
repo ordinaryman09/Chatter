@@ -31,6 +31,12 @@
     NSString *textLoading;
     
     BOOL shouldLoadNew;
+    
+    UITextField * newTitleField;
+    UITextView * newContentField;
+    UIView * addPostView;
+    UIActivityIndicatorView * newSubmitSpinner;
+    NSString * userName;
 
 }
 
@@ -45,14 +51,20 @@
 @property (nonatomic, copy) NSString *textLoading;
 @property (retain) NSMutableArray *contentArray;
 
-- (IBAction)switchViews;
+//- (IBAction)switchViews;
 - (IBAction)loadNew;
 - (IBAction)loadHot;
+- (IBAction)showNewPostView;
 
 - (void)setupStrings;
 - (void)addPullToRefreshHeader;
 - (void)startLoading;
 - (void)stopLoading;
 - (void)refresh;
+//- (void) showNewUserView:(id)sender;
+- (void) dismissNewPostView:(id)sender;
+- (void) submitPost:(id)sender;
+- (NSString *) saveFilePath;
+- (NSString *) authFilePath;
 
 @end

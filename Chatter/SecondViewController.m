@@ -121,6 +121,8 @@
     
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     UILabel *label = nil;
@@ -450,6 +452,173 @@
     [textRelease release];
     [textLoading release];
     [super dealloc];
+}
+
+- (NSString *) authFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"loginSave1.plist"];
+}
+
+- (NSString *) saveFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"testSave1.plist"];
+}
+
+
+
+- (IBAction) showNewPostView {
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString *myPath = [self authFilePath];
+    
+    BOOL fileExists = [fileManager fileExistsAtPath:myPath];
+    
+    if (fileExists) {
+        NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+        userName = [myUserName objectAtIndex:0];
+    } else {
+        // Display error
+        return;
+    }
+    
+    //int rgbValue = 0x3366CC;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    
+    //RegisterViewController *registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterView" bundle:nil];
+    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"AddPostView" owner:self options:nil];
+    addPostView = [subviewArray objectAtIndex:0];
+    addPostView.layer.cornerRadius = 15;
+    
+    addPostView.layer.masksToBounds = NO;
+    //self.layer.cornerRadius = 8; // if you like rounded corners
+    addPostView.layer.shadowOffset = CGSizeMake(0, 0);
+    addPostView.layer.shadowRadius = 20;
+    addPostView.layer.shadowOpacity = 0.8;
+    addPostView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    addPostView.layer.borderWidth = 4.0f;
+    addPostView.layer.shadowPath = [UIBezierPath bezierPathWithRect:addPostView.bounds].CGPath;
+    NSLog(@"%f %f",addPostView.frame.size.width, addPostView.frame.size.height);
+    [addPostView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, addPostView.frame.size.width, addPostView.frame.size.height)];
+    
+    // Add the display view controller to the stack
+    [UIView transitionWithView:self.view duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ { [self.view addSubview:addPostView]; }
+                    completion:nil];
+    
+    // Add selector to the UIButton in the UserRegistrationView
+    newTitleField = (UITextField*) [addPostView viewWithTag:10];
+    newContentField = (UITextField*) [addPostView viewWithTag:11];
+    UIButton* submitButton = (UIButton*) [addPostView viewWithTag:3];
+    UIButton* closeButton = (UIButton*) [addPostView viewWithTag:13];
+    newSubmitSpinner = [addPostView viewWithTag:4];
+    
+    newTitleField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    newTitleField.returnKeyType = UIReturnKeyNext;
+    newTitleField.delegate = self;
+    //newTitleField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    /*newTitleField.textColor = [UIColor \
+                              colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                              green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                              blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];*/
+    //newTitleField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    //newContentField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    // For the border and rounded corners
+    /*[[newContentField layer] setBorderColor:[[UIColor whiteColor] CGColor]];
+    newContentField.layer.cornerRadius = 5;
+    newContentField.clipsToBounds = YES;
+    [newContentField.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [newContentField.layer setBorderWidth:2.0];*/
+    [newContentField.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+    [newContentField.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [newContentField.layer setBorderWidth: 1.0];
+    [newContentField.layer setCornerRadius:8.0f];
+    [newContentField.layer setMasksToBounds:YES];
+    
+    [newContentField setClipsToBounds: YES];
+    newContentField.returnKeyType = UIReturnKeyDefault;
+    //newContentField.delegate = self;
+    /*newContentField.textColor = [UIColor \
+                              colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                              green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                              blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];*/
+
+    //newContentField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    //NSLog(@"%@", regUserField.text);
+    /*regUserField.delegate = self;
+     regPassField.delegate = self;
+     regConfirmPassField.delegate = self;*/
+    
+    [submitButton addTarget:self 
+                     action:@selector(submitPost:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    [closeButton addTarget:self action:@selector(dismissNewPostView:) forControlEvents:UIControlEventTouchUpInside];
+    [newTitleField becomeFirstResponder];
+    
+    //[self.view addSubview:userRegView];
+    
+    //[self.view addSubview:self.UserRegistrationView];
+    
+    
+}
+
+- (void) dismissNewPostView:(id)sender {
+    // Close the view
+    [UIView transitionWithView:self.view duration:0.3
+                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ { [addPostView removeFromSuperview]; }
+                    completion:nil];
+}
+
+-(void) submitPost:(id)sender {
+    
+    [newSubmitSpinner startAnimating];
+    
+    NSLog(@"got here");
+    NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/createThread.php"];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request addPostValue:newTitleField.text forKey:@"title"];
+    [request addPostValue:newContentField.text forKey:@"content"];
+    [request addPostValue:lat forKey:@"lat"];
+    [request addPostValue:lon forKey:@"lng"];
+    [request addPostValue:userName forKey:@"username"];
+    
+    
+    [request setCompletionBlock:^{
+        NSLog(@"WTF");
+        [self dismissNewPostView:nil];
+        //[newSubmitSpinner stopAnimating];
+        
+        // NSLog(@"%@", theID);
+        
+        // Iterate through each post in the array
+        //   for (NSDictionary * dataDict in deserializedData) {
+        // Extract the Post ID # from this post
+        //     NSString * postTitle = [dataDict objectForKey:@"result"];
+        //   NSLog(@"%@", postTitle);
+        
+        // Extract ..... everything else
+        //}     
+        
+        
+        
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];    
+    
 }
 
 @end
