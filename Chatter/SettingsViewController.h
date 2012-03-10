@@ -15,6 +15,7 @@
     UITextField * userField;
     UITextField * passField;
     UIActivityIndicatorView * submitSpinner;
+    UIImageView * successIndicator;
     
     UIView* userRegView;
     UIActivityIndicatorView * regSubmitSpinner;
