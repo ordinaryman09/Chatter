@@ -76,6 +76,15 @@
 								<reference key="IBUIToolbar" ref="5830809"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
+							<object class="IBUIBarButtonItem" id="745130444">
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">13-plus.png</string>
+								</object>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="5830809"/>
+							</object>
 						</object>
 					</object>
 					<object class="IBUITableView" id="731017669">
@@ -177,8 +186,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="5830809"/>
 							<reference ref="731017669"/>
+							<reference ref="5830809"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -202,6 +211,7 @@
 							<reference ref="1029303005"/>
 							<reference ref="1058863868"/>
 							<reference ref="258415189"/>
+							<reference ref="745130444"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -231,6 +241,11 @@
 						<reference key="object" ref="258415189"/>
 						<reference key="parent" ref="5830809"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">66</int>
+						<reference key="object" ref="745130444"/>
+						<reference key="parent" ref="5830809"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -248,12 +263,14 @@
 					<string>20.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
 					<string>63.IBPluginDependency</string>
+					<string>66.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SecondViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -276,7 +293,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">66</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -353,6 +370,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">13-plus.png</string>
+			<string key="NS.object.0">{14, 14}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>
