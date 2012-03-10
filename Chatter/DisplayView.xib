@@ -492,11 +492,11 @@ AAgACAAIAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addComment</string>
+						<string key="label">showNewUserView</string>
 						<reference key="source" ref="1043435971"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
-					<int key="connectionID">46</int>
+					<int key="connectionID">48</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -698,7 +698,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -712,11 +712,15 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addComment</string>
 							<string>downVote</string>
+							<string>sendRequest</string>
+							<string>showNewUserView</string>
 							<string>switchViews</string>
 							<string>upVote</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -729,6 +733,8 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addComment</string>
 							<string>downVote</string>
+							<string>sendRequest</string>
+							<string>showNewUserView</string>
 							<string>switchViews</string>
 							<string>upVote</string>
 						</object>
@@ -740,6 +746,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">downVote</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">sendRequest</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showNewUserView</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -756,6 +770,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commentField</string>
 							<string>headerView</string>
 							<string>mapView</string>
 							<string>myTableView</string>
@@ -767,6 +782,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UITextView</string>
 							<string>UIView</string>
 							<string>MKMapView</string>
 							<string>UITableView</string>
@@ -781,6 +797,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commentField</string>
 							<string>headerView</string>
 							<string>mapView</string>
 							<string>myTableView</string>
@@ -792,6 +809,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">commentField</string>
+								<string key="candidateClassName">UITextView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">headerView</string>
 								<string key="candidateClassName">UIView</string>

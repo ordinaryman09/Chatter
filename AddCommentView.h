@@ -9,24 +9,23 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "ASIFormDataRequest.h"
+#import <QuartzCore/QuartzCore.h>
 #import "JSONKit.h"
 
 @interface AddCommentView :  UIViewController 
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate,
 CLLocationManagerDelegate>
 {
-    
+    //UITextField *commentField;
+    UIView *commentView;
+    UIActivityIndicatorView *commentSpinner;
     UIImagePickerController *ipc;
-    // IBOutlet UIImageView *theImage;
-    IBOutlet UIButton *theButton;
-    IBOutlet UITextView *theContent;
+    IBOutlet UITextView *commentField;
     ASIFormDataRequest *request;
     NSString * userName;
     NSString * tID;
     // comment
 }
-
-@property (nonatomic, retain) UIButton *theButton;
 
 @property (nonatomic, retain) UITextView *theContent;
 
@@ -35,6 +34,10 @@ CLLocationManagerDelegate>
 //-(IBAction) buttonClicked;
 
 -(IBAction) sendRequest;
+
+-(IBAction) showNewUserView;
+
+
 
 -(IBAction) backRequest;
 -(void) setThreadID :(NSString*) threadID setUserName:(NSString *) theUser;
