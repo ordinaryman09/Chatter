@@ -40,7 +40,7 @@
     registerInfo.backgroundColor = [UIColor clearColor];
     [self.view addSubview:registerInfo];
     
-    UILabel* logoutInfo = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-51, screenHeight/2-85, screenWidth, 25)];
+    UILabel* logoutInfo = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-49, screenHeight/2-85, screenWidth, 25)];
     logoutInfo.text = @"Or, you can           .";
     logoutInfo.font = [UIFont systemFontOfSize:10];
     logoutInfo.textColor = [UIColor darkGrayColor];
@@ -67,7 +67,7 @@
     [self.view addSubview:registerButton];
     
     logoutButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-    [logoutButton setFrame:CGRectMake(screenWidth/2+3, screenHeight/2-85, 30, 25)];
+    [logoutButton setFrame:CGRectMake(screenWidth/2+6, screenHeight/2-85, 30, 25)];
     [logoutButton setTitle:@"logout" forState:UIControlStateNormal];
     [logoutButton setTitle:@"logout" forState:UIControlStateHighlighted];
     [logoutButton setTitle:@"logout" forState:UIControlStateDisabled];
@@ -250,7 +250,7 @@
     [logoutButton release];
     
     logoutButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-    [logoutButton setFrame:CGRectMake(screenWidth/2+3, screenHeight/2-85, 30, 25)];
+    [logoutButton setFrame:CGRectMake(screenWidth/2+6, screenHeight/2-85, 30, 25)];
     [logoutButton setTitle:@"logout" forState:UIControlStateNormal];
     [logoutButton setTitle:@"logout" forState:UIControlStateHighlighted];
     [logoutButton setTitle:@"logout" forState:UIControlStateDisabled];
