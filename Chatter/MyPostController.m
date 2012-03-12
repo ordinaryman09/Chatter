@@ -60,7 +60,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%d", [contentArray count]);
+    
     return [contentArray count];
 }
 
@@ -98,13 +98,12 @@
     
     if(fileExists) {
         
-        NSLog(@"FILE EXIST");
+      
         saveLogin= [[NSMutableArray alloc] initWithContentsOfFile:myPath];
-        NSLog(@"savelogin at index%@", [saveLogin objectAtIndex:0]);
-        
+                
         
         NSString * theStringURL = [NSString stringWithFormat:@"%@%@", @"http://www.williamliwu.com/chatter/getMyPosts.php?user=", [saveLogin objectAtIndex:0]];
-        NSLog(@"%@", theStringURL);
+
         
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:theStringURL]];
         
@@ -112,17 +111,11 @@
         [request setCompletionBlock:^{
             // Clear the data source in case we are refreshing
             [contentArray removeAllObjects];
-            
-            NSLog(@"%@", request.responseString);
-            
-            // NSLog(@"%@", request.responseString);
-            NSLog(@"Entering completion block");
+       
             NSDictionary *deserializedData = [request.responseString objectFromJSONString];
             
             for (NSDictionary * dataDict in deserializedData) {
-                // Extract the Post ID # from this post
-                //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
-                //NSLog(@"%@", postTitle);
+          
                 NSString *iD = [dataDict objectForKey:@"ID"];
                 NSString *user = [dataDict objectForKey:@"USER"];
                 NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
@@ -134,7 +127,7 @@
                 NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
                 
                 
-                   NSLog(@"%@", @"KGO");
+                   
                 
                 NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
                                      content, latitude, longitude, time, nil];
@@ -150,36 +143,26 @@
            
             [self stopLoading];
             [self.theTableView reloadData];
-            NSLog(@"%@", @"DONE LOADING");
+           
             
             
             
             
             
-            // NSLog([titleArray objectAtIndex:0]);
-            
+                       
             
         }];
         
         [request setFailedBlock:^{
             
-            NSLog(@"%@", request.error);
-        }];
+                   }];
         
-        NSLog(@"Starting asynchronous");
+      
         [request startAsynchronous];
-        // [self.myTableView reloadData];
+      
         
     }
     
-    else {
-        
-        NSLog(@"u fail");
-        // arrayContent = [[NSMutableArray alloc] init ];
-        
-        
-        
-    }
      [self.theTableView reloadData];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -191,9 +174,6 @@
     
     if (!fileExists) {
         // Pop-up notification telling user that invalid entry
-        
-        // [self.tabBarController setSelectedIndex:3];
-        // [self.tabBarController.selectedViewController viewDidLoad];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not logged in" 
                                                         message:@"Please login or register a username." 
@@ -218,7 +198,7 @@
     [self loadTableData];
     //[self loadTableData];
 
-    //NSLog(@"yay%@", arrayContent);
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -272,7 +252,7 @@
     }
     
     NSString *text = [NSString stringWithFormat:@"%@",[[contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
-    //NSLog(@"%@", text);
+   ;
     CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
@@ -301,8 +281,7 @@
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    // NSLog([titleArray objectAtIndex:indexPath.row]);
-    //cell.value
+    
     return cell;
 }
 
@@ -324,8 +303,7 @@
 {
     
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+  
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -462,7 +440,7 @@
 - (void)refresh {
     // This is just a demo. Rewrite this method with your custom reload action.
     // Don't forget to call stopLoading at the end.
-    NSLog(@"Reloading table data");
+    
     [self loadTableData];
     
     //[self performSelector:@selector(stopLoading) withObject:nil afterDelay:2.0];

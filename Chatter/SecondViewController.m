@@ -63,6 +63,8 @@
     NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
     authUsername = [myUserName objectAtIndex:0];
     
+    [myUserName release];
+    
     return YES;
     
 }
@@ -85,7 +87,6 @@
        
     ASIFormDataRequest *request;
     
-    NSLog(@"%@", lat);
     
     // Initialize the URL string
     NSString * theStringURL = @"";
@@ -98,7 +99,6 @@
         theStringURL = [NSString stringWithFormat:@"%@%@%@%@", @"http://www.williamliwu.com/chatter/getNearbyThreads.php?new=0&lat=", lat, @"&lng=", lon];
     }
     
-    NSLog(@"HAHA%@", theStringURL);
     
     request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:theStringURL]];
     
@@ -113,7 +113,7 @@
         for (NSDictionary * dataDict in deserializedData) {
             // Extract the Post ID # from this post
             //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
-            //NSLog(@"%@", postTitle);
+           
             NSString *iD = [dataDict objectForKey:@"ID"];
             NSString *user = [dataDict objectForKey:@"USER"];
             NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
@@ -125,7 +125,7 @@
             NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
             
             
-            //   NSLog(@"%@", testMe);
+            
             
             NSArray *contents = [NSArray arrayWithObjects:iD, user, upVotes, downVotes, title,
                                 content, latitude, longitude, time, nil];
@@ -138,13 +138,13 @@
             [self stopLoading];
             
         }
-        // NSLog([titleArray objectAtIndex:0]);
+      
 
     }];
     
     [request setFailedBlock:^{
         
-        NSLog(@"%@", request.error);
+      
     }];
     
     [request startAsynchronous];
@@ -200,7 +200,7 @@
     }
      
     NSString *text = [NSString stringWithFormat:@"%@",[[self.contentArray objectAtIndex:indexPath.row] objectAtIndex:4]];
-    //NSLog(@"%@", text);
+    
     CGSize constraint = CGSizeMake(width - (CELL_CONTENT_MARGIN * 2), 20000.0f);
     
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
@@ -227,10 +227,10 @@
     [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
 
 	// Configure the cell.
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-   // NSLog([titleArray objectAtIndex:indexPath.row]);
-    //cell.value
+
     return cell;
 }
 
@@ -498,14 +498,11 @@
 
 - (IBAction) showNewPostView {
     if ([self isAuthorized]) {
-        NSLog(@"hold");
-        NSFileManager * fileManager = [NSFileManager defaultManager];
-        NSString *myPath = [self authFilePath];
+    ;
         
         //int rgbValue = 0x3366CC;
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
-        CGFloat screenHeight = screenRect.size.height;
         
         
         //RegisterViewController *registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterView" bundle:nil];
@@ -521,7 +518,7 @@
         addPostView.layer.borderColor = [UIColor darkGrayColor].CGColor;
         addPostView.layer.borderWidth = 4.0f;
         addPostView.layer.shadowPath = [UIBezierPath bezierPathWithRect:addPostView.bounds].CGPath;
-        NSLog(@"%f %f",addPostView.frame.size.width, addPostView.frame.size.height);
+       
         [addPostView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, addPostView.frame.size.width, addPostView.frame.size.height)];
         
         // Add the display view controller to the stack
@@ -540,20 +537,6 @@
         newTitleField.clearButtonMode = UITextFieldViewModeWhileEditing;
         newTitleField.returnKeyType = UIReturnKeyNext;
         newTitleField.delegate = self;
-        //newTitleField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        /*newTitleField.textColor = [UIColor \
-                                  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-                                  green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-                                  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];*/
-        //newTitleField.autocorrectionType = UITextAutocorrectionTypeNo;
-        
-        //newContentField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        // For the border and rounded corners
-        /*[[newContentField layer] setBorderColor:[[UIColor whiteColor] CGColor]];
-        newContentField.layer.cornerRadius = 5;
-        newContentField.clipsToBounds = YES;
-        [newContentField.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-        [newContentField.layer setBorderWidth:2.0];*/
         [newContentField.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
         [newContentField.layer setBorderColor: [[UIColor grayColor] CGColor]];
         [newContentField.layer setBorderWidth: 1.0];
@@ -563,17 +546,7 @@
         [newContentField setClipsToBounds: YES];
         newContentField.returnKeyType = UIReturnKeyDefault;
         newContentField.delegate = self;
-        /*newContentField.textColor = [UIColor \
-                                  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-                                  green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-                                  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];*/
-
-        //newContentField.autocorrectionType = UITextAutocorrectionTypeNo;
-        
-        //NSLog(@"%@", regUserField.text);
-        /*regUserField.delegate = self;
-         regPassField.delegate = self;
-         regConfirmPassField.delegate = self;*/
+      
         
         [submitButton addTarget:self 
                          action:@selector(submitPost:)
@@ -601,7 +574,7 @@
     
     [newSubmitSpinner startAnimating];
     
-    NSLog(@"got here");
+    
     NSURL *url = [NSURL URLWithString:@"http://www.williamliwu.com/chatter/createThread.php"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
@@ -613,30 +586,15 @@
     
     
     [request setCompletionBlock:^{
-        NSLog(@"WTF");
+        
         [self dismissNewPostView:nil];
-        [self refresh];
-        //[newSubmitSpinner stopAnimating];
-        
-        // NSLog(@"%@", theID);
-        
-        // Iterate through each post in the array
-        //   for (NSDictionary * dataDict in deserializedData) {
-        // Extract the Post ID # from this post
-        //     NSString * postTitle = [dataDict objectForKey:@"result"];
-        //   NSLog(@"%@", postTitle);
-        
-        // Extract ..... everything else
-        //}     
-        
-        
-        
+        [self refresh]; 
         
     }];
     
     [request setFailedBlock:^{
         
-        NSLog(@"%@", request.error);
+       
     }];
     
     [request startAsynchronous];    

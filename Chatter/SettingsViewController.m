@@ -181,7 +181,7 @@
 }
 - (void) createUser:(id)sender {
     [regSubmitSpinner startAnimating];
-    NSLog(@"%@", regUserField.text);
+ 
     if([regPassField.text isEqualToString:regConfirmPassField.text] && (regUserField.text.length > 0)) 
     {
         
@@ -195,8 +195,7 @@
         [request setCompletionBlock:^{
             [regSubmitSpinner stopAnimating];
             //doSomething;
-            NSLog(@"%@", request.responseString);
-            
+     
             if ([request.responseString  isEqualToString:@"SUCCESS"]) {
                 
                 // Set the values in the main user/pass fields
@@ -227,7 +226,6 @@
         
         [request setFailedBlock:^{
             
-            NSLog(@"%@", request.error);
         }];
         
         [request startAsynchronous];
@@ -357,7 +355,7 @@
     userRegView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     userRegView.layer.borderWidth = 4.0f;
     userRegView.layer.shadowPath = [UIBezierPath bezierPathWithRect:userRegView.bounds].CGPath;
-    NSLog(@"%f %f",userRegView.frame.size.width, userRegView.frame.size.height);
+    
     [userRegView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, userRegView.frame.size.width, userRegView.frame.size.height)];
     
     // Add the display view controller to the stack
@@ -505,6 +503,8 @@
         
         [cell.contentView addSubview:startDtLbl];
         
+        [startDtLbl release];
+        
         if (indexPath.row == 0) {
             userField = [[UITextField alloc] initWithFrame:CGRectMake(100, 12, 200, 20)];
             userField.delegate = self;
@@ -515,6 +515,7 @@
             if (fileExists) {
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
                 userField.text = [myUserName objectAtIndex:0];
+                [myUserName release];
             }
             
             [userField addTarget:self 
@@ -539,6 +540,7 @@
             if (fileExists) {
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
                 passField.text = [myUserName objectAtIndex:1];
+                [myUserName release];
             }
             
             [passField addTarget:self 
@@ -557,12 +559,6 @@
             
         }
         
-        /*if (indexPath.row == 0)
-            passwordTF.tag = 0;
-        else {
-            passwordTF.tag = 1;
-            passwordTF.secureTextEntry = YES;
-        }*/
         
         
     }
@@ -603,8 +599,6 @@
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     NSString *myPath = [self saveFilePath];
     
-    NSLog(@"%@", theUsername);
-    
     
     [request addPostValue:theUsername forKey:@"user"];
     [request addPostValue:thePassword forKey:@"pass"];
@@ -626,7 +620,7 @@
             
             if(fileExists) {
                 
-                NSLog(@"AUTH FILE EXISTS");
+         
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
                 
                 [myUserName removeAllObjects];
@@ -640,7 +634,7 @@
             
             else {
                 
-                NSLog(@"CREATING AUTH FILE");
+    
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:theUsername, thePassword, nil];                
                 //[myUserName addObject:theUsername.text];
                 // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
@@ -675,7 +669,7 @@
     
     [request setFailedBlock:^{
         
-        NSLog(@"%@", request.error);
+      
     }];
     
     [request startAsynchronous];   

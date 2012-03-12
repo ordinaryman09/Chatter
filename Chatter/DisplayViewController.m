@@ -13,20 +13,9 @@
 
 
 @implementation DisplayViewController
-//@synthesize theContent;
-/*@synthesize scrollView;
-@synthesize theContent;
-@synthesize theContent;
-@synthesize myTableView;
-@synthesize mapView;
-@synthesize myTableView;*/
-
 @synthesize headerView;
 @synthesize scrollView;
 @synthesize mapView;
-//@synthesize threadTitle;
-
-//@synthesize theTimeStamp;
 @synthesize threadTitle;
 @synthesize theUserName;
 @synthesize theTimeStamp;
@@ -51,11 +40,6 @@
     [request addPostValue:authUsername forKey:@"username"];
     [request addPostValue:tID forKey:@"thread_id"];
     
-    NSLog(@"%@", commentField.text);
-    NSLog(@"%@", authUsername);
-    NSLog(@"%@", tID);
-    
-    
     [request setCompletionBlock:^{
         
         [self dismissNewUserView:nil];
@@ -65,8 +49,7 @@
         
     [request setFailedBlock:^{
         
-        NSLog(@"%@", request.error);
-    }];
+           }];
     
     [request startAsynchronous];   
     
@@ -77,7 +60,7 @@
         int rgbValue = 0x3366CC;
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
-        CGFloat screenHeight = screenRect.size.height;
+      //  CGFloat screenHeight = screenRect.size.height;
 
         NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"AddCommentView" owner:self options:nil];
         commentView = [subviewArray objectAtIndex:0];
@@ -92,7 +75,7 @@
         commentView.layer.borderWidth = 4.0f;
         
         commentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:commentView.bounds].CGPath;
-        NSLog(@"%f %f",commentView.frame.size.width, commentView.frame.size.height);
+    
         [commentView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, commentView.frame.size.width, commentView.frame.size.height)];
         
         // Add the display view controller to the stack
@@ -151,22 +134,12 @@
 }
 
 
-- (void) testMe {
-    NSLog(@"TU");
-}
-
-
-- (void) testYou {
-    NSLog(@"TD");
-}
-
-
 -(void)infoTUButtonPressed:(id)sender 
 {
     if ([self isAuthorized]) {
         NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername];
         
-        //NSLog(@"%@", test);
+   
         
         NSURL *url = [NSURL URLWithString:postURL];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -178,28 +151,21 @@
         }];
         
         [request setFailedBlock:^{
-            
-            NSLog(@"%@", request.error);
-        }];
+                   }];
         
         [request startAsynchronous];
-        // here you can access the object which triggered the method
-        // for example you can check the tag value
-        
-        NSLog(@"TU OI");
-        
-       // NSLog(@"TUthe tag value is: %@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1] );
+
     }
 }
 
 -(void)infoTDButtonPressed:(id)sender 
 {
     if ([self isAuthorized]) {
-        NSLog(@"%@",[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername]);
+   
         
         NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername];
         
-        //NSLog(@"%@", test);
+    
         
         NSURL *url = [NSURL URLWithString:postURL];
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -207,22 +173,15 @@
         [request setCompletionBlock:^{
             
             [self refresh];
-            NSLog(@"TD euy");
+           
         }];
         
         [request setFailedBlock:^{
-            
-            NSLog(@"%@", request.error);
+           
         }];
         
         [request startAsynchronous];
-        // here you can access the object which triggered the method
-        // for example you can check the tag value
 
-        // here you can access the object which triggered the method
-        // for example you can check the tag value
-        
-        //NSLog(@"TDthe tag value is: %d", [sender tag]);
     }
 }
 
@@ -326,76 +285,6 @@
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
-    /*UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, halfHeight-8, 20.0, 10.0 )] autorelease];
-    
-    
-    [upLabel setText:upVotes];
-    [upLabel setMinimumFontSize:FONT_SIZE-4];
-    [upLabel setNumberOfLines:0];
-    [upLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
-    upLabel.backgroundColor = [UIColor clearColor];
-    upLabel.textColor = [UIColor lightGrayColor];
-    [cell.contentView addSubview: upLabel];
-    
-    UILabel *downLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 260, halfHeight-8, 20.0, 10.0 )] autorelease];
-    
-    [downLabel setText:downVotes];
-    NSLog(downVotes);
-    [downLabel setMinimumFontSize:FONT_SIZE-4];
-    [downLabel setNumberOfLines:0];
-    [downLabel setFont:[UIFont systemFontOfSize:FONT_SIZE-4]];
-    /*downLabel.backgroundColor = [UIColor clearColor];
-    downLabel.textColor = [UIColor lightGrayColor];
-    [cell.contentView addSubview: downLabel];*/
-
-    
-    
-    
-    ////// TEMPORARILY COMMENTED OUT
-    
-    /*static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    UIImage *tuImage;
-    UIButton * tuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    tuImage = [UIImage imageNamed:@"tu.png"];
-    [tuButton setBackgroundImage:tuImage forState:UIControlStateNormal];
-    // buyButton.frame = CGRectMake(220, 35, 96, 34);
-    tuButton.frame = CGRectMake(239, 12, 16, 16);
-    [tuButton setTag:indexPath.row];
-    [tuButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.contentView addSubview:tuButton];
-    
-   
-    UIImage *tdImage;
-    UIButton * tdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    tdImage = [UIImage imageNamed:@"td.png"];
-    [tdButton setBackgroundImage:tdImage forState:UIControlStateNormal];
-    // buyButton.frame = CGRectMake(220, 35, 96, 34);
-    tdButton.frame = CGRectMake(275, 18, 16, 16);
-    [tdButton setTag:indexPath.row];
-    [tdButton addTarget:self action:@selector(downVote) forControlEvents:UIControlEventTouchDown];
-    [cell.contentView addSubview:tdButton];
-    
-    UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, 17, 10.0, 10.0 )] autorelease];
-
-    
-    [upLabel setText:upVotes];
-    [cell.contentView addSubview: upLabel];
-    
-    UILabel *downLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 260, 17, 10.0, 10.0 )] autorelease];
-    
-    [downLabel setText:downVotes];
-    [cell.contentView addSubview: downLabel];*/
-     
-    
-   // cell.textLabel.text = [NSString stringWithFormat:@"%@",[[arrayContent objectAtIndex:indexPath.row] objectAtIndex:2]];
-    
-    
 
     return cell;
 }
@@ -447,8 +336,7 @@
     if (!fileExists) {
         // Pop-up notification telling user that invalid entry
         
-        // [self.tabBarController setSelectedIndex:3];
-        // [self.tabBarController.selectedViewController viewDidLoad];
+    
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not logged in" 
                                                         message:@"Please login or register a username." 
@@ -470,7 +358,7 @@
 }
 
 - (IBAction) upVote {
-    NSLog(@"%@", tID);
+ 
     
     if(checker) {
         checker = NO;
@@ -479,8 +367,7 @@
     if ([self isAuthorized]) {
     
         //[self theContent]
-        NSLog(@"%@", [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]);
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]];
+               NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]];
         
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         
@@ -494,7 +381,7 @@
         
         [request setFailedBlock:^{
             
-            NSLog(@"%@", request.error);
+           
         }];
         
         [request startAsynchronous];
@@ -505,7 +392,7 @@
 }
 
 - (IBAction)downVote {
-    NSLog(@"%@", tID);
+    
     if(checker) {
         checker = NO;
     
@@ -526,7 +413,6 @@
         
         [request setFailedBlock:^{
             
-            NSLog(@"%@", request.error);
         }];
         
         [request startAsynchronous];
@@ -536,7 +422,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"AADJAUDHIUHHIDHIDHA");
+
 
     [theContent release];
     [scrollView release];
@@ -582,15 +468,7 @@
     
     region.span=span;
     region.center=location;
-   /* if(addAnnotation != nil) {
-        [mapView removeAnnotation:addAnnotation];
-        [addAnnotation release];
-        addAnnotation = nil;
-    }
-    addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location]; 
-    [mapView addAnnotation:addAnnotation]; */
 
-    
     [mapView setRegion:region animated:TRUE];
     [mapView regionThatFits:region];
 }
@@ -682,8 +560,7 @@
     
     NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
     
-   // NSLog(@"Conversion: %dmonths %ddays %dhours",/*[conversionInfo minute],*/ [conversionInfo month], [conversionInfo day], [conversionInfo hour]);
-    
+
     [date1 release];
     [date2 release];
     
@@ -708,14 +585,13 @@
      
      [request setCompletionBlock:^{
          [arrayContent removeAllObjects];
-         NSLog(@"%@", request.responseString);
+    
          
          NSDictionary *deserializedData = [request.responseString objectFromJSONString];
          
          for (NSDictionary * dataDict in deserializedData) {
              // Extract the Post ID # from this post
-             //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
-             //NSLog(@"%@", postTitle);
+       
              NSString *iD = [dataDict objectForKey:@"ID"];
              NSString *getUser = [dataDict objectForKey:@"USER"];
              NSString *comment = [dataDict objectForKey:@"CONTENT"];
@@ -723,7 +599,7 @@
              NSString *NumDownVotes = [dataDict objectForKey:@"DOWNVOTES"];
              NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
              
-             NSLog(@"%@", iD);
+         
              
              NSArray *contents = [NSArray arrayWithObjects:iD, getUser, comment ,NumUpVotes, NumDownVotes,
                                   time, nil];
@@ -752,7 +628,7 @@
      
      [request setFailedBlock:^{
          
-         NSLog(@"%@", request.error);
+      
      }];
      
      [request startAsynchronous];  

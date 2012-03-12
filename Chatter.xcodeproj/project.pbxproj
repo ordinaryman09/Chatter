@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		791E2D0F1502154A00617466 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D0D1502154900617466 /* RegisterViewController.m */; };
-		791E2D101502154A00617466 /* RegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D0E1502154900617466 /* RegisterView.xib */; };
-		791E2D211502241800617466 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D1E1502241800617466 /* LoginView.xib */; };
-		791E2D221502241800617466 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D201502241800617466 /* LoginViewController.m */; };
 		791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D391504551A00617466 /* DisplayViewController.m */; };
 		791E2D3C1504551C00617466 /* DisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D3A1504551B00617466 /* DisplayView.xib */; };
 		791E2D591504712100617466 /* MyPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D571504711E00617466 /* MyPostController.m */; };
@@ -34,9 +30,6 @@
 		7944C513150712B20088FB3E /* td.png in Resources */ = {isa = PBXBuildFile; fileRef = 7944C511150712B20088FB3E /* td.png */; };
 		795D7F9F150D8CBA00963276 /* td32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7F9E150D8CBA00963276 /* td32.png */; };
 		795D7FA2150D8CD600963276 /* tu32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7FA1150D8CD600963276 /* tu32.png */; };
-		7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964814A14F1CA5E00605489 /* ThirdViewController.m */; };
-		7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7964814B14F1CA5E00605489 /* ThirdView.xib */; };
-		7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964815814F1CC2C00605489 /* UIImage+Scale.m */; };
 		79AE81A3150DCC1600472F64 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 79AE81A2150DCC1600472F64 /* icon.png */; };
 		79F30BD314F0F88400C726F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD214F0F88400C726F8 /* UIKit.framework */; };
 		79F30BD514F0F88400C726F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD414F0F88400C726F8 /* Foundation.framework */; };
@@ -48,12 +41,8 @@
 		79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F30BEB14F0F88400C726F8 /* SecondViewController.m */; };
 		79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F30BF014F0F88400C726F8 /* SecondView.xib */; };
 		992970D715061357005589F5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992970D615061357005589F5 /* MapKit.framework */; };
-		995C3095150B26FD00901667 /* AddCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 995C3090150B26FD00901667 /* AddCommentView.m */; };
-		995C3096150B26FD00901667 /* AddCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995C3091150B26FD00901667 /* AddCommentView.xib */; };
-		995C309B150B284B00901667 /* AddPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995C309A150B284B00901667 /* AddPostView.xib */; };
 		997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997F2B6A15097038005AE5E5 /* SettingsViewController.m */; };
 		997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6B15097038005AE5E5 /* SettingsView.xib */; };
-		997F2B6F150A0F82005AE5E5 /* UserRegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */; };
 		997F2B71150AF3B0005AE5E5 /* 19-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B70150AF3B0005AE5E5 /* 19-check@2x.png */; };
 		997F2B73150AFB21005AE5E5 /* 31-circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B72150AFB21005AE5E5 /* 31-circle-x@2x.png */; };
 		997F2B75150B1D57005AE5E5 /* 145-persondot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 997F2B74150B1D57005AE5E5 /* 145-persondot@2x.png */; };
@@ -69,12 +58,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		791E2D0C1502154900617466 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisterViewController.h; path = Chatter.xcodeproj/RegisterViewController.h; sourceTree = SOURCE_ROOT; };
-		791E2D0D1502154900617466 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisterViewController.m; path = Chatter.xcodeproj/RegisterViewController.m; sourceTree = SOURCE_ROOT; };
-		791E2D0E1502154900617466 /* RegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterView.xib; path = Chatter.xcodeproj/RegisterView.xib; sourceTree = SOURCE_ROOT; };
-		791E2D1E1502241800617466 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		791E2D1F1502241800617466 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		791E2D201502241800617466 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		791E2D381504551900617466 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
 		791E2D391504551A00617466 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
 		791E2D3A1504551B00617466 /* DisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayView.xib; sourceTree = "<group>"; };
@@ -114,11 +97,6 @@
 		7944C511150712B20088FB3E /* td.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td.png; sourceTree = "<group>"; };
 		795D7F9E150D8CBA00963276 /* td32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td32.png; sourceTree = "<group>"; };
 		795D7FA1150D8CD600963276 /* tu32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tu32.png; sourceTree = "<group>"; };
-		7964814914F1CA5E00605489 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
-		7964814A14F1CA5E00605489 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
-		7964814B14F1CA5E00605489 /* ThirdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
-		7964815714F1CC2C00605489 /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
-		7964815814F1CC2C00605489 /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		79AE81A2150DCC1600472F64 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		79F30BCE14F0F88400C726F8 /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F30BD214F0F88400C726F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -135,14 +113,9 @@
 		79F30BEB14F0F88400C726F8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		79F30BF114F0F88400C726F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		992970D615061357005589F5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		995C308F150B26FD00901667 /* AddCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddCommentView.h; path = ../AddCommentView.h; sourceTree = "<group>"; };
-		995C3090150B26FD00901667 /* AddCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddCommentView.m; path = ../AddCommentView.m; sourceTree = "<group>"; };
-		995C3091150B26FD00901667 /* AddCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddCommentView.xib; path = ../AddCommentView.xib; sourceTree = "<group>"; };
-		995C309A150B284B00901667 /* AddPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostView.xib; sourceTree = "<group>"; };
 		997F2B6915097038005AE5E5 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		997F2B6A15097038005AE5E5 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		997F2B6B15097038005AE5E5 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
-		997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRegistrationView.xib; sourceTree = "<group>"; };
 		997F2B70150AF3B0005AE5E5 /* 19-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-check@2x.png"; sourceTree = "<group>"; };
 		997F2B72150AFB21005AE5E5 /* 31-circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x@2x.png"; sourceTree = "<group>"; };
 		997F2B74150B1D57005AE5E5 /* 145-persondot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "145-persondot@2x.png"; sourceTree = "<group>"; };
@@ -181,22 +154,12 @@
 		791E2D0515020CF300617466 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				995C308F150B26FD00901667 /* AddCommentView.h */,
-				995C3090150B26FD00901667 /* AddCommentView.m */,
-				791E2D1F1502241800617466 /* LoginViewController.h */,
-				791E2D201502241800617466 /* LoginViewController.m */,
-				791E2D0C1502154900617466 /* RegisterViewController.h */,
-				791E2D0D1502154900617466 /* RegisterViewController.m */,
-				7964814914F1CA5E00605489 /* ThirdViewController.h */,
-				7964814A14F1CA5E00605489 /* ThirdViewController.m */,
 				791E2D561504711D00617466 /* MyPostController.h */,
 				791E2D571504711E00617466 /* MyPostController.m */,
 				79F30BEA14F0F88400C726F8 /* SecondViewController.h */,
 				79F30BEB14F0F88400C726F8 /* SecondViewController.m */,
 				791E2D381504551900617466 /* DisplayViewController.h */,
 				791E2D391504551A00617466 /* DisplayViewController.m */,
-				7964815714F1CC2C00605489 /* UIImage+Scale.h */,
-				7964815814F1CC2C00605489 /* UIImage+Scale.m */,
 				79F30BE114F0F88400C726F8 /* ChatterAppDelegate.h */,
 				79F30BE214F0F88400C726F8 /* ChatterAppDelegate.m */,
 				997F2B6915097038005AE5E5 /* SettingsViewController.h */,
@@ -208,17 +171,11 @@
 		791E2D0615020CFC00617466 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				995C3091150B26FD00901667 /* AddCommentView.xib */,
-				791E2D1E1502241800617466 /* LoginView.xib */,
-				791E2D0E1502154900617466 /* RegisterView.xib */,
 				79F30BF014F0F88400C726F8 /* SecondView.xib */,
 				791E2D581504712000617466 /* MyPost.xib */,
-				7964814B14F1CA5E00605489 /* ThirdView.xib */,
 				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
 				791E2D3A1504551B00617466 /* DisplayView.xib */,
 				997F2B6B15097038005AE5E5 /* SettingsView.xib */,
-				997F2B6E150A0F82005AE5E5 /* UserRegistrationView.xib */,
-				995C309A150B284B00901667 /* AddPostView.xib */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -396,16 +353,12 @@
 				79F30BDD14F0F88400C726F8 /* InfoPlist.strings in Resources */,
 				79F30BE614F0F88400C726F8 /* MainWindow.xib in Resources */,
 				79F30BF214F0F88400C726F8 /* SecondView.xib in Resources */,
-				7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */,
-				791E2D101502154A00617466 /* RegisterView.xib in Resources */,
-				791E2D211502241800617466 /* LoginView.xib in Resources */,
 				791E2D3C1504551C00617466 /* DisplayView.xib in Resources */,
 				791E2D5A1504712100617466 /* MyPost.xib in Resources */,
 				99D91CB51504A57900408066 /* arrow.png in Resources */,
 				7944C512150712B20088FB3E /* tu.png in Resources */,
 				7944C513150712B20088FB3E /* td.png in Resources */,
 				997F2B6D15097038005AE5E5 /* SettingsView.xib in Resources */,
-				997F2B6F150A0F82005AE5E5 /* UserRegistrationView.xib in Resources */,
 				997F2B71150AF3B0005AE5E5 /* 19-check@2x.png in Resources */,
 				997F2B73150AFB21005AE5E5 /* 31-circle-x@2x.png in Resources */,
 				997F2B75150B1D57005AE5E5 /* 145-persondot@2x.png in Resources */,
@@ -416,8 +369,6 @@
 				997F2B7F150B1F5D005AE5E5 /* 145-persondot.png in Resources */,
 				997F2B82150B2096005AE5E5 /* 13-plus.png in Resources */,
 				997F2B83150B2096005AE5E5 /* 13-plus@2x.png in Resources */,
-				995C3096150B26FD00901667 /* AddCommentView.xib in Resources */,
-				995C309B150B284B00901667 /* AddPostView.xib in Resources */,
 				795D7F9F150D8CBA00963276 /* td32.png in Resources */,
 				795D7FA2150D8CD600963276 /* tu32.png in Resources */,
 				79AE81A3150DCC1600472F64 /* icon.png in Resources */,
@@ -434,8 +385,6 @@
 				79F30BE014F0F88400C726F8 /* main.m in Sources */,
 				79F30BE314F0F88400C726F8 /* ChatterAppDelegate.m in Sources */,
 				79F30BEC14F0F88400C726F8 /* SecondViewController.m in Sources */,
-				7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */,
-				7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */,
 				79328E7114F76779006730D9 /* ASIAuthenticationDialog.m in Sources */,
 				79328E7214F76779006730D9 /* ASIDataCompressor.m in Sources */,
 				79328E7314F76779006730D9 /* ASIDataDecompressor.m in Sources */,
@@ -446,12 +395,9 @@
 				79328E7814F76779006730D9 /* ASINetworkQueue.m in Sources */,
 				79328E7914F76779006730D9 /* Reachability.m in Sources */,
 				79328E7D14F76E20006730D9 /* JSONKit.m in Sources */,
-				791E2D0F1502154A00617466 /* RegisterViewController.m in Sources */,
-				791E2D221502241800617466 /* LoginViewController.m in Sources */,
 				791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */,
 				791E2D591504712100617466 /* MyPostController.m in Sources */,
 				997F2B6C15097038005AE5E5 /* SettingsViewController.m in Sources */,
-				995C3095150B26FD00901667 /* AddCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
