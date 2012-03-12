@@ -70,6 +70,7 @@
 
 - (void)dealloc
 {
+    
     [refreshHeaderView release];
     [refreshLabel release];
     [refreshArrow release];
@@ -140,13 +141,15 @@
                 
                 [contentArray addObject:contents];
                 
-                [self.theTableView reloadData];
+                
                 
                 
                 
             }
             // Stop the loading animation if pull-to-refresh was used
+           
             [self stopLoading];
+            [self.theTableView reloadData];
             NSLog(@"%@", @"DONE LOADING");
             
             
@@ -177,6 +180,7 @@
         
         
     }
+     [self.theTableView reloadData];
 }
 - (void)viewDidAppear:(BOOL)animated {
     // Check to see if the user is logged in
@@ -211,7 +215,7 @@
     
     
     
-    
+    [self loadTableData];
     //[self loadTableData];
 
     //NSLog(@"yay%@", arrayContent);
@@ -318,6 +322,7 @@
 
 - (void)viewDidUnload
 {
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

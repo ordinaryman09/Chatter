@@ -536,6 +536,8 @@
 
 - (void)dealloc
 {
+    NSLog(@"AADJAUDHIUHHIDHIDHA");
+
     [theContent release];
     [scrollView release];
     [mapView release];
@@ -604,6 +606,7 @@
 
 - (void)viewDidLoad
 {
+    
 
     theUserName.text = user;
     checker = YES;
@@ -760,7 +763,7 @@
 
 - (void)viewDidUnload
 {
-    [self setTheContent:nil];
+       [self setTheContent:nil];
     [self setScrollView:nil];
     [self setMapView:nil];
     [self setThreadTitle:nil];
