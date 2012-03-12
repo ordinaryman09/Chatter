@@ -99,10 +99,10 @@
         
         NSLog(@"FILE EXIST");
         saveLogin= [[NSMutableArray alloc] initWithContentsOfFile:myPath];
-        NSLog(@"%@", [saveLogin objectAtIndex:0]);
+        NSLog(@"savelogin at index%@", [saveLogin objectAtIndex:0]);
         
         
-        NSString * theStringURL = [NSString stringWithFormat:@"%@%@%@", @"http://www.williamliwu.com/chatter/getMyPosts.php?user='", [saveLogin objectAtIndex:0], @"'"];
+        NSString * theStringURL = [NSString stringWithFormat:@"%@%@", @"http://www.williamliwu.com/chatter/getMyPosts.php?user=", [saveLogin objectAtIndex:0]];
         NSLog(@"%@", theStringURL);
         
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:theStringURL]];
@@ -111,6 +111,8 @@
         [request setCompletionBlock:^{
             // Clear the data source in case we are refreshing
             [contentArray removeAllObjects];
+            
+            NSLog(@"%@", request.responseString);
             
             // NSLog(@"%@", request.responseString);
             NSLog(@"Entering completion block");
@@ -290,7 +292,7 @@
     
     NSString * infoLabelText = @"";
     [infoLabel setText:infoLabelText];
-    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, (width) - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
     
 	// Configure the cell.
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

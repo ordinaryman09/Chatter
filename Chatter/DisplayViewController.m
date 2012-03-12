@@ -232,7 +232,7 @@
     UILabel *label = nil;
     UILabel *userLabel = nil;
     UILabel *infoLabel = nil;
-    float width = 300;
+    float width = 270;
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
@@ -298,7 +298,7 @@
 
     NSString * infoLabelText = [NSString stringWithFormat:@"%@ up  %@ down", [[arrayContent objectAtIndex:indexPath.row] objectAtIndex:3], [[arrayContent objectAtIndex:indexPath.row] objectAtIndex:4]];
     [infoLabel setText:infoLabelText];
-    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
+    [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, (width+30) - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
 
     
     float halfHeight = ((CELL_CONTENT_MARGIN * 2) + MAX(size.height, 44.0f) + (FONT_SIZE - 4))/2;
@@ -323,6 +323,8 @@
     [tdButton setTag:indexPath.row];
     [tdButton addTarget:self action:@selector(infoTDButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [cell.contentView addSubview:tdButton];
+    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     /*UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, halfHeight-8, 20.0, 10.0 )] autorelease];
     

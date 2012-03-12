@@ -93,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/MyPostController.m"
-         timestampString = "352796652.56034"
+         timestampString = "353223048.677505"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "157"
-         endingLineNumber = "157"
+         startingLineNumber = "159"
+         endingLineNumber = "159"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
