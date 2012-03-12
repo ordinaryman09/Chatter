@@ -163,7 +163,7 @@
 -(void)infoTUButtonPressed:(id)sender 
 {
     if ([self isAuthorized]) {
-        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
+        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername];
         
         //NSLog(@"%@", test);
         
@@ -194,7 +194,9 @@
 -(void)infoTDButtonPressed:(id)sender 
 {
     if ([self isAuthorized]) {
-        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
+        NSLog(@"%@",[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername]);
+        
+        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], authUsername];
         
         //NSLog(@"%@", test);
         
