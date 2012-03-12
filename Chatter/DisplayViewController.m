@@ -48,11 +48,11 @@
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request addPostValue:commentField.text forKey:@"content"];
-    [request addPostValue:user forKey:@"username"];
+    [request addPostValue:authUsername forKey:@"username"];
     [request addPostValue:tID forKey:@"thread_id"];
     
     NSLog(@"%@", commentField.text);
-    NSLog(@"%@", user);
+    NSLog(@"%@", authUsername);
     NSLog(@"%@", tID);
     
     
@@ -487,7 +487,7 @@
             if([request.responseString isEqualToString:@"YES"])  {
                 int numVote = [upVotes intValue]+1;
                 theVoting.text = [NSString stringWithFormat:@"up %d down %d", numVote, [downVotes intValue]];
-            }
+            }   
         }];
         
         [request setFailedBlock:^{
