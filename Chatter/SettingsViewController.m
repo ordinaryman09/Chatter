@@ -540,7 +540,6 @@
             if (fileExists) {
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
                 passField.text = [myUserName objectAtIndex:1];
-                [myUserName release];
             }
             
             [passField addTarget:self 

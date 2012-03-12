@@ -33,8 +33,9 @@
 		795D7F9F150D8CBA00963276 /* td32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7F9E150D8CBA00963276 /* td32.png */; };
 		795D7FA2150D8CD600963276 /* tu32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7FA1150D8CD600963276 /* tu32.png */; };
 		79AE81A3150DCC1600472F64 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 79AE81A2150DCC1600472F64 /* icon.png */; };
-		79AE81B6150DD38B00472F64 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79AE81B5150DD38B00472F64 /* Icon@2x.png */; };
+		79AE81B6150DD38B00472F64 /* Icon@30x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79AE81B5150DD38B00472F64 /* Icon@30x.png */; };
 		79AE81B9150DD3CF00472F64 /* iPhoneIcon_Big (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 79AE81B8150DD3CF00472F64 /* iPhoneIcon_Big (2).png */; };
+		79D82A34150DD9B4000731B1 /* Icon@21x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79D82A33150DD9B4000731B1 /* Icon@21x.png */; };
 		79F30BD314F0F88400C726F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD214F0F88400C726F8 /* UIKit.framework */; };
 		79F30BD514F0F88400C726F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD414F0F88400C726F8 /* Foundation.framework */; };
 		79F30BD714F0F88400C726F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F30BD614F0F88400C726F8 /* CoreGraphics.framework */; };
@@ -104,8 +105,9 @@
 		795D7F9E150D8CBA00963276 /* td32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td32.png; sourceTree = "<group>"; };
 		795D7FA1150D8CD600963276 /* tu32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tu32.png; sourceTree = "<group>"; };
 		79AE81A2150DCC1600472F64 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		79AE81B5150DD38B00472F64 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		79AE81B5150DD38B00472F64 /* Icon@30x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@30x.png"; sourceTree = "<group>"; };
 		79AE81B8150DD3CF00472F64 /* iPhoneIcon_Big (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneIcon_Big (2).png"; sourceTree = "<group>"; };
+		79D82A33150DD9B4000731B1 /* Icon@21x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@21x.png"; sourceTree = "<group>"; };
 		79F30BCE14F0F88400C726F8 /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F30BD214F0F88400C726F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79F30BD414F0F88400C726F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -274,7 +276,7 @@
 		79F30BD814F0F88400C726F8 /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
-				79AE81B5150DD38B00472F64 /* Icon@2x.png */,
+				79AE81B5150DD38B00472F64 /* Icon@30x.png */,
 				79AE81B8150DD3CF00472F64 /* iPhoneIcon_Big (2).png */,
 				795D7FA1150D8CD600963276 /* tu32.png */,
 				795D7F9E150D8CBA00963276 /* td32.png */,
@@ -282,6 +284,7 @@
 				997F2B80150B2095005AE5E5 /* 13-plus.png */,
 				997F2B81150B2095005AE5E5 /* 13-plus@2x.png */,
 				997F2B7E150B1F5D005AE5E5 /* 145-persondot.png */,
+				79D82A33150DD9B4000731B1 /* Icon@21x.png */,
 				997F2B7C150B1F44005AE5E5 /* 157-wrench.png */,
 				997F2B7A150B1EBE005AE5E5 /* 73-radar.png */,
 				997F2B78150B1DDB005AE5E5 /* 73-radar@2x.png */,
@@ -384,10 +387,11 @@
 				795D7F9F150D8CBA00963276 /* td32.png in Resources */,
 				795D7FA2150D8CD600963276 /* tu32.png in Resources */,
 				79AE81A3150DCC1600472F64 /* icon.png in Resources */,
-				79AE81B6150DD38B00472F64 /* Icon@2x.png in Resources */,
+				79AE81B6150DD38B00472F64 /* Icon@30x.png in Resources */,
 				79AE81B9150DD3CF00472F64 /* iPhoneIcon_Big (2).png in Resources */,
 				79378F15150DD56C009BFC31 /* AddCommentView.xib in Resources */,
 				790BA6AE150DD69100F21541 /* AddPostView.xib in Resources */,
+				79D82A34150DD9B4000731B1 /* Icon@21x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

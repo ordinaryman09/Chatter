@@ -63,8 +63,6 @@
     NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
     authUsername = [myUserName objectAtIndex:0];
     
-    [myUserName release];
-    
     return YES;
     
 }
