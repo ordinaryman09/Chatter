@@ -40,15 +40,19 @@
     registerInfo.backgroundColor = [UIColor clearColor];
     [self.view addSubview:registerInfo];
     
-   // UIButton* registerButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+    UILabel* logoutInfo = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/2-51, screenHeight/2-85, screenWidth, 25)];
+    logoutInfo.text = @"Or, you can           .";
+    logoutInfo.font = [UIFont systemFontOfSize:10];
+    logoutInfo.textColor = [UIColor darkGrayColor];
+    logoutInfo.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:logoutInfo];
+    
     registerButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-    //UIButton* registerButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth/2+32, screenHeight/2-100, screenWidth, 100)];
     [registerButton setFrame:CGRectMake(screenWidth/2+28, screenHeight/2-100, 30, 25)];
     [registerButton setTitle:@"here" forState:UIControlStateNormal];
     [registerButton setTitle:@"here" forState:UIControlStateHighlighted];
     [registerButton setTitle:@"here" forState:UIControlStateDisabled];
     [registerButton setTitle:@"here" forState:UIControlStateSelected];
- //   registerButton.titleLabel.text = @"here";
     registerButton.titleLabel.font = [UIFont systemFontOfSize:10];
     
     [registerButton addTarget:self 
@@ -61,6 +65,25 @@
                                blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
     
     [self.view addSubview:registerButton];
+    
+    logoutButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    [logoutButton setFrame:CGRectMake(screenWidth/2+3, screenHeight/2-85, 30, 25)];
+    [logoutButton setTitle:@"logout" forState:UIControlStateNormal];
+    [logoutButton setTitle:@"logout" forState:UIControlStateHighlighted];
+    [logoutButton setTitle:@"logout" forState:UIControlStateDisabled];
+    [logoutButton setTitle:@"logout" forState:UIControlStateSelected];
+    logoutButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    
+    [logoutButton addTarget:self 
+                       action:@selector(authLogout:)
+             forControlEvents:UIControlEventTouchUpInside];
+    
+    logoutButton.titleLabel.textColor = [UIColor \
+                                           colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                                           blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    
+    [self.view addSubview:logoutButton];
     
     // Add a hidden activity indicator
     submitSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -215,6 +238,76 @@
         [regFailLabel setHidden:NO];
         [regConfirmPassField becomeFirstResponder];
     }
+}
+
+- (void) authLogout:(id)sender {
+    
+    int rgbValue = 0x3366CC;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    [logoutButton release];
+    
+    logoutButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+    [logoutButton setFrame:CGRectMake(screenWidth/2+3, screenHeight/2-85, 30, 25)];
+    [logoutButton setTitle:@"logout" forState:UIControlStateNormal];
+    [logoutButton setTitle:@"logout" forState:UIControlStateHighlighted];
+    [logoutButton setTitle:@"logout" forState:UIControlStateDisabled];
+    [logoutButton setTitle:@"logout" forState:UIControlStateSelected];
+    logoutButton.titleLabel.font = [UIFont systemFontOfSize:10];
+    
+    [logoutButton addTarget:self 
+                     action:@selector(authLogout:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    logoutButton.titleLabel.textColor = [UIColor \
+                                         colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                                         green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                                         blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+    
+    [self.view addSubview:logoutButton];
+    
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString *myPath = [self saveFilePath];
+    
+    BOOL fileExists = [fileManager fileExistsAtPath:myPath];
+    
+    //BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:myPath];
+    NSError *error;
+    if(fileExists) {
+        // Delete any past user/pass info saved on device
+        [[NSFileManager defaultManager] removeItemAtPath:myPath error:&error];
+        
+        // Clear the fields
+        userField.text = @"";
+        passField.text = @"";
+        [successIndicator setHidden:YES];
+        
+        
+        // Pop-up notification telling user that invalid entry
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+                                                        message:@"You have been logged out." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+    } else {
+        
+        // Pop-up notification telling user that invalid entry
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+                                                        message:@"Not currently logged in." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+
+    
 }
 
 - (void) showNewUserView:(id)sender {

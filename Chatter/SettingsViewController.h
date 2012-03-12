@@ -17,6 +17,7 @@
     UIActivityIndicatorView * submitSpinner;
     UIImageView * successIndicator;
     UIButton * registerButton;
+    UIButton * logoutButton;
     
     UIView* userRegView;
     UIActivityIndicatorView * regSubmitSpinner;
