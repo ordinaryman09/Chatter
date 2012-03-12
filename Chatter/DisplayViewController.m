@@ -162,62 +162,65 @@
 
 -(void)infoTUButtonPressed:(id)sender 
 {
-    
-    NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
-    
-    //NSLog(@"%@", test);
-    
-    NSURL *url = [NSURL URLWithString:postURL];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    
-    [request setCompletionBlock:^{
+    if ([self isAuthorized]) {
+        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
         
-        [self refresh];
+        //NSLog(@"%@", test);
         
-    }];
-    
-    [request setFailedBlock:^{
+        NSURL *url = [NSURL URLWithString:postURL];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         
-        NSLog(@"%@", request.error);
-    }];
-    
-    [request startAsynchronous];
-    // here you can access the object which triggered the method
-    // for example you can check the tag value
-    
-    NSLog(@"TU OI");
-    
-   // NSLog(@"TUthe tag value is: %@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1] );
+        [request setCompletionBlock:^{
+            
+            [self refresh];
+            
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+        // here you can access the object which triggered the method
+        // for example you can check the tag value
+        
+        NSLog(@"TU OI");
+        
+       // NSLog(@"TUthe tag value is: %@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1] );
+    }
 }
 
 -(void)infoTDButtonPressed:(id)sender 
 {
-    NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
-    
-    //NSLog(@"%@", test);
-    
-    NSURL *url = [NSURL URLWithString:postURL];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    
-    [request setCompletionBlock:^{
+    if ([self isAuthorized]) {
+        NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
         
-        [self refresh];
-        NSLog(@"TD euy");
-    }];
-    
-    [request setFailedBlock:^{
+        //NSLog(@"%@", test);
         
-        NSLog(@"%@", request.error);
-    }];
-    
-    [request startAsynchronous];
-    // here you can access the object which triggered the method
-    // for example you can check the tag value
+        NSURL *url = [NSURL URLWithString:postURL];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        
+        [request setCompletionBlock:^{
+            
+            [self refresh];
+            NSLog(@"TD euy");
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+        // here you can access the object which triggered the method
+        // for example you can check the tag value
 
-    // here you can access the object which triggered the method
-    // for example you can check the tag value
-    
-    //NSLog(@"TDthe tag value is: %d", [sender tag]);
+        // here you can access the object which triggered the method
+        // for example you can check the tag value
+        
+        //NSLog(@"TDthe tag value is: %d", [sender tag]);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -460,6 +463,7 @@
     return YES;
 
 }
+
 - (IBAction) upVote {
     NSLog(@"%@", tID);
     

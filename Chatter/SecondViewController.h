@@ -37,6 +37,7 @@
     UIView * addPostView;
     UIActivityIndicatorView * newSubmitSpinner;
     NSString * userName;
+    NSString * authUsername;
 
 }
 
