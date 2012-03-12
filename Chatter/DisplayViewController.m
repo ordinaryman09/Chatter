@@ -31,6 +31,7 @@
 @synthesize theUserName;
 @synthesize theTimeStamp;
 @synthesize myTableView;
+@synthesize theContent, theVoting;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -304,10 +305,10 @@
     
     UIImage *tuImage;
     UIButton * tuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    tuImage = [UIImage imageNamed:@"tu.png"];
+    tuImage = [UIImage imageNamed:@"tu32.png"];
     [tuButton setBackgroundImage:tuImage forState:UIControlStateNormal];
     // buyButton.frame = CGRectMake(220, 35, 96, 34);
-    tuButton.frame = CGRectMake(245, halfHeight-8, 16, 16);
+    tuButton.frame = CGRectMake(227, halfHeight-16, 32, 32);
     [tuButton setTag:indexPath.row];
     [tuButton addTarget:self action:@selector(infoTUButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:tuButton];
@@ -315,10 +316,10 @@
     
     UIImage *tdImage;
     UIButton * tdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    tdImage = [UIImage imageNamed:@"td.png"];
+    tdImage = [UIImage imageNamed:@"td32.png"];
     [tdButton setBackgroundImage:tdImage forState:UIControlStateNormal];
     // buyButton.frame = CGRectMake(220, 35, 96, 34);
-    tdButton.frame = CGRectMake(275, halfHeight-8, 16, 16);
+    tdButton.frame = CGRectMake(257, halfHeight-16, 32, 32);
     [tdButton setTag:indexPath.row];
     [tdButton addTarget:self action:@selector(infoTDButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [cell.contentView addSubview:tdButton];
@@ -469,29 +470,65 @@
 - (IBAction) upVote {
     NSLog(@"%@", tID);
     
+    if(checker) {
+        checker = NO;
+    
+    
     if ([self isAuthorized]) {
     
         //[self theContent]
         NSLog(@"%@", [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]);
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]];
         
-        NSURLRequest *request=[NSURLRequest requestWithURL:url];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         
-        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [request setCompletionBlock:^{
+            
+            if([request.responseString isEqualToString:@"YES"])  {
+                int numVote = [upVotes intValue]+1;
+                theVoting.text = [NSString stringWithFormat:@"up %d down %d", numVote, [downVotes intValue]];
+            }
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+        
+    }
     }
     
 }
 
 - (IBAction)downVote {
     NSLog(@"%@", tID);
+    if(checker) {
+        checker = NO;
     
+
     //[self theContent]
     if ([self isAuthorized]) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE&user=%@", tID, authUsername]];
         
-        NSURLRequest *request=[NSURLRequest requestWithURL:url];
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
         
-        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [request setCompletionBlock:^{
+            
+            if([request.responseString isEqualToString:@"YES"])  {
+                int numVote = [downVotes intValue]+1;
+                theVoting.text = [NSString stringWithFormat:@"up %d down %d", [upVotes intValue], numVote];
+            }
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"%@", request.error);
+        }];
+        
+        [request startAsynchronous];
+    }
     }
 }
 
@@ -567,7 +604,7 @@
 {
 
     theUserName.text = user;
-    
+    checker = YES;
     arrayContent = [[NSMutableArray alloc] init ];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
@@ -715,6 +752,7 @@
      
      [request startAsynchronous];  
      
+     theVoting.text = [NSString stringWithFormat:@"up %d down %d", [upVotes intValue], [downVotes intValue]];
      [self.myTableView reloadData];
 }
 

@@ -221,8 +221,8 @@
     
     [userLabel setText:userLabelText];
     [userLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
-    
-    NSString * infoLabelText = @"";
+  
+    NSString * infoLabelText = [NSString stringWithFormat:@"%@ up  %@ down", [[contentArray objectAtIndex:indexPath.row] objectAtIndex:2], [[contentArray objectAtIndex:indexPath.row] objectAtIndex:3]];
     [infoLabel setText:infoLabelText];
     [infoLabel setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN + label.frame.size.height, width - (CELL_CONTENT_MARGIN * 2), FONT_SIZE-4)];
 

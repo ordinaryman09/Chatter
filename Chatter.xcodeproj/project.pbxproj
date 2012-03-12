@@ -32,6 +32,8 @@
 		79328E7D14F76E20006730D9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E7C14F76E20006730D9 /* JSONKit.m */; };
 		7944C512150712B20088FB3E /* tu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7944C510150712B20088FB3E /* tu.png */; };
 		7944C513150712B20088FB3E /* td.png in Resources */ = {isa = PBXBuildFile; fileRef = 7944C511150712B20088FB3E /* td.png */; };
+		795D7F9F150D8CBA00963276 /* td32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7F9E150D8CBA00963276 /* td32.png */; };
+		795D7FA2150D8CD600963276 /* tu32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7FA1150D8CD600963276 /* tu32.png */; };
 		7964814C14F1CA5E00605489 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964814A14F1CA5E00605489 /* ThirdViewController.m */; };
 		7964814D14F1CA5E00605489 /* ThirdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7964814B14F1CA5E00605489 /* ThirdView.xib */; };
 		7964815914F1CC2C00605489 /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7964815814F1CC2C00605489 /* UIImage+Scale.m */; };
@@ -109,6 +111,8 @@
 		79328E7C14F76E20006730D9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		7944C510150712B20088FB3E /* tu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tu.png; sourceTree = "<group>"; };
 		7944C511150712B20088FB3E /* td.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td.png; sourceTree = "<group>"; };
+		795D7F9E150D8CBA00963276 /* td32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td32.png; sourceTree = "<group>"; };
+		795D7FA1150D8CD600963276 /* tu32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tu32.png; sourceTree = "<group>"; };
 		7964814914F1CA5E00605489 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		7964814A14F1CA5E00605489 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		7964814B14F1CA5E00605489 /* ThirdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdView.xib; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		791E2D0615020CFC00617466 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				795D7FA1150D8CD600963276 /* tu32.png */,
+				795D7F9E150D8CBA00963276 /* td32.png */,
 				995C3091150B26FD00901667 /* AddCommentView.xib */,
 				791E2D1E1502241800617466 /* LoginView.xib */,
 				791E2D0E1502154900617466 /* RegisterView.xib */,
@@ -409,6 +415,8 @@
 				997F2B83150B2096005AE5E5 /* 13-plus@2x.png in Resources */,
 				995C3096150B26FD00901667 /* AddCommentView.xib in Resources */,
 				995C309B150B284B00901667 /* AddPostView.xib in Resources */,
+				795D7F9F150D8CBA00963276 /* td32.png in Resources */,
+				795D7FA2150D8CD600963276 /* tu32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

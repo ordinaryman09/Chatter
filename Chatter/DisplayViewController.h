@@ -39,8 +39,8 @@
     IBOutlet UITextView *commentField;
     
     NSString * authUsername;
-
-
+    IBOutlet UILabel *theVoting;
+    BOOL checker; 
 }
 
 -(void) setThreadID:(NSString*)threadID setContent:(NSString*)setContent setTitle:(NSString *)title setUpVotes:(NSString *) up setDownVotes:(NSString *) down setLat:(NSString*) theLat
@@ -51,6 +51,7 @@
 @property (retain, nonatomic) IBOutlet UIView *headerView;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UILabel *theContent;
+@property (retain, nonatomic) IBOutlet UILabel *theVoting;
 //@property (nonatomic, retain) UILabel *theContent;
 @property (retain, nonatomic) IBOutlet UITableView *myTableView;
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
