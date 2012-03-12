@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Chatter/DisplayViewController.m"
-         timestampString = "352800311.022882"
+         timestampString = "353073246.616259"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "249"
-         endingLineNumber = "249"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

@@ -152,7 +152,7 @@
 - (void) dismissNewUserView:(id)sender {
     // Close the view
     [UIView transitionWithView:self.view duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                       options:UIViewAnimationOptionAutoreverse //change to whatever animation you like
                     animations:^ { [userRegView removeFromSuperview]; }
                     completion:nil];
 }
@@ -269,7 +269,7 @@
     
     // Add the display view controller to the stack
     [UIView transitionWithView:self.view duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                       options:UIViewAnimationOptionAutoreverse //change to whatever animation you like
                     animations:^ { [self.view addSubview:userRegView]; }
                     completion:nil];
 
@@ -445,7 +445,7 @@
             
             if (fileExists) {
                 NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
-                passField.text = [myUserName objectAtIndex:0];
+                passField.text = [myUserName objectAtIndex:1];
             }
             
             [passField addTarget:self 
@@ -547,7 +547,7 @@
             else {
                 
                 NSLog(@"CREATING AUTH FILE");
-                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:theUsername, nil];                
+                NSMutableArray *myUserName = [[NSMutableArray alloc] initWithObjects:theUsername, thePassword, nil];                
                 //[myUserName addObject:theUsername.text];
                 // [theUsername.text writeToFile:[self saveFilePath] atomically:YES];
                 

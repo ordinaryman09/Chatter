@@ -27,17 +27,18 @@
     NSString * lon;
     NSString * user;
     NSString * timeStamp;
-    IBOutlet UIView *headerView;
     IBOutlet UILabel *theContent;
     NSMutableArray *arrayContent;
-    IBOutlet UITableView *myTableView;
-    IBOutlet UILabel *theUserName;
-    IBOutlet UILabel *theTimeStamp;
-    IBOutlet UILabel *threadTitle;
+    //IBOutlet UITableView *myTableView;
+    //IBOutlet UILabel *theUserName;
+    //IBOutlet UILabel *theTimeStamp;
+    //IBOutlet UILabel *threadTitle;
     UIView *commentView;
     UIActivityIndicatorView *commentSpinner;
     UIImagePickerController *ipc;
     IBOutlet UITextView *commentField;
+    
+    NSString * authUsername;
 
 
 }
@@ -47,11 +48,13 @@
                 theTime;
 
 
+@property (retain, nonatomic) IBOutlet UIView *headerView;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UILabel *theContent;
 //@property (nonatomic, retain) UILabel *theContent;
-@property (nonatomic, retain) UITableView *myTableView;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UITableView *myTableView;
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
+//@property (nonatomic, retain) UITableView *myTableView;
 @property (retain, nonatomic) IBOutlet UILabel *threadTitle;
 @property (retain, nonatomic) IBOutlet UILabel *theUserName;
 @property (retain, nonatomic) IBOutlet UILabel *theTimeStamp;
@@ -61,8 +64,9 @@
 - (IBAction)addComment;
 - (IBAction)upVote;
 - (IBAction)downVote;
-- (IBAction) showNewUserView;
+- (IBAction) showNewCommentView;
 - (void) sendRequest :(NSString*) threadID setUserName:(NSString *)theUser;
+-(void) refresh;
 
 - (void) showAddress: (float)mapLatitude: (float)mapLongitude;
 

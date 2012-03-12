@@ -9,19 +9,28 @@
 #import "DisplayViewController.h"
 #import "ASIFormDataRequest.h"
 #import "JSONKit.h"
-#import "AddCommentView.h"
 #import <QuartzCore/QuartzCore.h>
 
 
 @implementation DisplayViewController
 //@synthesize theContent;
+/*@synthesize scrollView;
+@synthesize theContent;
 @synthesize theContent;
 @synthesize myTableView;
+@synthesize mapView;
+@synthesize myTableView;*/
+
+@synthesize headerView;
 @synthesize scrollView;
 @synthesize mapView;
+//@synthesize threadTitle;
+
+//@synthesize theTimeStamp;
 @synthesize threadTitle;
 @synthesize theUserName;
 @synthesize theTimeStamp;
+@synthesize myTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,57 +71,58 @@
     
 }
 
-- (IBAction) showNewUserView {
-    
-    int rgbValue = 0x3366CC;
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
+- (IBAction) showNewCommentView {
+    if ([self isAuthorized]) {
+        int rgbValue = 0x3366CC;
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
 
-    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"AddCommentView" owner:self options:nil];
-    commentView = [subviewArray objectAtIndex:0];
-    commentView.layer.cornerRadius = 15;
-    
-    commentView.layer.masksToBounds = NO;
-    //self.layer.cornerRadius = 8; // if you like rounded corners
-    commentView.layer.shadowOffset = CGSizeMake(0, 0);
-    commentView.layer.shadowRadius = 20;
-    commentView.layer.shadowOpacity = 0.8;
-    commentView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    commentView.layer.borderWidth = 4.0f;
-    
-    commentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:commentView.bounds].CGPath;
-    NSLog(@"%f %f",commentView.frame.size.width, commentView.frame.size.height);
-    [commentView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, commentView.frame.size.width, commentView.frame.size.height)];
-    
-    // Add the display view controller to the stack
-    [UIView transitionWithView:self.view duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
-                    animations:^ { [self.view addSubview:commentView]; }
-                    completion:nil];
+        NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"AddCommentView" owner:self options:nil];
+        commentView = [subviewArray objectAtIndex:0];
+        commentView.layer.cornerRadius = 15;
+        
+        commentView.layer.masksToBounds = NO;
+        //self.layer.cornerRadius = 8; // if you like rounded corners
+        commentView.layer.shadowOffset = CGSizeMake(0, 0);
+        commentView.layer.shadowRadius = 20;
+        commentView.layer.shadowOpacity = 0.8;
+        commentView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        commentView.layer.borderWidth = 4.0f;
+        
+        commentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:commentView.bounds].CGPath;
+        NSLog(@"%f %f",commentView.frame.size.width, commentView.frame.size.height);
+        [commentView setFrame:CGRectMake(screenWidth/2-143, /*screenHeight/2-150*/17, commentView.frame.size.width, commentView.frame.size.height)];
+        
+        // Add the display view controller to the stack
+        [UIView transitionWithView:self.view duration:0.3
+                           options:UIViewAnimationOptionAutoreverse //change to whatever animation you like
+                        animations:^ { [self.view addSubview:commentView]; }
+                        completion:nil];
 
-    UIButton* submitButton = (UIButton*) [commentView viewWithTag:3];
-    UIButton* closeButton = (UIButton*) [commentView viewWithTag:13];
-    
-    commentSpinner = [commentView viewWithTag:4];
+        UIButton* submitButton = (UIButton*) [commentView viewWithTag:3];
+        UIButton* closeButton = (UIButton*) [commentView viewWithTag:13];
+        
+        commentSpinner = [commentView viewWithTag:4];
 
-    commentField.textColor = [UIColor \
-                              colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-                              green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
-                              blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
-    
-    [commentField.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
-    [commentField.layer setBorderColor: [[UIColor grayColor] CGColor]];
-    [commentField.layer setBorderWidth: 1.0];
-    [commentField.layer setCornerRadius:8.0f];
-    [commentField.layer setMasksToBounds:YES];
-    
-    [submitButton addTarget:self 
-                     action:@selector(sendRequest)
-           forControlEvents:UIControlEventTouchUpInside];
-    
-    [closeButton addTarget:self action:@selector(dismissNewUserView:) forControlEvents:UIControlEventTouchUpInside];
-    [commentField becomeFirstResponder];
+        commentField.textColor = [UIColor \
+                                  colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                                  green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+                                  blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0];
+        
+        [commentField.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+        [commentField.layer setBorderColor: [[UIColor grayColor] CGColor]];
+        [commentField.layer setBorderWidth: 1.0];
+        [commentField.layer setCornerRadius:8.0f];
+        [commentField.layer setMasksToBounds:YES];
+        
+        [submitButton addTarget:self 
+                         action:@selector(sendRequest)
+               forControlEvents:UIControlEventTouchUpInside];
+        
+        [closeButton addTarget:self action:@selector(dismissNewUserView:) forControlEvents:UIControlEventTouchUpInside];
+        [commentField becomeFirstResponder];
+    }
     
 }
 
@@ -149,12 +159,65 @@
     NSLog(@"TD");
 }
 
--(void)infoButtonPressed:(id)sender 
+
+-(void)infoTUButtonPressed:(id)sender 
 {
+    
+    NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=UPVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
+    
+    //NSLog(@"%@", test);
+    
+    NSURL *url = [NSURL URLWithString:postURL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setCompletionBlock:^{
+        
+        [self refresh];
+        
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];
     // here you can access the object which triggered the method
     // for example you can check the tag value
     
-    NSLog(@"the tag value is: %d", [sender tag]);
+    NSLog(@"TU OI");
+    
+   // NSLog(@"TUthe tag value is: %@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1] );
+}
+
+-(void)infoTDButtonPressed:(id)sender 
+{
+    NSString *postURL = [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteComment.php?id=%@&vote=DOWNVOTE&user=%@", [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:0], [[arrayContent objectAtIndex:[sender tag]] objectAtIndex:1]];
+    
+    //NSLog(@"%@", test);
+    
+    NSURL *url = [NSURL URLWithString:postURL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request setCompletionBlock:^{
+        
+        [self refresh];
+        NSLog(@"TD euy");
+    }];
+    
+    [request setFailedBlock:^{
+        
+        NSLog(@"%@", request.error);
+    }];
+    
+    [request startAsynchronous];
+    // here you can access the object which triggered the method
+    // for example you can check the tag value
+
+    // here you can access the object which triggered the method
+    // for example you can check the tag value
+    
+    //NSLog(@"TDthe tag value is: %d", [sender tag]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -241,7 +304,7 @@
     // buyButton.frame = CGRectMake(220, 35, 96, 34);
     tuButton.frame = CGRectMake(245, halfHeight-8, 16, 16);
     [tuButton setTag:indexPath.row];
-    [tuButton addTarget:self action:@selector(infoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [tuButton addTarget:self action:@selector(infoTUButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:tuButton];
     
     
@@ -252,7 +315,7 @@
     // buyButton.frame = CGRectMake(220, 35, 96, 34);
     tdButton.frame = CGRectMake(275, halfHeight-8, 16, 16);
     [tdButton setTag:indexPath.row];
-    [tdButton addTarget:self action:@selector(downVote) forControlEvents:UIControlEventTouchDown];
+    [tdButton addTarget:self action:@selector(infoTDButtonPressed:) forControlEvents:UIControlEventTouchDown];
     [cell.contentView addSubview:tdButton];
     
     /*UILabel *upLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 224, halfHeight-8, 20.0, 10.0 )] autorelease];
@@ -276,8 +339,7 @@
     /*downLabel.backgroundColor = [UIColor clearColor];
     downLabel.textColor = [UIColor lightGrayColor];
     [cell.contentView addSubview: downLabel];*/
-    
-    return cell;
+
     
     
     
@@ -363,17 +425,54 @@
     
 }
 
+- (NSString *) saveFilePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[pathArray objectAtIndex:0] stringByAppendingPathComponent:@"loginSave1.plist"];
+}
 
+- (BOOL) isAuthorized {
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString *myPath = [self saveFilePath];
+    
+    BOOL fileExists = [fileManager fileExistsAtPath:myPath];
+    
+    if (!fileExists) {
+        // Pop-up notification telling user that invalid entry
+        
+        // [self.tabBarController setSelectedIndex:3];
+        // [self.tabBarController.selectedViewController viewDidLoad];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not logged in" 
+                                                        message:@"Please login or register a username." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return NO;
+        
+        
+    }
+    
+    NSMutableArray *myUserName = [[NSMutableArray alloc] initWithContentsOfFile:myPath];
+    authUsername = [myUserName objectAtIndex:0];
+    
+    return YES;
+
+}
 - (IBAction) upVote {
     NSLog(@"%@", tID);
     
-    //[self theContent]
+    if ([self isAuthorized]) {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, user]];
-    
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        //[self theContent]
+        NSLog(@"%@", [NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]);
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=UPVOTE&user=%@", tID, authUsername]];
+        
+        NSURLRequest *request=[NSURLRequest requestWithURL:url];
+        
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    }
     
 }
 
@@ -381,13 +480,13 @@
     NSLog(@"%@", tID);
     
     //[self theContent]
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE&user=%@", tID, user]];
-    
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
+    if ([self isAuthorized]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.williamliwu.com/chatter/voteThread.php?id=%@&vote=DOWNVOTE&user=%@", tID, authUsername]];
+        
+        NSURLRequest *request=[NSURLRequest requestWithURL:url];
+        
+        [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    }
 }
 
 - (void)dealloc
@@ -396,6 +495,14 @@
     [scrollView release];
     [mapView release];
     [threadTitle release];
+    [headerView release];
+    [scrollView release];
+    [theContent release];
+    [myTableView release];
+    [mapView release];
+    [threadTitle release];
+    [theUserName release];
+    [theTimeStamp release];
     [headerView release];
     [super dealloc];
 }
@@ -444,7 +551,7 @@
 - (void) dismissNewUserView:(id)sender {
     // Close the view
     [UIView transitionWithView:self.view duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                       options:UIViewAnimationOptionAutoreverse //change to whatever animation you like
                     animations:^ { [commentView removeFromSuperview]; }
                     completion:nil];
 }
@@ -492,13 +599,13 @@
                                     headerView.frame.size.height)];
     
     // Position the comments with respect to the dynamically sized layout
-    [myTableView setFrame:CGRectMake(myTableView.frame.origin.x,
+    [self.myTableView setFrame:CGRectMake(self.myTableView.frame.origin.x,
                                      headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height,
-                                     [myTableView contentSize].width,
-                                     MAX([myTableView contentSize].height+75,
+                                     [self.myTableView contentSize].width,
+                                     MAX([self.myTableView contentSize].height+75,
                                          (screenHeight-(headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height))))];
     
-    self.scrollView.contentSize = CGSizeMake(screenWidth, myTableView.frame.origin.y + myTableView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(screenWidth, self.myTableView.frame.origin.y + self.myTableView.frame.size.height);
     
     // Add a UI border to the MKMapView
     mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -562,15 +669,15 @@
              //  NSString * postTitle = [dataDict objectForKey:@"UPVOTES"];
              //NSLog(@"%@", postTitle);
              NSString *iD = [dataDict objectForKey:@"ID"];
-             NSString *user = [dataDict objectForKey:@"USER"];
+             NSString *getUser = [dataDict objectForKey:@"USER"];
              NSString *comment = [dataDict objectForKey:@"CONTENT"];
-             NSString *upVotes = [dataDict objectForKey:@"UPVOTES"];
-             NSString *downVotes = [dataDict objectForKey:@"DOWNVOTES"];
+             NSString *NumUpVotes = [dataDict objectForKey:@"UPVOTES"];
+             NSString *NumDownVotes = [dataDict objectForKey:@"DOWNVOTES"];
              NSString *time = [dataDict objectForKey:@"TIMESTAMP"];
              
              NSLog(@"%@", iD);
              
-             NSArray *contents = [NSArray arrayWithObjects:iD, user, comment ,upVotes, downVotes,
+             NSArray *contents = [NSArray arrayWithObjects:iD, getUser, comment ,NumUpVotes, NumDownVotes,
                                   time, nil];
              
              [arrayContent addObject:contents];
@@ -584,14 +691,14 @@
          //              it took two hours of debugging to figure it out.
          
          // Set the position of the UITableView
-         [myTableView layoutIfNeeded];
-         [myTableView setFrame:CGRectMake(myTableView.frame.origin.x,
+         [self.myTableView layoutIfNeeded];
+         [self.myTableView setFrame:CGRectMake(self.myTableView.frame.origin.x,
                                           headerView.frame.origin.y + headerView.frame.size.height + theContent.frame.size.height,
-                                          [myTableView contentSize].width,
-                                          MAX([myTableView contentSize].height+75,
+                                          [self.myTableView contentSize].width,
+                                          MAX([self.myTableView contentSize].height+75,
                                               (screenHeight-(headerView.frame.origin.y+headerView.frame.size.height + theContent.frame.size.height))))];
          
-         self.scrollView.contentSize = CGSizeMake(screenWidth, myTableView.frame.origin.y+myTableView.frame.size.height);
+         self.scrollView.contentSize = CGSizeMake(screenWidth, self.myTableView.frame.origin.y+self.myTableView.frame.size.height);
          
      }];
      
@@ -613,6 +720,14 @@
     [self setThreadTitle:nil];
     [headerView release];
     headerView = nil;
+    [self setScrollView:nil];
+    [self setTheContent:nil];
+    [self setMyTableView:nil];
+    [self setMapView:nil];
+    [self setThreadTitle:nil];
+    [self settheUserName:nil];
+    [self setTheTimeStamp:nil];
+    [self setHeaderView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

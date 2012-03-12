@@ -98,7 +98,7 @@
     
     // Add the display view controller to the stack
     [UIView transitionWithView:self.view duration:0.3
-                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                       options:UIViewAnimationOptionAutoreverse //change to whatever animation you like
                     animations:^ { [self.view addSubview:commentView]; }
                     completion:nil];
     
