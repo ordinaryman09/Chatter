@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790BA6AE150DD69100F21541 /* AddPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790BA6AD150DD69100F21541 /* AddPostView.xib */; };
 		791E2D3B1504551C00617466 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D391504551A00617466 /* DisplayViewController.m */; };
 		791E2D3C1504551C00617466 /* DisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791E2D3A1504551B00617466 /* DisplayView.xib */; };
 		791E2D591504712100617466 /* MyPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 791E2D571504711E00617466 /* MyPostController.m */; };
@@ -26,6 +27,7 @@
 		79328E7814F76779006730D9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E6C14F76779006730D9 /* ASINetworkQueue.m */; };
 		79328E7914F76779006730D9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E7014F76779006730D9 /* Reachability.m */; };
 		79328E7D14F76E20006730D9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 79328E7C14F76E20006730D9 /* JSONKit.m */; };
+		79378F15150DD56C009BFC31 /* AddCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79378F14150DD56C009BFC31 /* AddCommentView.xib */; };
 		7944C512150712B20088FB3E /* tu.png in Resources */ = {isa = PBXBuildFile; fileRef = 7944C510150712B20088FB3E /* tu.png */; };
 		7944C513150712B20088FB3E /* td.png in Resources */ = {isa = PBXBuildFile; fileRef = 7944C511150712B20088FB3E /* td.png */; };
 		795D7F9F150D8CBA00963276 /* td32.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D7F9E150D8CBA00963276 /* td32.png */; };
@@ -60,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		790BA6AD150DD69100F21541 /* AddPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostView.xib; sourceTree = "<group>"; };
 		791E2D381504551900617466 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
 		791E2D391504551A00617466 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
 		791E2D3A1504551B00617466 /* DisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayView.xib; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		79328E7014F76779006730D9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		79328E7B14F76E20006730D9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		79328E7C14F76E20006730D9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		79378F14150DD56C009BFC31 /* AddCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentView.xib; sourceTree = "<group>"; };
 		7944C510150712B20088FB3E /* tu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tu.png; sourceTree = "<group>"; };
 		7944C511150712B20088FB3E /* td.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td.png; sourceTree = "<group>"; };
 		795D7F9E150D8CBA00963276 /* td32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = td32.png; sourceTree = "<group>"; };
@@ -175,7 +179,9 @@
 		791E2D0615020CFC00617466 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				790BA6AD150DD69100F21541 /* AddPostView.xib */,
 				79F30BF014F0F88400C726F8 /* SecondView.xib */,
+				79378F14150DD56C009BFC31 /* AddCommentView.xib */,
 				791E2D581504712000617466 /* MyPost.xib */,
 				79F30BE414F0F88400C726F8 /* MainWindow.xib */,
 				791E2D3A1504551B00617466 /* DisplayView.xib */,
@@ -380,6 +386,8 @@
 				79AE81A3150DCC1600472F64 /* icon.png in Resources */,
 				79AE81B6150DD38B00472F64 /* Icon@2x.png in Resources */,
 				79AE81B9150DD3CF00472F64 /* iPhoneIcon_Big (2).png in Resources */,
+				79378F15150DD56C009BFC31 /* AddCommentView.xib in Resources */,
+				790BA6AE150DD69100F21541 /* AddPostView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
